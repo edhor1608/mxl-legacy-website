@@ -8,16 +8,22 @@ const links = [
   { href: '/#contact', label: 'Contact' }
 ]
 ---
-<header class="sticky top-0 z-50 bg-mxl-dark/80 backdrop-blur border-b border-white/10">
-  <nav class="container-px flex h-14 items-center justify-between">
-    <a href="/" class="flex items-center gap-2 font-semibold">
-      <img src="/favicon.svg" alt="MXL" class="h-6 w-6" />
-      <span>MXL Legacy</span>
-    </a>
-    <ul class="hidden md:flex items-center gap-6 text-sm">
-      {links.map((l) => (
-        <li><a href={l.href} class="hover:text-mxl-red transition-colors">{l.label}</a></li>
-      ))}
-    </ul>
-  </nav>
+<header class="sticky top-0 z-50">
+  <div class="border-b border-[#F4F4F4]/10 bg-[#201D1F]/70 backdrop-blur supports-[backdrop-filter]:bg-[#201D1F]/70">
+    <nav class="container-px flex h-16 items-center justify-between">
+      <a href="/" class="flex items-center gap-2 font-semibold">
+        <img src="/favicon.svg" alt="MXL" class="h-6 w-6" />
+        <span>MXL Legacy</span>
+      </a>
+      <ul class="hidden md:flex items-center gap-6 text-sm">
+        {links.map((l) => (
+          <li>
+            <a href={l.href} class="relative py-1 hover:text-[#9FFE88] transition-colors after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-0 after:bg-[#9FFE88] after:transition-all hover:after:w-full">
+              {l.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  </div>
 </header>
