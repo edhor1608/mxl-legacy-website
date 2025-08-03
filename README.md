@@ -20,13 +20,13 @@ Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.
 
 ## Features
 
-* **Astro-powered** static site: zero-JavaScript by default, islands for optional interactivity
-* **Tailwind CSS** for utility-first styling and rapid design
-* **Scroll navigation**: sticky header links to full-page sections
-* **Multi-page support**: file-based routing for up to 10 pages
-* **SEO & performance** best practices out of the box
-* **CI/CD** via GitHub Actions → Netlify or Vercel preview & production deploys
-* **Open source**: easy for anyone to fork, contribute, and improve
+- **Astro-powered** static site: zero-JavaScript by default, islands for optional interactivity
+- **Tailwind CSS** for utility-first styling and rapid design
+- **Scroll navigation**: sticky header links to full-page sections
+- **Multi-page support**: file-based routing for up to 10 pages
+- **SEO & performance** best practices out of the box
+- **CI/CD** via GitHub Actions → Netlify or Vercel preview & production deploys
+- **Open source**: easy for anyone to fork, contribute, and improve
 
 ## Quick Start
 
@@ -72,21 +72,21 @@ mxl-legacy/
 
 ## Development
 
-* **`bun run dev`**
+- **`bun run dev`**
   Start Astro’s dev server with file watching and HMR.
 
-* **`bun run lint`**
+- **`bun run lint`**
   (Optional) Run any configured linters.
 
-* **`bun run format`**
+- **`bun run format`**
   (Optional) Format code with Prettier.
 
 ## Build & Preview
 
-* **`npm run build`**
+- **`npm run build`**
   Generate the production-ready `dist/` directory (static HTML, CSS, and any island JS).
 
-* **`npm run preview`**
+- **`npm run preview`**
   Serve the built `dist/` locally to verify before deploying.
 
 Here’s the adjusted **Deployment** section in your README to focus solely on Netlify:
@@ -99,6 +99,7 @@ We’ll use Netlify’s free tier to host the fully static output.
 1. **Install the Netlify CLI** (if you haven’t yet):
    ```bash
    npm install -g netlify-cli
+   ```
 ````
 
 2. **Login** (once):
@@ -113,9 +114,9 @@ We’ll use Netlify’s free tier to host the fully static output.
    netlify init
    ```
 
-   * Choose “Create & configure a new site”
-   * Select your Git provider & repo
-   * Pick “Astro” as the build command (`npm run build`) and `dist/` as the publish directory
+   - Choose “Create & configure a new site”
+   - Select your Git provider & repo
+   - Pick “Astro” as the build command (`npm run build`) and `dist/` as the publish directory
 
 4. **Deploy** a draft:
 
@@ -138,7 +139,7 @@ name: CI & Deploy
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-deploy:
@@ -149,7 +150,7 @@ jobs:
       - name: Install Bun
         uses: oven-sh/setup-bun@v1
         with:
-          bun-version: '1.1.0'
+          bun-version: "1.1.0"
 
       - name: Install dependencies
         run: bun install
@@ -163,19 +164,19 @@ jobs:
           args: deploy --dir=dist --prod
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID:    ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
 ```
 
 Be sure to add two repository secrets under Settings ▶ Secrets:
 
-* `NETLIFY_AUTH_TOKEN` (your Netlify personal access token)
-* `NETLIFY_SITE_ID` (the Site ID from your Netlify dashboard)
+- `NETLIFY_AUTH_TOKEN` (your Netlify personal access token)
+- `NETLIFY_SITE_ID` (the Site ID from your Netlify dashboard)
 
 This setup will automatically rebuild and publish every time you merge into `main`.
 
 ## Contributing
-Fork the repo, create a branch, open a PR. Issues and ideas welcome.
 
+Fork the repo, create a branch, open a PR. Issues and ideas welcome.
 
 ## License
 
