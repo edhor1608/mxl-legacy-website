@@ -1,90 +1,180 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro'
-import Nav from '../components/Nav.astro'
-import Hero from '../components/Hero.astro'
-import Section from '../components/Section.astro'
-import Footer from '../components/Footer.astro'
-import '../styles/global.css'
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Section from "../components/Section.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/global.css";
 
 const drivers = [
-  { role: 'Gründer & Streamer', tag: 'Owner', img: 'https://placehold.co/300x300?text=Owner' },
-  { role: 'Sportliche Leitung', tag: 'Urvater', img: 'https://placehold.co/300x300?text=Lead' },
-  { role: 'Namensgeber & Leitung', tag: 'Core', img: 'https://placehold.co/300x300?text=Core' },
-  { role: 'Gesamtleitung', tag: 'Coord', img: 'https://placehold.co/300x300?text=Coord' },
-  { role: 'Sponsor ProSeries', tag: 'Sponsor', img: 'https://placehold.co/300x300?text=Sponsor' },
-  { role: 'United Split', tag: 'United', img: 'https://placehold.co/300x300?text=United' },
-  { role: 'Endurance Team', tag: 'iRacing', img: 'https://placehold.co/300x300?text=iRacing' },
-  { role: 'Website & Ops', tag: 'Tech', img: 'https://placehold.co/300x300?text=Tech' }
-]
+  {
+    role: "Gründer & Streamer",
+    tag: "Owner",
+    img: "https://placehold.co/300x300?text=Owner",
+  },
+  {
+    role: "Sportliche Leitung",
+    tag: "Urvater",
+    img: "https://placehold.co/300x300?text=Lead",
+  },
+  {
+    role: "Namensgeber & Leitung",
+    tag: "Core",
+    img: "https://placehold.co/300x300?text=Core",
+  },
+  {
+    role: "Gesamtleitung",
+    tag: "Coord",
+    img: "https://placehold.co/300x300?text=Coord",
+  },
+  {
+    role: "Sponsor ProSeries",
+    tag: "Sponsor",
+    img: "https://placehold.co/300x300?text=Sponsor",
+  },
+  {
+    role: "United Split",
+    tag: "United",
+    img: "https://placehold.co/300x300?text=United",
+  },
+  {
+    role: "Endurance Team",
+    tag: "iRacing",
+    img: "https://placehold.co/300x300?text=iRacing",
+  },
+  {
+    role: "Website & Ops",
+    tag: "Tech",
+    img: "https://placehold.co/300x300?text=Tech",
+  },
+];
 const gallery = [
-  { src: 'https://placehold.co/600x400?text=Monza+Kickoff', cap: 'Kickoff in Monza' },
-  { src: 'https://placehold.co/600x400?text=Stream+Growth', cap: 'Streams wachsen' },
-  { src: 'https://placehold.co/600x400?text=ProSeries+Grid', cap: 'ProSeries Starterfeld' },
-  { src: 'https://placehold.co/600x400?text=United+Split', cap: 'United Split' },
-  { src: 'https://placehold.co/600x400?text=Endurance', cap: 'Endurance Team' },
-  { src: 'https://placehold.co/600x400?text=AMS2+Project', cap: 'AMS2 Projekt' },
-  { src: 'https://placehold.co/600x400?text=Reorg', cap: 'Neuordnung & Leitung' },
-  { src: 'https://placehold.co/600x400?text=Community', cap: 'Community & Rivalität' },
-  { src: 'https://placehold.co/600x400?text=Legacy', cap: 'Legacy' }
-]
+  {
+    src: "https://placehold.co/600x400?text=Monza+Kickoff",
+    cap: "Kickoff in Monza",
+  },
+  {
+    src: "https://placehold.co/600x400?text=Stream+Growth",
+    cap: "Streams wachsen",
+  },
+  {
+    src: "https://placehold.co/600x400?text=ProSeries+Grid",
+    cap: "ProSeries Starterfeld",
+  },
+  {
+    src: "https://placehold.co/600x400?text=United+Split",
+    cap: "United Split",
+  },
+  { src: "https://placehold.co/600x400?text=Endurance", cap: "Endurance Team" },
+  {
+    src: "https://placehold.co/600x400?text=AMS2+Project",
+    cap: "AMS2 Projekt",
+  },
+  {
+    src: "https://placehold.co/600x400?text=Reorg",
+    cap: "Neuordnung & Leitung",
+  },
+  {
+    src: "https://placehold.co/600x400?text=Community",
+    cap: "Community & Rivalität",
+  },
+  { src: "https://placehold.co/600x400?text=Legacy", cap: "Legacy" },
+];
 const seasons = [
-  { year: '2018', note: 'Start in Monza mit ~10 Fahrern (Community‑Liga).' },
-  { year: '2019', note: 'Tests & erste Saison; sportliche Leitung formt Strukturen.' },
-  { year: '2020', note: 'ProSeries angekündigt – Ziel: beste DACH‑Liga.' },
-  { year: '2021', note: 'ProSeries S1: Streams boomen, ~100 Fahrer.' },
-  { year: '2022', note: 'Bugs stören Betrieb; Verlust der Leitfigur.' },
-  { year: '2023', note: 'Neuordnung: United‑Split, MXL Racing, Expansion.' },
-  { year: '2024', note: 'Konflikte, Burnout, Übernahmeversuch, Neuaufbau.' },
-  { year: '2025', note: 'Rücktritt, Abwicklung – Wunsch nach würdigem Abschluss.' }
-]
+  { year: "2018", note: "Start in Monza mit ~10 Fahrern (Community‑Liga)." },
+  {
+    year: "2019",
+    note: "Tests & erste Saison; sportliche Leitung formt Strukturen.",
+  },
+  { year: "2020", note: "ProSeries angekündigt – Ziel: beste DACH‑Liga." },
+  { year: "2021", note: "ProSeries S1: Streams boomen, ~100 Fahrer." },
+  { year: "2022", note: "Bugs stören Betrieb; Verlust der Leitfigur." },
+  { year: "2023", note: "Neuordnung: United‑Split, MXL Racing, Expansion." },
+  { year: "2024", note: "Konflikte, Burnout, Übernahmeversuch, Neuaufbau." },
+  {
+    year: "2025",
+    note: "Rücktritt, Abwicklung – Wunsch nach würdigem Abschluss.",
+  },
+];
 ---
-<BaseLayout title="MXL Legacy" description="Static tribute to the MXL sim‑racing league">
+
+<BaseLayout
+  title="MXL Legacy"
+  description="Static tribute to the MXL sim‑racing league"
+>
   <Nav />
   <Hero />
 
   <Section id="about" title="Überblick">
-    <p class="text-[#F4F4F4]/80 max-w-3xl">Aus einer kleinen Community‑Runde in Monza wuchs die MXL zu einer ambitionierten Liga mit ProSeries‑Anspruch. Erfolge, Rückschläge, Neuaufbau – und am Ende der Versuch, der Geschichte einen würdigen Abschluss zu geben.</p>
+    <p class="text-[#F4F4F4]/80 max-w-3xl">
+      Aus einer kleinen Community‑Runde in Monza wuchs die MXL zu einer
+      ambitionierten Liga mit ProSeries‑Anspruch. Erfolge, Rückschläge,
+      Neuaufbau – und am Ende der Versuch, der Geschichte einen würdigen
+      Abschluss zu geben.
+    </p>
   </Section>
 
   <Section id="drivers" title="Team & Rollen">
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-      {drivers.map((d) => (
-        <div class="group rounded-2xl overflow-hidden border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02]">
-          <div class="relative">
-            <img src={d.img} alt={d.role} class="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-[1.03]" />
-            <span class="absolute top-2 right-2 rounded-full bg-[#201D1F]/60 px-2 py-0.5 text-[10px] uppercase tracking-wide">{d.tag}</span>
+      {
+        drivers.map((d) => (
+          <div class="group rounded-2xl overflow-hidden border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02]">
+            <div class="relative">
+              <img
+                src={d.img}
+                alt={d.role}
+                class="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+              />
+              <span class="absolute top-2 right-2 rounded-full bg-[#201D1F]/60 px-2 py-0.5 text-[10px] uppercase tracking-wide">
+                {d.tag}
+              </span>
+            </div>
+            <div class="p-3">
+              <p class="font-medium">{d.role}</p>
+              <p class="text-xs text-[#F4F4F4]/60">MXL</p>
+            </div>
           </div>
-          <div class="p-3">
-            <p class="font-medium">{d.role}</p>
-            <p class="text-xs text-[#F4F4F4]/60">MXL</p>
-          </div>
-        </div>
-      ))}
+        ))
+      }
     </div>
   </Section>
 
   <Section id="gallery" title="Gallery">
-    <div class="columns-2 md:columns-3 gap-4 [column-fill:_balance]"><!-- masonry-like using CSS columns -->
-      {gallery.map((g) => (
-        <figure class="mb-4 break-inside-avoid rounded-xl overflow-hidden border border-[#F4F4F4]/10 bg-[#F4F4F4]/5">
-          <img src={g.src} alt={g.cap} class="w-full h-auto object-cover" loading="lazy" />
-          <figcaption class="px-3 py-2 text-xs text-[#F4F4F4]/60">{g.cap}</figcaption>
-        </figure>
-      ))}
+    <div class="columns-2 md:columns-3 gap-4 [column-fill:_balance]">
+      <!-- masonry-like using CSS columns -->
+      {
+        gallery.map((g) => (
+          <figure class="mb-4 break-inside-avoid rounded-xl overflow-hidden border border-[#F4F4F4]/10 bg-[#F4F4F4]/5">
+            <img
+              src={g.src}
+              alt={g.cap}
+              class="w-full h-auto object-cover"
+              loading="lazy"
+            />
+            <figcaption class="px-3 py-2 text-xs text-[#F4F4F4]/60">
+              {g.cap}
+            </figcaption>
+          </figure>
+        ))
+      }
     </div>
   </Section>
 
   <Section id="timeline" title="Timeline">
-    <ol class="relative pl-6 before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-gradient-to-b before:from-[#F4F4F4]/0 before:via-[#F4F4F4]/30 before:to-[#F4F4F4]/0">
-      {seasons.map((s) => (
-        <li class="relative mb-8">
-          <div class="absolute -left-[9px] mt-1 w-4 h-4 rounded-full bg-[#9FFE88] shadow-[0_0_0_4px_rgba(159,254,136,0.2)]"></div>
-          <div class="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-            <h3 class="text-lg font-semibold">{s.year}</h3>
-            <p class="text-white/70">{s.note}</p>
-          </div>
-        </li>
-      ))}
+    <ol
+      class="relative pl-6 before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-gradient-to-b before:from-[#F4F4F4]/0 before:via-[#F4F4F4]/30 before:to-[#F4F4F4]/0"
+    >
+      {
+        seasons.map((s) => (
+          <li class="relative mb-8">
+            <div class="absolute -left-[9px] mt-1 w-4 h-4 rounded-full bg-[#9FFE88] shadow-[0_0_0_4px_rgba(159,254,136,0.2)]" />
+            <div class="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
+              <h3 class="text-lg font-semibold">{s.year}</h3>
+              <p class="text-white/70">{s.note}</p>
+            </div>
+          </li>
+        ))
+      }
     </ol>
   </Section>
 

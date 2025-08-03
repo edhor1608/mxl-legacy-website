@@ -1,7 +1,11 @@
 ---
 import "../styles/global.css";
-const { title = 'MXL Legacy', description = 'Open-source tribute to the MXL sim-racing league' } = Astro.props
+const {
+  title = "MXL Legacy",
+  description = "Open-source tribute to the MXL sim-racing league",
+} = Astro.props;
 ---
+
 <!doctype html>
 <html lang="en" class="bg-[#201D1F] text-[#F4F4F4]">
   <head>
@@ -14,5 +18,4 @@ const { title = 'MXL Legacy', description = 'Open-source tribute to the MXL sim-
   <body class="font-sans">
     <slot />
   </body>
-  
 </html>
