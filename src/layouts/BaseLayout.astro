@@ -1,0 +1,18 @@
+---
+import "../styles/global.css";
+const { title = 'MXL Legacy', description = 'Open-source tribute to the MXL sim-racing league' } = Astro.props
+---
+<!doctype html>
+<html lang="en" class="bg-mxl-dark text-white">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body class="font-sans">
+    <slot />
+  </body>
+  
+</html>

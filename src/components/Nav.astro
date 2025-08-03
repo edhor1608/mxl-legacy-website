@@ -1,0 +1,23 @@
+---
+const links = [
+  { href: '/#hero', label: 'Home' },
+  { href: '/#about', label: 'About' },
+  { href: '/#drivers', label: 'Drivers' },
+  { href: '/#gallery', label: 'Gallery' },
+  { href: '/#timeline', label: 'Timeline' },
+  { href: '/#contact', label: 'Contact' }
+]
+---
+<header class="sticky top-0 z-50 bg-mxl-dark/80 backdrop-blur border-b border-white/10">
+  <nav class="container-px flex h-14 items-center justify-between">
+    <a href="/" class="flex items-center gap-2 font-semibold">
+      <img src="/favicon.svg" alt="MXL" class="h-6 w-6" />
+      <span>MXL Legacy</span>
+    </a>
+    <ul class="hidden md:flex items-center gap-6 text-sm">
+      {links.map((l) => (
+        <li><a href={l.href} class="hover:text-mxl-red transition-colors">{l.label}</a></li>
+      ))}
+    </ul>
+  </nav>
+</header>

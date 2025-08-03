@@ -1,0 +1,20 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/Nav.astro'
+import Section from '../components/Section.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+
+const gallery = Array.from({ length: 12 }).map((_, i) => `https://placehold.co/800x500?text=Gallery+${i + 1}`)
+---
+<BaseLayout title="Gallery • MXL Legacy" description="Photos and highlights">
+  <Nav />
+  <Section id="gallery-page" title="Gallery">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {gallery.map((src, i) => (
+        <img src={src} alt={`Gallery ${i + 1}`} class="w-full h-48 object-cover rounded-lg border border-white/10" loading="lazy" />
+      ))}
+    </div>
+  </Section>
+  <Footer />
+</BaseLayout>

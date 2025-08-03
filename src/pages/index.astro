@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/Nav.astro'
+import Hero from '../components/Hero.astro'
+import Section from '../components/Section.astro'
+import Footer from '../components/Footer.astro'
+// import '../styles/global.css'
+
+const drivers = Array.from({ length: 8 }).map((_, i) => ({
+  name: `Driver ${i + 1}`,
+  img: `https://placehold.co/300x300?text=Driver+${i + 1}`
+}))
+const gallery = Array.from({ length: 9 }).map((_, i) => `https://placehold.co/600x400?text=Gallery+${i + 1}`)
+const seasons = [
+  { year: '2018', note: 'Inaugural grid and close battles.' },
+  { year: '2019', note: 'Expanded calendar and endurance events.' },
+  { year: '2020', note: 'Community peaks with weekly races.' },
+  { year: '2021', note: 'New tracks and champions crowned.' },
+  { year: '2022', note: 'Farewell tour and final podiums.' }
+]
+---
+<BaseLayout title="MXL Legacy" description="Static tribute to the MXL sim‑racing league">
+  <Nav />
+  <Hero />
+
+  <Section id="about" title="About">
+    <p class="text-white/80 max-w-3xl">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer euismod, nunc sed convallis pulvinar, urna lorem tincidunt arcu, sed bibendum justo risus at leo. MXL brought racers together for clean battles, friendly rivalry, and countless late‑night setup chats.</p>
+  </Section>
+
+  <Section id="drivers" title="Drivers">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+      {drivers.map((d) => (
+        <div class="rounded-lg overflow-hidden bg-white/5 border border-white/10">
+          <img src={d.img} alt={d.name} class="w-full h-40 object-cover" />
+          <div class="p-3">
+            <p class="font-medium">{d.name}</p>
+            <p class="text-xs text-white/60">Team Lorem • #00</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <Section id="gallery" title="Gallery">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      {gallery.map((src, i) => (
+        <img src={src} alt={`Gallery ${i + 1}`} class="w-full h-40 object-cover rounded-lg border border-white/10" loading="lazy" />
+      ))}
+    </div>
+  </Section>
+
+  <Section id="timeline" title="Timeline">
+    <ol class="relative border-l border-white/20 pl-6">
+      {seasons.map((s) => (
+        <li class="mb-6">
+          <div class="absolute -left-[9px] mt-1 w-4 h-4 rounded-full bg-mxl-red border border-black"></div>
+          <h3 class="text-xl font-semibold">{s.year}</h3>
+          <p class="text-white/70">{s.note}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
+
+  <Footer />
+</BaseLayout>

@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/Nav.astro'
+import Section from '../components/Section.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+---
+<BaseLayout title="About • MXL Legacy" description="About the league and community">
+  <Nav />
+  <Section id="about-page" title="About MXL">
+    <div class="prose prose-invert max-w-none">
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque habitant morbi tristique senectus et netus. Integer posuere erat a ante venenatis dapibus posuere velit aliquet.</p>
+      <p>Quisque consequat, lorem non condimentum ultricies, nunc arcu dictum sapien, id dignissim turpis arcu et orci. Etiam porta sem malesuada magna mollis euismod.</p>
+    </div>
+  </Section>
+  <Footer />
+</BaseLayout>

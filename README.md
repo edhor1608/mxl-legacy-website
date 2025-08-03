@@ -5,7 +5,7 @@ A fast, open-source tribute site for the MXL sim-racing league—built with Astr
 A statically generated, scroll-navigable tribute website for the retired MXL sim-racing league.
 Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/) for blazing-fast performance, simple deployment, and easy community contributions.
 
-![MXL Legacy Demo](https://via.placeholder.com/800x300?text=MXL+Legacy)
+![MXL Legacy Demo](https://placehold.co/800x300?text=MXL+Legacy)
 
 ## Table of Contents
 
@@ -36,10 +36,10 @@ git clone https://github.com/your-org/mxl-legacy.git
 cd mxl-legacy
 
 # Install dependencies
-npm install
+bun install
 
 # Start local dev server
-npm run dev
+bun run dev
 ```
 
 Navigate to `http://localhost:3000` to see your changes live.
@@ -72,13 +72,13 @@ mxl-legacy/
 
 ## Development
 
-* **`npm run dev`**
+* **`bun run dev`**
   Start Astro’s dev server with file watching and HMR.
 
-* **`npm run lint`**
+* **`bun run lint`**
   (Optional) Run any configured linters.
 
-* **`npm run format`**
+* **`bun run format`**
   (Optional) Format code with Prettier.
 
 ## Build & Preview
@@ -146,16 +146,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Use Node.js
-        uses: actions/setup-node@v3
+      - name: Install Bun
+        uses: oven-sh/setup-bun@v1
         with:
-          node-version: '18'
+          bun-version: '1.1.0'
 
       - name: Install dependencies
-        run: npm ci
+        run: bun install
 
       - name: Build site
-        run: npm run build
+        run: bun run build
 
       - name: Deploy to Netlify
         uses: netlify/actions/cli@master
@@ -172,6 +172,10 @@ Be sure to add two repository secrets under Settings ▶ Secrets:
 * `NETLIFY_SITE_ID` (the Site ID from your Netlify dashboard)
 
 This setup will automatically rebuild and publish every time you merge into `main`.
+
+## Contributing
+Fork the repo, create a branch, open a PR. Issues and ideas welcome.
+
 
 ## License
 

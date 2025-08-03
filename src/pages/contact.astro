@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/Nav.astro'
+import Section from '../components/Section.astro'
+import Footer from '../components/Footer.astro'
+import '../styles/global.css'
+---
+<BaseLayout title="Contact • MXL Legacy" description="Reach out and contribute">
+  <Nav />
+  <Section id="contact-page" title="Contact">
+    <p class="text-white/80">For contributions and inquiries, open an issue or PR on GitHub. You can also share assets via cloud links.</p>
+    <a href="https://github.com/your-org/mxl-legacy" class="mt-6 inline-block rounded bg-mxl-red px-4 py-2">GitHub</a>
+  </Section>
+  <Footer />
+</BaseLayout>
