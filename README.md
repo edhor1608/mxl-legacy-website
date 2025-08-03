@@ -1,7 +1,6 @@
-# mxl-legacy-website
-A fast, open-source tribute site for the MXL sim-racing league—built with Astro &amp; Tailwind CSS, featuring scroll-based navigation and static pages.
-
 # MXL Legacy
+
+A fast, open-source tribute site for the MXL sim-racing league—built with Astro &amp; Tailwind CSS, featuring scroll-based navigation and static pages.
 
 A statically generated, scroll-navigable tribute website for the retired MXL sim-racing league.
 Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/) for blazing-fast performance, simple deployment, and easy community contributions.
