@@ -10,7 +10,14 @@ import tailwindcss from "@tailwindcss/vite";
 // https://astro.build/config
 export default defineConfig({
   adapter: netlify(),
-  integrations: [sitemap()],
+  site: "https://mxl-legacy.de",
+  integrations: [
+    sitemap({
+      filter: (page) => !page.includes("/drafts/"),
+      changefreq: "monthly",
+      priority: 0.7,
+    }),
+  ],
 
   vite: {
     plugins: [tailwindcss()],

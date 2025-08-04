@@ -1,0 +1,93 @@
+---
+import { SITE } from "../data/site.ts";
+
+interface Props {
+  title?: string;
+  description?: string;
+  url?: string;
+  image?: string;
+  canonical?: string;
+  author?: string;
+  datePublished?: string;       // ISO 8601
+  dateModified?: string;        // ISO 8601
+  type?: "website" | "article";
+}
+
+const {
+  title,
+  description,
+  url,
+  image,
+  canonical,
+  author,
+  datePublished,
+  dateModified,
+  type = "website",
+} = Astro.props;
+const pageTitle = title
+  ? `${title} | ${SITE.title}`
+  : SITE.title;
+const pageDesc = description ?? SITE.description;
+const pageUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
+const pageImage = image ?? SITE.defaultImage;
+
+// Prepare structured data
+const organizationData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: SITE.title,
+  url: SITE.url,
+  logo: new URL(SITE.defaultImage, SITE.url).toString(),
+  sameAs: []
+};
+
+const articleData = type === "article" && datePublished ? {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+  headline: pageTitle,
+  image: [pageImage],
+  datePublished,
+  dateModified: dateModified ?? datePublished,
+  author: author
+    ? { "@type": "Person", name: author }
+    : undefined,
+  publisher: {
+    "@type": "Organization",
+    name: SITE.title,
+    logo: {
+      "@type": "ImageObject",
+      url: new URL(SITE.defaultImage, SITE.url).toString(),
+    },
+  },
+} : null;
+---
+
+<!-- Basic Meta -->
+<title>{pageTitle}</title>
+<meta name="description" content={pageDesc} />
+<meta http-equiv="Content-Language" content={SITE.language} />
+<link rel="canonical" href={pageUrl} />
+
+<!-- Open Graph -->
+<meta property="og:type" content={type} />
+<meta property="og:title" content={pageTitle} />
+<meta property="og:description" content={pageDesc} />
+<meta property="og:url" content={pageUrl} />
+<meta property="og:image" content={pageImage} />
+<meta property="og:site_name" content={SITE.title} />
+<meta property="og:locale" content={SITE.language} />
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={pageTitle} />
+<meta name="twitter:description" content={pageDesc} />
+<meta name="twitter:image" content={pageImage} />
+
+<!-- Structured Data: Organization -->
+<script type="application/ld+json" set:html={JSON.stringify(organizationData)} />
+
+<!-- Article Structured Data (optional) -->
+{articleData && (
+  <script type="application/ld+json" set:html={JSON.stringify(articleData)} />
+)} 

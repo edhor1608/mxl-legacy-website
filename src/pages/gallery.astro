@@ -5,12 +5,20 @@ import Section from "../components/Section.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
+const page = {
+  title: "Galerie",
+  description: "Fotos, Highlights und Momente der MXL Sim-Racing-Liga: Von den Anfängen bis zum Legacy.",
+  canonical: "https://mxl-legacy.de/gallery",
+  image: "/assets/og-cover.jpg",
+  type: "website",
+};
+
 const gallery = Array.from({ length: 12 }).map(
   (_, i) => `https://placehold.co/800x500?text=Gallery+${i + 1}`,
 );
 ---
 
-<BaseLayout title="Gallery • MXL Legacy" description="Photos and highlights">
+<BaseLayout {...page}>
   <Nav />
   <Section id="gallery-page" title="Gallery">
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
