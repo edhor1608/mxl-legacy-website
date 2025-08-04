@@ -3,14 +3,31 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Section from "../components/Section.astro";
 import Footer from "../components/Footer.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
 import "../styles/global.css";
+
+const page = {
+  title: "Über MXL Legacy",
+  description: "Geschichte und Entwicklung der MXL Sim-Racing-Liga: Von der Community-Liga zur ProSeries und der Weg zum Legacy.",
+  canonical: "https://mxl-legacy.de/about",
+  image: "/assets/og-cover.jpg",
+  type: "article",
+  datePublished: "2024-01-01T00:00:00Z",
+  dateModified: "2024-12-01T00:00:00Z",
+  author: "MXL Legacy Team",
+};
+
+const breadcrumbs = [
+  { label: "Home", href: "/" },
+  { label: "Über MXL", href: "/about" },
+];
 ---
 
-<BaseLayout
-  title="About • MXL Legacy"
-  description="About the league and community"
->
+<BaseLayout {...page}>
   <Nav />
+  <div class="container-px">
+    <Breadcrumbs items={breadcrumbs} />
+  </div>
   <Section id="about-page" title="Über MXL">
     <div class="prose prose-invert max-w-none">
       <p>
@@ -34,9 +51,9 @@ import "../styles/global.css";
         aufeinander: kompetitiver Spitzensport vs. lockere Community‑Rennen.
       </p>
       <p>
-        Ein eigener, entspannter Split („United“) sollte Brücken bauen.
+        Ein eigener, entspannter Split („United") sollte Brücken bauen.
         Schließlich entstand <strong>MXL Racing</strong> mit erweitertem Portfolio
-        (u. a. iRacing‑Endurance, AMS2‑Projekt). Doch interne Spannungen, Ausfälle
+        (u. a. iRacing‑Endurance, AMS2‑Projekt). Doch interne Spannungen, Ausfälle
         in der Leitung und verschiedene Lager erschwerten den Fortschritt. Am Ende
         stand ein geordneter Rückzug Einzelner – und der Wunsch, der Geschichte einen
         würdigen Abschluss zu geben.

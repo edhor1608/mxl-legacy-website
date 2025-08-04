@@ -1,0 +1,41 @@
+---
+interface Props {
+  items: Array<{
+    label: string;
+    href: string;
+  }>;
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Breadcrumb" class="mb-4">
+  <ol 
+    itemscope 
+    itemtype="https://schema.org/BreadcrumbList"
+    class="flex items-center gap-2 text-sm text-[#F4F4F4]/60"
+  >
+    {
+      items.map((item, index) => (
+        <li 
+          itemprop="itemListElement" 
+          itemscope 
+          itemtype="https://schema.org/ListItem"
+          class="flex items-center"
+        >
+          <a 
+            itemprop="item" 
+            href={item.href}
+            class="hover:text-[#9FFE88] transition-colors"
+          >
+            <span itemprop="name">{item.label}</span>
+          </a>
+          <meta itemprop="position" content={String(index + 1)} />
+          {index < items.length - 1 && (
+            <span class="mx-2 text-[#F4F4F4]/40">/</span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav> 

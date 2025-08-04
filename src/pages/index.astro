@@ -6,6 +6,14 @@ import Section from "../components/Section.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 
+const page = {
+  title: "MXL Legacy",
+  description: "Archiv und Tribute-Seite zur MXL Sim-Racing-Liga: Saisons, Highlights & Hall of Fame.",
+  canonical: "https://mxl-legacy.de",
+  image: "/assets/og-cover.jpg",
+  type: "website",
+};
+
 const drivers = [
   {
     role: "Gründer & Streamer",
@@ -98,10 +106,7 @@ const seasons = [
 ];
 ---
 
-<BaseLayout
-  title="MXL Legacy"
-  description="Static tribute to the MXL sim‑racing league"
->
+<BaseLayout {...page}>
   <Nav />
   <Hero />
 

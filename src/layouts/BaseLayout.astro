@@ -1,19 +1,36 @@
 ---
 import "../styles/global.css";
+import SEO from "../components/SEO.astro";
+
 const {
-  title = "MXL Legacy",
-  description = "Open-source tribute to the MXL sim-racing league",
+  title,
+  description,
+  image,
+  canonical,
+  datePublished,
+  dateModified,
+  author,
+  type,
 } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en" class="bg-[#201D1F] text-[#F4F4F4]">
+<html lang="de" class="bg-[#201D1F] text-[#F4F4F4]">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <title>{title}</title>
     <link rel="icon" href="/favicon.svg" />
+    
+    <SEO
+      title={title}
+      description={description}
+      image={image}
+      canonical={canonical}
+      datePublished={datePublished}
+      dateModified={dateModified}
+      author={author}
+      type={type}
+    />
   </head>
   <body class="font-sans">
     <slot />
