@@ -14,95 +14,200 @@ const page = {
   type: "website",
 };
 
-const drivers = [
+// Hall of Fame data
+const hallOfFame = [
   {
-    role: "Gründer & Streamer",
-    tag: "Owner",
-    img: "https://placehold.co/300x300?text=Owner",
+    nickname: "Matri_X_",
+    role: "Founder & Original \"CEO\"",
+    bio: "Streamer-turned-league-owner, came from FM, launched the first 10-driver Monza event that became MXL.",
+    tag: "Founder",
+    img: "https://placehold.co/300x300?text=Matri_X_"
   },
   {
-    role: "Sportliche Leitung",
-    tag: "Urvater",
-    img: "https://placehold.co/300x300?text=Lead",
+    nickname: "Bloodron",
+    role: "Early Architect & Wolf's Right Hand",
+    bio: "Coined \"MXL,\" built the race rules engine, later stepped up as joint-leader after Wolf's passing.",
+    tag: "Architect",
+    img: "https://placehold.co/300x300?text=Bloodron"
   },
   {
-    role: "Namensgeber & Leitung",
-    tag: "Core",
-    img: "https://placehold.co/300x300?text=Core",
+    nickname: "Wolfson",
+    role: "\"Godfather\" of MXL",
+    bio: "Veteran of F1 sims, drove the formative seasons and set the league's competitive DNA in motion.",
+    tag: "Godfather",
+    img: "https://placehold.co/300x300?text=Wolfson"
   },
   {
-    role: "Gesamtleitung",
-    tag: "Coord",
-    img: "https://placehold.co/300x300?text=Coord",
+    nickname: "edhor",
+    role: "Webmaster & Power-User Leader",
+    bio: "Joined as driver, built the results site, then drove daily operations and new projects.",
+    tag: "Webmaster",
+    img: "https://placehold.co/300x300?text=edhor"
   },
   {
-    role: "Sponsor ProSeries",
+    nickname: "McGill",
+    role: "Sponsor & Silent Partner",
+    bio: "Backed the ProSeries from day one, provided prize support and strategic guidance.",
     tag: "Sponsor",
-    img: "https://placehold.co/300x300?text=Sponsor",
-  },
-  {
-    role: "United Split",
-    tag: "United",
-    img: "https://placehold.co/300x300?text=United",
-  },
-  {
-    role: "Endurance Team",
-    tag: "iRacing",
-    img: "https://placehold.co/300x300?text=iRacing",
-  },
-  {
-    role: "Website & Ops",
-    tag: "Tech",
-    img: "https://placehold.co/300x300?text=Tech",
-  },
+    img: "https://placehold.co/300x300?text=McGill"
+  }
 ];
+
+// Timeline data
+const timeline = [
+  {
+    date: "Mar 2017",
+    title: "Founding Race @ Monza",
+    details: "10 drivers race under Matri_X_'s FM-community banner—MXL is born (name from Bloodron)."
+  },
+  {
+    date: "Jun 2017",
+    title: "First Test Season",
+    details: "Wolfson (\"Wolf\") joins and professionalizes the rules—the league's competitive era begins."
+  },
+  {
+    date: "Jul 2017",
+    title: "Website Launch",
+    details: "edhor spins up the first MXL results site, replacing clumsy Excel sheets."
+  },
+  {
+    date: "Dec 2017",
+    title: "ProSeries Announced",
+    details: "Wolfson unveils the ProSeries vision: become D-A-CH's top F1-esports feeder league."
+  },
+  {
+    date: "Feb–May 2018",
+    title: "ProSeries S1",
+    details: "Packed fields, big-name entries, 100 drivers at peak, record-viewer streams—mission accomplished."
+  },
+  {
+    date: "Aug 2018",
+    title: "Passing of \"Wolf\"",
+    details: "The league mourns Wolfson's death after illness—leadership must regroup around Rico, Bloodron, edhor."
+  },
+  {
+    date: "Oct 2018",
+    title: "Rico's FM Pivot",
+    details: "Matri_X_ hints at returning to FM-streaming → splinter in leadership; Blood moves toward Wolf's seat."
+  },
+  {
+    date: "Nov 2018",
+    title: "\"United\" Split",
+    details: "A soft-ball sub-series for FM enthusiasts, led by Rico and his core crew—keeps the peace for a minute."
+  },
+  {
+    date: "Jan 2019",
+    title: "Rico's Exit from F1",
+    details: "Matri_X_ bows out of the F1 series; edhor, Bloodron & McGill seize full control and rebrand as MXL Racing."
+  },
+  {
+    date: "Mar 2019",
+    title: "Endurance & AM2 Projects",
+    details: "Launch of iRacing endurance team and Automobilista 2 mini-series—ambitions expand beyond F1."
+  },
+  {
+    date: "Jun 2019",
+    title: "Bloodron's Burnout",
+    details: "Co-leader Bloodron steps back citing health; edhor becomes sole operational head."
+  },
+  {
+    date: "Jul 2019",
+    title: "Edhor Takes the Helm",
+    details: "New overall leader; tries to unify the fractured community but meets resistance from \"Matrix Jünger.\""
+  },
+  {
+    date: "Nov 2019",
+    title: "Final Presentation of Grand Vision",
+    details: "edhor unveils a slick, all-in content roadmap—initially lauded, then overshadowed by internal rifts."
+  },
+  {
+    date: "Jan 2020",
+    title: "edhor's Resignation",
+    details: "Facing a split leadership and dwindling support, edhor steps down to let \"Matrix Jünger\" try their way."
+  },
+  {
+    date: "Feb 2020 onward",
+    title: "Slow Dissolution",
+    details: "Drivers depart, leadership flagging, no formal finale—MXL fades, pending a proper send-off via this tribute site."
+  }
+];
+
+// Defining Moments
+const definingMoments = [
+  {
+    title: "Peak Field of 100+ Drivers",
+    visual: "https://placehold.co/600x400?text=100+Drivers",
+    text: "In Apr 2018, the ProSeries finale drew over a hundred racers from across D-A-CH—our strongest grid ever. A milestone that proved our little league could outpace the rest."
+  },
+  {
+    title: "The Wolf Era",
+    visual: "https://placehold.co/600x400?text=Wolf+Era",
+    text: "Wolfson's leadership transformed MXL from a casual community into a professional racing league. His competitive DNA still echoes through every corner of sim racing."
+  },
+  {
+    title: "ProSeries Revolution",
+    visual: "https://placehold.co/600x400?text=ProSeries",
+    text: "The ProSeries wasn't just a rebrand—it was a declaration of intent. We weren't just racing anymore; we were building the future of D-A-CH esports."
+  },
+  {
+    title: "United Split",
+    visual: "https://placehold.co/600x400?text=United+Split",
+    text: "The United sub-series represented both division and unity—a testament to how communities evolve and sometimes fracture under pressure."
+  },
+  {
+    title: "The Final Vision",
+    visual: "https://placehold.co/600x400?text=Final+Vision",
+    text: "edhor's grand roadmap presentation was the last gasp of unified ambition—a blueprint for what could have been, before internal rifts took their toll."
+  }
+];
+
+// Gallery data
 const gallery = [
   {
     src: "https://placehold.co/600x400?text=Monza+Kickoff",
-    cap: "Kickoff in Monza",
-  },
-  {
-    src: "https://placehold.co/600x400?text=Stream+Growth",
-    cap: "Streams wachsen",
+    cap: "Founding Race @ Monza - Mar 2017",
+    date: "Mar 2017"
   },
   {
     src: "https://placehold.co/600x400?text=ProSeries+Grid",
-    cap: "ProSeries Starterfeld",
+    cap: "ProSeries S1 Peak - Apr 2018",
+    date: "Apr 2018"
+  },
+  {
+    src: "https://placehold.co/600x400?text=Website+Launch",
+    cap: "First MXL Results Site - Jul 2017",
+    date: "Jul 2017"
   },
   {
     src: "https://placehold.co/600x400?text=United+Split",
-    cap: "United Split",
+    cap: "United Sub-Series - Nov 2018",
+    date: "Nov 2018"
   },
-  { src: "https://placehold.co/600x400?text=Endurance", cap: "Endurance Team" },
+  {
+    src: "https://placehold.co/600x400?text=Endurance+Team",
+    cap: "iRacing Endurance Launch - Mar 2019",
+    date: "Mar 2019"
+  },
   {
     src: "https://placehold.co/600x400?text=AMS2+Project",
-    cap: "AMS2 Projekt",
+    cap: "Automobilista 2 Series - Mar 2019",
+    date: "Mar 2019"
   },
   {
-    src: "https://placehold.co/600x400?text=Reorg",
-    cap: "Neuordnung & Leitung",
+    src: "https://placehold.co/600x400?text=Leadership+Transition",
+    cap: "Edhor Takes Helm - Jul 2019",
+    date: "Jul 2019"
   },
   {
-    src: "https://placehold.co/600x400?text=Community",
-    cap: "Community & Rivalität",
+    src: "https://placehold.co/600x400?text=Final+Presentation",
+    cap: "Grand Vision Unveiled - Nov 2019",
+    date: "Nov 2019"
   },
-  { src: "https://placehold.co/600x400?text=Legacy", cap: "Legacy" },
-];
-const seasons = [
-  { year: "2018", note: "Start in Monza mit ~10 Fahrern (Community‑Liga)." },
   {
-    year: "2019",
-    note: "Tests & erste Saison; sportliche Leitung formt Strukturen.",
-  },
-  { year: "2020", note: "ProSeries angekündigt – Ziel: beste DACH‑Liga." },
-  { year: "2021", note: "ProSeries S1: Streams boomen, ~100 Fahrer." },
-  { year: "2022", note: "Bugs stören Betrieb; Verlust der Leitfigur." },
-  { year: "2023", note: "Neuordnung: United‑Split, MXL Racing, Expansion." },
-  { year: "2024", note: "Konflikte, Burnout, Übernahmeversuch, Neuaufbau." },
-  {
-    year: "2025",
-    note: "Rücktritt, Abwicklung – Wunsch nach würdigem Abschluss.",
-  },
+    src: "https://placehold.co/600x400?text=Legacy",
+    cap: "MXL Legacy - 2025",
+    date: "2025"
+  }
 ];
 ---
 
@@ -110,33 +215,90 @@ const seasons = [
   <Nav />
   <Hero />
 
-  <Section id="about" title="Überblick">
-    <p class="text-[#F4F4F4]/80 max-w-3xl">
-      Aus einer kleinen Community‑Runde in Monza wuchs die MXL zu einer
-      ambitionierten Liga mit ProSeries‑Anspruch. Erfolge, Rückschläge,
-      Neuaufbau – und am Ende der Versuch, der Geschichte einen würdigen
-      Abschluss zu geben.
+  <!-- Hall of Fame Section -->
+  <Section id="hall-of-fame" title="Hall of Fame">
+    <p class="text-[#F4F4F4]/80 max-w-3xl mb-8">
+      The core personae who shaped MXL from its Monza origins to its final days. Each card represents a key figure in the league's evolution.
     </p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {
+        hallOfFame.map((person) => {
+          const slug = person.nickname.toLowerCase().replace(/[^a-z0-9]/g, '-');
+          return (
+            <a href={`/hall-of-fame/${slug}`} class="group rounded-2xl overflow-hidden border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02] hover:border-[#9FFE88]/30 transition-all duration-300">
+              <div class="relative">
+                <img
+                  src={person.img}
+                  alt={person.nickname}
+                  class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+                />
+                <span class="absolute top-3 right-3 rounded-full bg-[#201D1F]/80 px-3 py-1 text-xs uppercase tracking-wide font-medium">
+                  {person.tag}
+                </span>
+              </div>
+              <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">{person.nickname}</h3>
+                <p class="text-sm text-[#9FFE88] mb-3 font-medium">{person.role}</p>
+                <p class="text-sm text-[#F4F4F4]/70 leading-relaxed">{person.bio}</p>
+              </div>
+            </a>
+          );
+        })
+      }
+    </div>
   </Section>
 
-  <Section id="drivers" title="Team & Rollen">
-    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
+  <!-- Timeline Section -->
+  <Section id="timeline" title="Timeline & Milestones">
+    <p class="text-[#F4F4F4]/80 max-w-3xl mb-8">
+      The complete journey from Monza to legacy. Click on any event to explore the details of MXL's evolution.
+    </p>
+    <div class="relative">
+      <!-- Timeline line -->
+      <div class="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-[#9FFE88] via-[#9FFE88]/50 to-transparent"></div>
+      
+      <div class="space-y-8">
+        {
+          timeline.map((event, index) => (
+            <div class="relative pl-16 group cursor-pointer">
+              <!-- Timeline dot -->
+              <div class="absolute left-6 top-2 w-4 h-4 rounded-full bg-[#9FFE88] shadow-[0_0_0_4px_rgba(159,254,136,0.2)] group-hover:shadow-[0_0_0_6px_rgba(159,254,136,0.3)] transition-all duration-300"></div>
+              
+              <!-- Event card -->
+              <div class="rounded-xl border border-[#F4F4F4]/10 bg-gradient-to-r from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02] p-6 backdrop-blur hover:border-[#9FFE88]/30 transition-all duration-300">
+                <div class="flex items-start justify-between mb-3">
+                  <span class="text-sm font-medium text-[#9FFE88]">{event.date}</span>
+                  <span class="text-xs text-[#F4F4F4]/50">#{index + 1}</span>
+                </div>
+                <h3 class="text-lg font-semibold mb-2">{event.title}</h3>
+                <p class="text-[#F4F4F4]/70 text-sm leading-relaxed">{event.details}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </Section>
+
+  <!-- Defining Moments Section -->
+  <Section id="defining-moments" title="Defining Moments">
+    <p class="text-[#F4F4F4]/80 max-w-3xl mb-8">
+      The pivotal moments that shaped MXL's identity and legacy. Each represents a turning point in the league's journey.
+    </p>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {
-        drivers.map((d) => (
-          <div class="group rounded-2xl overflow-hidden border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02]">
+        definingMoments.map((moment) => (
+          <div class="group rounded-2xl overflow-hidden border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02] hover:border-[#9FFE88]/30 transition-all duration-300">
             <div class="relative">
               <img
-                src={d.img}
-                alt={d.role}
-                class="w-full h-44 object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                src={moment.visual}
+                alt={moment.title}
+                class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               />
-              <span class="absolute top-2 right-2 rounded-full bg-[#201D1F]/60 px-2 py-0.5 text-[10px] uppercase tracking-wide">
-                {d.tag}
-              </span>
             </div>
-            <div class="p-3">
-              <p class="font-medium">{d.role}</p>
-              <p class="text-xs text-[#F4F4F4]/60">MXL</p>
+            <div class="p-6">
+              <h3 class="text-xl font-bold mb-3">{moment.title}</h3>
+              <p class="text-[#F4F4F4]/70 leading-relaxed">{moment.text}</p>
             </div>
           </div>
         ))
@@ -144,20 +306,24 @@ const seasons = [
     </div>
   </Section>
 
-  <Section id="gallery" title="Gallery">
+  <!-- Gallery Section -->
+  <Section id="gallery" title="Gallery & Media Vault">
+    <p class="text-[#F4F4F4]/80 max-w-3xl mb-8">
+      A visual journey through MXL's history. Racing screenshots, logos, early site mockups, and Discord snapshots.
+    </p>
     <div class="columns-2 md:columns-3 gap-4 [column-fill:_balance]">
-      <!-- masonry-like using CSS columns -->
       {
-        gallery.map((g) => (
-          <figure class="mb-4 break-inside-avoid rounded-xl overflow-hidden border border-[#F4F4F4]/10 bg-[#F4F4F4]/5">
+        gallery.map((item) => (
+          <figure class="mb-4 break-inside-avoid rounded-xl overflow-hidden border border-[#F4F4F4]/10 bg-[#F4F4F4]/5 group hover:border-[#9FFE88]/30 transition-all duration-300">
             <img
-              src={g.src}
-              alt={g.cap}
-              class="w-full h-auto object-cover"
+              src={item.src}
+              alt={item.cap}
+              class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               loading="lazy"
             />
-            <figcaption class="px-3 py-2 text-xs text-[#F4F4F4]/60">
-              {g.cap}
+            <figcaption class="px-4 py-3">
+              <p class="text-sm font-medium text-[#F4F4F4]/90">{item.cap}</p>
+              <p class="text-xs text-[#F4F4F4]/50 mt-1">{item.date}</p>
             </figcaption>
           </figure>
         ))
@@ -165,22 +331,45 @@ const seasons = [
     </div>
   </Section>
 
-  <Section id="timeline" title="Timeline">
-    <ol
-      class="relative pl-6 before:absolute before:left-0 before:top-0 before:h-full before:w-px before:bg-gradient-to-b before:from-[#F4F4F4]/0 before:via-[#F4F4F4]/30 before:to-[#F4F4F4]/0"
-    >
-      {
-        seasons.map((s) => (
-          <li class="relative mb-8">
-            <div class="absolute -left-[9px] mt-1 w-4 h-4 rounded-full bg-[#9FFE88] shadow-[0_0_0_4px_rgba(159,254,136,0.2)]" />
-            <div class="rounded-xl border border-white/10 bg-white/5 p-4 backdrop-blur">
-              <h3 class="text-lg font-semibold">{s.year}</h3>
-              <p class="text-white/70">{s.note}</p>
-            </div>
-          </li>
-        ))
-      }
-    </ol>
+  <!-- Unpublished Stories Section -->
+  <Section id="unpublished-stories" title="Unpublished Stories & Final Ode">
+    <div class="max-w-4xl mx-auto text-center">
+      <div class="rounded-2xl border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02] p-8 backdrop-blur">
+        <h3 class="text-2xl font-bold mb-4">The Tribute Song</h3>
+        <p class="text-[#F4F4F4]/70 mb-6 max-w-2xl mx-auto">
+          A closing section inviting visitors to listen to the upcoming tribute song—lyrics drop on release day.
+        </p>
+        
+        <!-- Song excerpt placeholder -->
+        <div class="bg-[#201D1F]/60 rounded-lg p-6 mb-6 border border-[#9FFE88]/20">
+          <p class="text-[#9FFE88] font-medium mb-2">Excerpt from "MXL Legacy"</p>
+          <p class="text-[#F4F4F4]/80 italic">
+            "From Monza's first lap to the final turn<br>
+            A legacy that will forever burn..."
+          </p>
+        </div>
+        
+        <!-- Subscribe form -->
+        <form class="max-w-md mx-auto">
+          <div class="flex gap-3">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              class="flex-1 px-4 py-3 rounded-lg bg-[#201D1F]/60 border border-[#F4F4F4]/20 text-[#F4F4F4] placeholder-[#F4F4F4]/50 focus:border-[#9FFE88] focus:outline-none"
+            />
+            <button
+              type="submit"
+              class="px-6 py-3 rounded-lg bg-[#9FFE88] text-[#201D1F] font-medium hover:opacity-90 transition-opacity"
+            >
+              Subscribe
+            </button>
+          </div>
+          <p class="text-xs text-[#F4F4F4]/50 mt-2">
+            Get notified when the full tribute song releases
+          </p>
+        </form>
+      </div>
+    </div>
   </Section>
 
   <Footer />
