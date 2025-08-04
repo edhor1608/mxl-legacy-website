@@ -1,0 +1,93 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import "../../styles/global.css";
+
+const person = {
+  nickname: "edhor",
+  role: "Webmaster & Power-User Leader",
+  tagline: "The Digital Architect",
+  bio: "Joined as driver, built the results site, then drove daily operations and new projects. Became the final operational leader who tried to unify the fractured community.",
+  img: "https://placehold.co/400x500?text=edhor",
+  details: [
+    "Joined MXL as a driver in the early days",
+    "Built the first MXL results website in July 2017",
+    "Took over daily operations and technical infrastructure",
+    "Became sole operational head after Bloodron's burnout",
+    "Presented the final grand vision for MXL's future",
+    "Stepped down in January 2020 as internal rifts grew"
+  ]
+};
+---
+
+<BaseLayout
+  title={`${person.nickname} - MXL Legacy`}
+  description={`${person.role}: ${person.tagline}`}
+>
+  <Nav />
+  
+  <section class="min-h-screen pt-20">
+    <div class="container-px py-12">
+      <div class="max-w-4xl mx-auto">
+        <!-- Breadcrumb -->
+        <nav class="mb-8">
+          <a href="/#hall-of-fame" class="text-[#9FFE88] hover:opacity-80 transition-opacity">
+            ← Back to Hall of Fame
+          </a>
+        </nav>
+        
+        <!-- Hero Section -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <div class="relative">
+              <img
+                src={person.img}
+                alt={person.nickname}
+                class="w-full rounded-2xl border border-[#F4F4F4]/10"
+              />
+              <div class="absolute top-4 right-4">
+                <span class="rounded-full bg-[#201D1F]/80 px-3 py-1 text-xs uppercase tracking-wide font-medium">
+                  Webmaster
+                </span>
+              </div>
+            </div>
+          </div>
+          
+          <div>
+            <h1 class="text-4xl font-bold mb-4">{person.nickname}</h1>
+            <div class="mb-6">
+              <span class="inline-block bg-[#9FFE88]/20 text-[#9FFE88] px-4 py-2 rounded-full text-sm font-medium">
+                {person.role}
+              </span>
+            </div>
+            <h2 class="text-xl text-[#F4F4F4]/80 mb-6 italic">"{person.tagline}"</h2>
+            <p class="text-[#F4F4F4]/70 leading-relaxed mb-8">{person.bio}</p>
+            
+            <!-- Key Details -->
+            <div class="space-y-3">
+              {person.details.map((detail) => (
+                <div class="flex items-start gap-3">
+                  <div class="w-2 h-2 rounded-full bg-[#9FFE88] mt-2 flex-shrink-0"></div>
+                  <p class="text-[#F4F4F4]/70 text-sm">{detail}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+        
+        <!-- Timeline Connection -->
+        <div class="mt-16 p-6 rounded-2xl border border-[#F4F4F4]/10 bg-gradient-to-r from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02]">
+          <h3 class="text-lg font-semibold mb-3">Timeline Impact</h3>
+          <p class="text-[#F4F4F4]/70 text-sm">
+            edhor's journey spans from the website launch in July 2017 through the final days. 
+            His leadership from July 2019 to January 2020 represented the last attempt to unify 
+            the fractured community before MXL's gradual dissolution.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <Footer />
+</BaseLayout> 
