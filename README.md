@@ -7,7 +7,7 @@ Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.
 
 [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81J3ADI)
 
-![MXL Legacy Demo](https://placehold.co/800x300?text=MXL+Legacy)
+![MxlLegacyBanner](https://github.com/user-attachments/assets/5f4898fa-ba6b-46e8-87ee-6dd28d183229)
 
 ## Table of Contents
 
