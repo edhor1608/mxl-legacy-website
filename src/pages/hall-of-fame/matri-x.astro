@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
@@ -6,16 +8,16 @@ import "../../styles/global.css";
 
 const person = {
   nickname: "Matri_X_",
-  role: "Founder & Original \"CEO\"",
+  role: 'Founder & Original "CEO"',
   tagline: "The Streamer Who Laid the First Lap",
   bio: "Coming from FM roots, he rallied the first ten drivers at Monza, kept the servers running—even if the pace sometimes faltered on passion alone.",
-  img: "https://placehold.co/400x500?text=Matri_X_",
+  img: "/images/Matri_X_.png",
   details: [
     "Streamer-turned-league-owner from FM community",
     "Launched the first 10-driver Monza event that became MXL",
     "Kept the servers running through early challenges",
-    "Set the foundation for what would become a premier racing league"
-  ]
+    "Set the foundation for what would become a premier racing league",
+  ],
 };
 ---
 
@@ -24,67 +26,84 @@ const person = {
   description={`${person.role}: ${person.tagline}`}
 >
   <Nav />
-  
+
   <section class="min-h-screen pt-20">
     <div class="container-px py-12">
       <div class="max-w-4xl mx-auto">
         <!-- Breadcrumb -->
         <nav class="mb-8">
-          <a href="/#hall-of-fame" class="text-[#9FFE88] hover:opacity-80 transition-opacity">
+          <a
+            href="/#hall-of-fame"
+            class="text-[#9FFE88] hover:opacity-80 transition-opacity"
+          >
             ← Back to Hall of Fame
           </a>
         </nav>
-        
+
         <!-- Hero Section -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <div class="relative">
-              <img
+              <Picture
                 src={person.img}
                 alt={person.nickname}
+                formats={["avif", "webp"]}
                 class="w-full rounded-2xl border border-[#F4F4F4]/10"
               />
               <div class="absolute top-4 right-4">
-                <span class="rounded-full bg-[#201D1F]/80 px-3 py-1 text-xs uppercase tracking-wide font-medium">
+                <span
+                  class="rounded-full bg-[#201D1F]/80 px-3 py-1 text-xs uppercase tracking-wide font-medium"
+                >
                   Founder
                 </span>
               </div>
             </div>
           </div>
-          
+
           <div>
             <h1 class="text-4xl font-bold mb-4">{person.nickname}</h1>
             <div class="mb-6">
-              <span class="inline-block bg-[#9FFE88]/20 text-[#9FFE88] px-4 py-2 rounded-full text-sm font-medium">
+              <span
+                class="inline-block bg-[#9FFE88]/20 text-[#9FFE88] px-4 py-2 rounded-full text-sm font-medium"
+              >
                 {person.role}
               </span>
             </div>
-            <h2 class="text-xl text-[#F4F4F4]/80 mb-6 italic">"{person.tagline}"</h2>
+            <h2 class="text-xl text-[#F4F4F4]/80 mb-6 italic">
+              "{person.tagline}"
+            </h2>
             <p class="text-[#F4F4F4]/70 leading-relaxed mb-8">{person.bio}</p>
-            
+
             <!-- Key Details -->
             <div class="space-y-3">
-              {person.details.map((detail) => (
-                <div class="flex items-start gap-3">
-                  <div class="w-2 h-2 rounded-full bg-[#9FFE88] mt-2 flex-shrink-0"></div>
-                  <p class="text-[#F4F4F4]/70 text-sm">{detail}</p>
-                </div>
-              ))}
+              {
+                person.details.map((detail) => (
+                  <div class="flex items-start gap-3">
+                    <div class="w-2 h-2 rounded-full bg-[#9FFE88] mt-2 flex-shrink-0" />
+                    <p class="text-[#F4F4F4]/70 text-sm">{detail}</p>
+                  </div>
+                ))
+              }
             </div>
           </div>
         </div>
-        
+
         <!-- Timeline Connection -->
-        <div class="mt-16 p-6 rounded-2xl border border-[#F4F4F4]/10 bg-gradient-to-r from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02]">
+        <div
+          class="mt-16 p-6 rounded-2xl border border-[#F4F4F4]/10 bg-gradient-to-r from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02]"
+        >
           <h3 class="text-lg font-semibold mb-3">Timeline Impact</h3>
           <p class="text-[#F4F4F4]/70 text-sm">
-            Matri_X_'s influence spans from the founding race in March 2017 through the early community building phase. 
-            His transition from active leadership to FM streaming in late 2018 marked a pivotal moment in MXL's evolution.
+            Matri_X_'s influence spans from the founding race in March 2017
+            through the early community building phase. His transition from
+            active leadership to FM streaming in late 2018 marked a pivotal
+            moment in MXL's evolution.
           </p>
         </div>
       </div>
     </div>
   </section>
-  
+
   <Footer />
-</BaseLayout> 
+</BaseLayout>
+

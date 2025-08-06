@@ -1,4 +1,6 @@
 ---
+import { Picture } from 'astro:assets';
+
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
@@ -9,7 +11,7 @@ const person = {
   role: "Sponsor & Silent Partner",
   tagline: "The Strategic Backer",
   bio: "Backed the ProSeries from day one, provided prize support and strategic guidance. A silent partner whose support was crucial to MXL's professional ambitions.",
-  img: "https://placehold.co/400x500?text=McGill",
+  img: "/images/McGill.png",
   details: [
     "Supported the ProSeries from its inception",
     "Provided crucial prize support and funding",
@@ -40,9 +42,10 @@ const person = {
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <div>
             <div class="relative">
-              <img
+              <Picture
                 src={person.img}
                 alt={person.nickname}
+                formats={['avif', 'webp']}
                 class="w-full rounded-2xl border border-[#F4F4F4]/10"
               />
               <div class="absolute top-4 right-4">
