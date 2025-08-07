@@ -1,0 +1,38 @@
+---
+import Section from "./Section.astro";
+
+interface Props {
+  gallery: Array<{
+    src: string;
+    cap: string;
+    date: string;
+  }>;
+}
+
+const { gallery } = Astro.props;
+---
+
+<Section id="gallery" title="Gallery & Media Vault" class="max-w-5xl mx-auto px-4">
+  <p class="text-[#F4F4F4]/80 max-w-3xl mb-8">
+    A visual journey through MXL's history. Racing screenshots, logos, early
+    site mockups, and Discord snapshots.
+  </p>
+  <div class="columns-2 md:columns-3 gap-4 [column-fill:_balance]">
+    {
+      gallery.map((item) => (
+        <figure class="mb-4 break-inside-avoid rounded-xl overflow-hidden border border-[#F4F4F4]/10 bg-[#F4F4F4]/5 group hover:border-[#9FFE88]/30 transition-all duration-300">
+          <img
+            src={item.src}
+            alt={item.cap}
+            class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            loading="lazy"
+          />
+          <figcaption class="px-4 py-3">
+            <p class="text-sm font-medium text-[#F4F4F4]/90">{item.cap}</p>
+            <p class="text-xs text-[#F4F4F4]/50 mt-1">{item.date}</p>
+          </figcaption>
+        </figure>
+      ))
+    }
+  </div>
+</Section> 

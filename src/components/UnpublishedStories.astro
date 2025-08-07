@@ -1,0 +1,56 @@
+---
+import Section from "./Section.astro";
+
+interface Props {
+  // This component doesn't need props for now, but could be extended later
+}
+
+const {} = Astro.props;
+---
+
+<Section id="unpublished-stories" title="Unpublished Stories & Final Ode" class="max-w-5xl mx-auto px-4">
+  <div class="max-w-4xl mx-auto text-center">
+    <div
+      class="rounded-2xl border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02] p-8 backdrop-blur"
+    >
+      <h3 class="text-2xl font-bold mb-4">The Tribute Song</h3>
+      <p class="text-[#F4F4F4]/70 mb-6 max-w-2xl mx-auto">
+        A closing section inviting visitors to listen to the upcoming
+        tribute song—lyrics drop on release day.
+      </p>
+
+      <!-- Song excerpt placeholder -->
+      <div
+        class="bg-[#201D1F]/60 rounded-lg p-6 mb-6 border border-[#9FFE88]/20"
+      >
+        <p class="text-[#9FFE88] font-medium mb-2">
+          Excerpt from "MXL Legacy"
+        </p>
+        <p class="text-[#F4F4F4]/80 italic">
+          "From Monza's first lap to the final turn<br />
+          A legacy that will forever burn..."
+        </p>
+      </div>
+
+      <!-- Subscribe form -->
+      <form class="max-w-md mx-auto">
+        <div class="flex gap-3">
+          <input
+            type="email"
+            placeholder="Enter your email"
+            class="flex-1 px-4 py-3 rounded-lg bg-[#201D1F]/60 border border-[#F4F4F4]/20 text-[#F4F4F4] placeholder-[#F4F4F4]/50 focus:border-[#9FFE88] focus:outline-none"
+          />
+          <button
+            type="submit"
+            class="px-6 py-3 rounded-lg bg-[#9FFE88] text-[#201D1F] font-medium hover:opacity-90 transition-opacity"
+          >
+            Subscribe
+          </button>
+        </div>
+        <p class="text-xs text-[#F4F4F4]/50 mt-2">
+          Get notified when the full tribute song releases
+        </p>
+      </form>
+    </div>
+  </div>
+</Section> 
