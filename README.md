@@ -1,6 +1,6 @@
 # MXL Legacy
 
-A fast, open-source tribute site for the MXL sim-racing league—built with Astro &amp; Tailwind CSS, featuring scroll-based navigation and static pages.
+A fast, open-source tribute site for the MXL sim-racing league—built with Astro & Tailwind CSS, featuring scroll-based navigation and static pages.
 
 A statically generated, scroll-navigable tribute website for the retired MXL sim-racing league.
 Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/) for blazing-fast performance, simple deployment, and easy community contributions.
@@ -74,21 +74,21 @@ mxl-legacy/
 
 ## Development
 
-- **`bun run dev`**
+- `bun run dev`
   Start Astro’s dev server with file watching and HMR.
 
-- **`bun run lint`**
+- `bun run lint`
   (Optional) Run any configured linters.
 
-- **`bun run format`**
+- `bun run format`
   (Optional) Format code with Prettier.
 
 ## Build & Preview
 
-- **`npm run build`**
+- `bun run build`
   Generate the production-ready `dist/` directory (static HTML, CSS, and any island JS).
 
-- **`npm run preview`**
+- `bun run preview`
   Serve the built `dist/` locally to verify before deploying.
 
 Here’s the adjusted **Deployment** section in your README to focus solely on Netlify:
@@ -100,37 +100,37 @@ We’ll use Netlify’s free tier to host the fully static output.
 
 1. **Install the Netlify CLI** (if you haven’t yet):
    ```bash
-   npm install -g netlify-cli
+   bunx npm@latest -g netlify-cli
    ```
 ````
 
 2. **Login** (once):
 
-   ```bash
-   netlify login
-   ```
+```bash
+netlify login
+```
 
 3. **Link your project** to a Netlify site (run in your repo root):
 
-   ```bash
-   netlify init
-   ```
+```bash
+netlify init
+```
 
-   - Choose “Create & configure a new site”
-   - Select your Git provider & repo
-   - Pick “Astro” as the build command (`npm run build`) and `dist/` as the publish directory
+- Choose “Create & configure a new site”
+- Select your Git provider & repo
+- Pick “Astro” as the build command (`bun run build`) and `dist/` as the publish directory
 
 4. **Deploy** a draft:
 
-   ```bash
-   netlify deploy
-   ```
+```bash
+netlify deploy
+```
 
 5. **Publish to production**:
 
-   ```bash
-   netlify deploy --prod
-   ```
+```bash
+netlify deploy --prod
+```
 
 ### CI/CD with GitHub Actions
 
