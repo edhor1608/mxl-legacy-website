@@ -21,15 +21,15 @@ const drivers = Array.from({ length: 12 }).map((_, i) => ({
 
 <BaseLayout {...page}>
   <Nav />
-  <Section id="drivers-page" title="Drivers">
+  <Section id="drivers-page" title="Fahrer">
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
       {
         drivers.map((d) => (
           <div class="rounded-lg overflow-hidden bg-white/5 border border-white/10">
-            <img src={d.img} alt={d.name} class="w-full h-40 object-cover" />
+            <img src={d.img} alt={d.name} class="w-full h-40 object-cover" loading="lazy" decoding="async" />
             <div class="p-3">
               <p class="font-medium">{d.name}</p>
-              <p class="text-xs text-white/60">Class: Pro-Am</p>
+              <p class="text-xs text-white/60">Klasse: Pro-Am</p>
             </div>
           </div>
         ))

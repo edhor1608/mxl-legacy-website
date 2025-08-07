@@ -1,231 +1,6 @@
 ---
-interface Phrase {
-  id: string;
-  text: string;
-  author: string;
-  context?: string;
-  style: {
-    fontSize: string;
-    fontWeight: string;
-    fontStyle: string;
-    color: string;
-    rotation: number;
-    delay: number;
-  };
-}
-
-const phrases: Phrase[] = [
-  {
-    id: 'matrix-vision',
-    text: "We're not just racing, we're building legends",
-    author: 'Matrix',
-    context: 'League founding speech',
-    style: {
-      fontSize: 'text-2xl',
-      fontWeight: 'font-bold',
-      fontStyle: 'italic',
-      color: 'text-[#9FFE88]',
-      rotation: -2,
-      delay: 0
-    }
-  },
-  {
-    id: 'speedking-motto',
-    text: "Fast is temporary, legendary is forever",
-    author: 'SpeedKing',
-    context: 'Championship victory speech',
-    style: {
-      fontSize: 'text-lg',
-      fontWeight: 'font-semibold',
-      fontStyle: 'normal',
-      color: 'text-[#F4F4F4]',
-      rotation: 1,
-      delay: 200
-    }
-  },
-  {
-    id: 'phoenix-wisdom',
-    text: "We came for the racing, but we stayed for each other",
-    author: 'PhoenixRider',
-    context: 'Community motto',
-    style: {
-      fontSize: 'text-xl',
-      fontWeight: 'font-medium',
-      fontStyle: 'italic',
-      color: 'text-[#9FFE88]/80',
-      rotation: -1,
-      delay: 400
-    }
-  },
-  {
-    id: 'racemancer-tech',
-    text: "Data doesn't lie, but it tells stories",
-    author: 'Racemancer',
-    context: 'Setup Sunday session',
-    style: {
-      fontSize: 'text-base',
-      fontWeight: 'font-normal',
-      fontStyle: 'normal',
-      color: 'text-[#F4F4F4]/70',
-      rotation: 2,
-      delay: 600
-    }
-  },
-  {
-    id: 'community-spirit',
-    text: "In MXL, everyone's victory is everyone's victory",
-    author: 'Community',
-    context: undefined,
-    style: {
-      fontSize: 'text-lg',
-      fontWeight: 'font-medium',
-      fontStyle: 'normal',
-      color: 'text-[#9FFE88]/90',
-      rotation: -1.5,
-      delay: 800
-    }
-  },
-  {
-    id: 'matrix-legacy',
-    text: "Some endings are not endings at all, but new beginnings in disguise",
-    author: 'Matrix',
-    context: 'Final season announcement',
-    style: {
-      fontSize: 'text-xl',
-      fontWeight: 'font-bold',
-      fontStyle: 'italic',
-      color: 'text-[#F4F4F4]',
-      rotation: 1.5,
-      delay: 1000
-    }
-  },
-  {
-    id: 'rookie-wisdom',
-    text: "Every champion was once a beginner who refused to give up",
-    author: 'Rookie Mentor Program',
-    context: undefined,
-    style: {
-      fontSize: 'text-sm',
-      fontWeight: 'font-light',
-      fontStyle: 'italic',
-      color: 'text-[#F4F4F4]/60',
-      rotation: -0.5,
-      delay: 1200
-    }
-  },
-  {
-    id: 'speedking-humble',
-    text: "Winning is great, but helping others improve is legendary",
-    author: 'SpeedKing',
-    context: 'Mentorship program',
-    style: {
-      fontSize: 'text-lg',
-      fontWeight: 'font-semibold',
-      fontStyle: 'normal',
-      color: 'text-[#9FFE88]',
-      rotation: 2.5,
-      delay: 1400
-    }
-  },
-  {
-    id: 'phoenix-heart',
-    text: "MXL isn't just a league, it's a family",
-    author: 'PhoenixRider',
-    context: undefined,
-    style: {
-      fontSize: 'text-xl',
-      fontWeight: 'font-bold',
-      fontStyle: 'normal',
-      color: 'text-[#F4F4F4]/90',
-      rotation: -2.5,
-      delay: 1600
-    }
-  },
-  {
-    id: 'racemancer-share',
-    text: "Knowledge shared is knowledge multiplied",
-    author: 'Racemancer',
-    context: undefined,
-    style: {
-      fontSize: 'text-base',
-      fontWeight: 'font-medium',
-      fontStyle: 'italic',
-      color: 'text-[#9FFE88]/70',
-      rotation: 1,
-      delay: 1800
-    }
-  },
-  {
-    id: 'final-thought',
-    text: "The checkered flag may wave, but the memories race on forever",
-    author: 'MXL Legacy',
-    context: undefined,
-    style: {
-      fontSize: 'text-2xl',
-      fontWeight: 'font-bold',
-      fontStyle: 'italic',
-      color: 'text-[#9FFE88]',
-      rotation: -1,
-      delay: 2000
-    }
-  },
-  {
-    id: 'matrix-philosophy',
-    text: "Respect on track, friendship off track",
-    author: 'Matrix',
-    context: 'League rules introduction',
-    style: {
-      fontSize: 'text-lg',
-      fontWeight: 'font-semibold',
-      fontStyle: 'normal',
-      color: 'text-[#F4F4F4]/80',
-      rotation: 0.5,
-      delay: 2200
-    }
-  },
-  {
-    id: 'community-bond',
-    text: "Different countries, different languages, one passion",
-    author: 'Global Community',
-    context: undefined,
-    style: {
-      fontSize: 'text-base',
-      fontWeight: 'font-normal',
-      fontStyle: 'italic',
-      color: 'text-[#F4F4F4]/70',
-      rotation: -1.5,
-      delay: 2400
-    }
-  },
-  {
-    id: 'speedking-rivalry',
-    text: "The best rivalries are built on mutual respect",
-    author: 'SpeedKing',
-    context: 'Post-race interview',
-    style: {
-      fontSize: 'text-lg',
-      fontWeight: 'font-medium',
-      fontStyle: 'normal',
-      color: 'text-[#9FFE88]/80',
-      rotation: 2,
-      delay: 2600
-    }
-  },
-  {
-    id: 'phoenix-support',
-    text: "In our darkest moments, MXL was our light",
-    author: 'PhoenixRider',
-    context: 'Personal reflection',
-    style: {
-      fontSize: 'text-xl',
-      fontWeight: 'font-medium',
-      fontStyle: 'italic',
-      color: 'text-[#F4F4F4]',
-      rotation: -0.5,
-      delay: 2800
-    }
-  }
-];
+import type { PhraseEntry } from "../data/phrases";
+import { phrases } from "../data/phrases";
 ---
 
 <div class="py-20 px-4 max-w-7xl mx-auto" id="signature-phrases-container">
@@ -236,101 +11,113 @@ const phrases: Phrase[] = [
         <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
         <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
       </svg>
-      <h2 class="text-4xl md:text-5xl font-bold">Signature Phrases</h2>
+      <h2 class="text-4xl md:text-5xl font-bold">Signatur-Zitate</h2>
     </div>
     <p class="text-lg text-[#F4F4F4]/70 max-w-2xl mx-auto">
-      The words that defined us, the quotes that inspired us, the phrases that became our legacy
+      Worte, die uns geprägt haben – Zitate, die inspirierten – Phrasen, die zur Legacy wurden
     </p>
     <div class="h-1 w-24 bg-gradient-to-r from-[#9FFE88] to-transparent mx-auto mt-6"></div>
   </div>
 
-  <!-- Dense Text Wall -->
+  <!-- "Wall of phrases" with varied styles and subtle reveal -->
   <div class="relative">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 opacity-5 pointer-events-none">
+    <!-- Background Pattern (very subtle) -->
+    <div class="absolute inset-0 opacity-[0.07] pointer-events-none">
       <div 
         class="absolute inset-0"
-        style="background-image: linear-gradient(rgba(159, 254, 136, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(159, 254, 136, 0.1) 1px, transparent 1px); background-size: 30px 30px;"
+        style="background-image: linear-gradient(rgba(159, 254, 136, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(159, 254, 136, 0.12) 1px, transparent 1px); background-size: 30px 30px;"
       ></div>
     </div>
 
-    <!-- Dense Wall of Text -->
-    <div class="relative text-center leading-tight space-y-1">
+    <!-- Dense, flowing text wall -->
+    <div class="relative text-center leading-tight">
       {phrases.map((phrase) => (
-        <span
+        <a
           id={phrase.id}
           data-phrase
-          class={`inline-block mx-1 my-0.5 transition-all duration-1000 ease-out group cursor-pointer opacity-0 translate-y-4 ${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle} ${phrase.style.color}`}
-          style={`transition-delay: ${phrase.style.delay}ms;`}
-          data-rotation={phrase.style.rotation}
+          href={`/zitate/${phrase.id}`}
+          class={`phrase inline-block mx-1 my-0.5 group cursor-pointer ${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle} ${phrase.style.color}`}
+          style={`--rot:${phrase.style.rotation}deg; transition-delay:${phrase.style.delay}ms;`}
           title={`"${phrase.text}" - ${phrase.author}${phrase.context ? ` (${phrase.context})` : ''}`}
         >
           <span class="relative">
-            "{phrase.text}"
-            <span class="absolute -inset-1 bg-[#9FFE88]/10 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+            “{phrase.text}”
+            <span class="phrase-bg"></span>
           </span>
-        </span>
+        </a>
       ))}
     </div>
-
-    <!-- Floating Elements -->
-    <div class="absolute top-10 left-10 w-2 h-2 bg-[#9FFE88]/30 rounded-full animate-pulse"></div>
-    <div class="absolute top-32 right-20 w-1 h-1 bg-[#9FFE88]/50 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
-    <div class="absolute bottom-20 left-32 w-3 h-3 bg-[#9FFE88]/20 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
-    <div class="absolute bottom-40 right-10 w-1.5 h-1.5 bg-[#9FFE88]/40 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
   </div>
 
   <!-- Bottom Decoration -->
   <div class="mt-16 text-center">
     <div class="inline-block p-4 bg-[#9FFE88]/10 border border-[#9FFE88]/30 rounded-lg backdrop-blur">
       <p class="text-[#F4F4F4]/70 italic">
-        "Words have power. These words had the power to build a legend."
+        „Worte haben Macht. Diese Worte hatten die Kraft, eine Legende zu formen.“
       </p>
     </div>
   </div>
 </div>
 
 <style>
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
+  .phrase {
+    opacity: 0;
+    transform: translateY(6px) rotate(0deg);
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), opacity 900ms ease;
+    will-change: transform, opacity;
   }
 
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  .phrase.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rot));
+  }
+
+  .phrase .phrase-bg {
+    position: absolute;
+    inset: -2px;
+    border-radius: 6px;
+    background: rgba(159, 254, 136, 0.08);
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+  }
+
+  .phrase:hover .phrase-bg {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phrase {
+      transition: opacity 200ms ease !important;
+      transform: none !important;
+    }
+    .phrase.is-visible {
+      transform: none !important;
+    }
   }
 </style>
 
 <script>
-  // Intersection Observer for reveal animation
+  // Intersection Observer for reveal
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          const element = entry.target as HTMLElement;
-          element.classList.remove('opacity-0', 'translate-y-4');
-          element.classList.add('opacity-100', 'translate-y-0');
-          
-          // Apply rotation after animation
-          const rotation = element.dataset.rotation;
-          if (rotation) {
-            setTimeout(() => {
-              element.style.transform = `rotate(${rotation}deg)`;
-            }, parseInt(element.style.transitionDelay || '0') + 500);
-          }
+          (entry.target as HTMLElement).classList.add('is-visible');
         }
       });
     },
     { threshold: 0.1, rootMargin: '100px' }
   );
 
-  // Observe all phrase elements
   document.addEventListener('DOMContentLoaded', () => {
     const elements = document.querySelectorAll('[data-phrase]');
-    elements.forEach(el => observer.observe(el));
+    elements.forEach((el) => observer.observe(el));
+  });
+
+  // Clean up on navigation (Astro view transitions)
+  document.addEventListener('astro:before-swap', () => {
+    const elements = document.querySelectorAll('[data-phrase]');
+    elements.forEach((el) => observer.unobserve(el));
   });
 </script>

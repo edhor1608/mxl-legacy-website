@@ -25,6 +25,12 @@ const {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <meta name="apple-mobile-web-app-title" content="MXL Legacy" />
     <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Oswald:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
     
     <SEO
       title={title}
@@ -37,7 +43,7 @@ const {
       type={type}
     />
   </head>
-  <body class="font-sans">
+  <body>
     <slot />
   </body>
 </html>

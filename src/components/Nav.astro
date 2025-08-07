@@ -1,12 +1,10 @@
 ---
 const links = [
-  { href: "/#hero", label: "Home" },
+  { href: "/#hero", label: "Start" },
   { href: "/#hall-of-fame", label: "Hall of Fame" },
-  { href: "/#timeline", label: "Timeline" },
-  { href: "/#defining-moments", label: "Defining Moments" },
-  { href: "/#signature-phrases", label: "Quotes" },
-  { href: "/#gallery", label: "Gallery" },
-  { href: "/#unpublished-stories", label: "Tribute" },
+  { href: "/#timeline", label: "Zeitleiste" },
+  { href: "/#signature-phrases", label: "Zitate" },
+  { href: "/#gallery", label: "Galerie" },
 ];
 ---
 
@@ -19,6 +17,14 @@ const links = [
         <img src="/MxlLegacyLogo.webp" alt="MXL" class="h-6 w-6 rounded-md" />
         <span>MXL Legacy</span>
       </a>
+      <button
+        class="md:hidden inline-flex items-center justify-center rounded border border-[#F4F4F4]/20 px-3 py-1.5 text-sm"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        data-menu-button
+      >
+        Menü
+      </button>
       <ul class="hidden md:flex items-center gap-6 text-sm">
         {
           links.map((l) => (
@@ -34,5 +40,39 @@ const links = [
         }
       </ul>
     </nav>
+    <div id="mobile-menu" class="container-px md:hidden hidden py-2" data-menu>
+      <ul class="flex flex-col gap-2 text-sm">
+        {
+          links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class="block px-3 py-2 rounded hover:bg-[#F4F4F4]/10"
+                data-menu-link
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
   </div>
 </header>
+
+<script>
+  const btn = document.querySelector('[data-menu-button]');
+  const menu = document.querySelector('[data-menu]');
+  const links = document.querySelectorAll('[data-menu-link]');
+  if (btn && menu) {
+    btn.addEventListener('click', () => {
+      const isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      btn.setAttribute('aria-expanded', String(!isOpen));
+    });
+    links.forEach((a) => a.addEventListener('click', () => {
+      menu.classList.add('hidden');
+      btn.setAttribute('aria-expanded', 'false');
+    }));
+  }
+</script>

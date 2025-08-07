@@ -15,65 +15,65 @@ const events: TimelineEvent[] = [
   {
     id: '2018-foundation',
     year: '2018',
-    title: 'The Genesis',
-    description: 'Matrix founded MXL with a vision to create the ultimate sim racing experience.',
+    title: 'Die Genesis',
+    description: 'Matrix gründete MXL mit der Vision, das ultimative Sim-Racing-Erlebnis zu schaffen.',
     type: 'milestone',
     icon: 'flag',
-    details: 'Starting with just 8 passionate racers, Matrix laid the groundwork for what would become legendary.'
+    details: 'Mit nur 8 leidenschaftlichen Fahrern legte Matrix das Fundament für das, was legendär werden sollte.'
   },
   {
     id: '2019-first-season',
     year: '2019',
-    title: 'First Championship',
-    description: 'The inaugural MXL Championship attracted 32 drivers from around the globe.',
+    title: 'Erste Meisterschaft',
+    description: 'Die erste MXL-Meisterschaft zog 32 Fahrer aus aller Welt an.',
     type: 'highlight',
     icon: 'trophy',
-    details: 'SpeedKing emerged as the first-ever MXL Champion in a thrilling season finale at Silverstone.'
+    details: 'SpeedKing wurde im spannenden Saisonfinale in Silverstone der erste MXL-Champion.'
   },
   {
     id: '2020-golden-era',
     year: '2020',
-    title: 'The Golden Era Begins',
-    description: 'Technical innovations and fierce rivalries defined the golden age of MXL.',
+    title: 'Beginn der Goldenen Ära',
+    description: 'Technische Innovationen und packende Rivalitäten prägten die goldene Ära von MXL.',
     type: 'defining-moment',
     icon: 'star',
-    details: 'The introduction of advanced telemetry and the legendary Matrix vs SpeedKing rivalry captivated audiences.'
+    details: 'Fortschrittliche Telemetrie und die legendäre Rivalität Matrix vs. SpeedKing fesselten die Zuschauer.'
   },
   {
     id: '2021-expansion',
     year: '2021',
-    title: 'Global Expansion',
-    description: 'MXL expanded to multiple series with over 150 active members.',
+    title: 'Globale Expansion',
+    description: 'MXL erweiterte sich auf mehrere Serien mit über 150 aktiven Mitgliedern.',
     type: 'milestone',
     icon: 'users',
-    details: 'The league grew to include GT, Formula, and Endurance series, attracting top talent worldwide.'
+    details: 'Die Liga wuchs um GT-, Formel- und Endurance-Serien und zog Top-Talente weltweit an.'
   },
   {
     id: '2022-pinnacle',
     year: '2022',
-    title: 'The Pinnacle Season',
-    description: 'The most competitive season in MXL history with record-breaking viewership.',
+    title: 'Die Gipfelsaison',
+    description: 'Die konkurrenzstärkste Saison der MXL-Geschichte mit Rekord-Zuschauerzahlen.',
     type: 'highlight',
     icon: 'zap',
-    details: 'Five different drivers won races, and the championship wasn\'t decided until the final corner of the last race.'
+    details: 'Fünf verschiedene Fahrer gewannen Rennen; die Meisterschaft entschied sich erst in der letzten Kurve des Finalrennens.'
   },
   {
     id: '2023-evolution',
     year: '2023',
-    title: 'Technical Evolution',
-    description: 'Advanced broadcasting and next-gen simulation technology revolutionized the experience.',
+    title: 'Technische Evolution',
+    description: 'Fortschrittliches Broadcasting und Next-Gen-Simulationstechnologie revolutionierten das Erlebnis.',
     type: 'milestone',
     icon: 'star',
-    details: 'Integration of VR support and professional-grade streaming brought MXL to new heights.'
+    details: 'VR-Unterstützung und professionelles Streaming hoben MXL auf ein neues Level.'
   },
   {
     id: '2024-legacy',
     year: '2024',
-    title: 'Legacy Sealed',
-    description: 'After six incredible years, MXL concluded its journey as a legendary sim racing institution.',
+    title: 'Legacy Besiegelt',
+    description: 'Nach sechs unglaublichen Jahren endete MXL als legendäre Sim-Racing-Institution.',
     type: 'defining-moment',
     icon: 'trophy',
-    details: 'The final season saw emotional farewells, record participation, and a celebration of everything MXL represented.'
+    details: 'Die letzte Saison brachte emotionale Abschiede, Rekordteilnahmen und eine Feier von allem, wofür MXL stand.'
   }
 ];
 
@@ -107,17 +107,17 @@ function getIconSvg(iconName: string) {
   <div class="text-center mb-16">
     <div class="inline-flex items-center space-x-2 mb-4">
       <span class="text-[#9FFE88]" set:html={getIconSvg('clock')} />
-      <h2 class="text-4xl md:text-5xl font-bold">Timeline</h2>
+      <h2 class="text-4xl md:text-5xl font-bold">Zeitleiste</h2>
     </div>
     <p class="text-lg text-[#F4F4F4]/70 max-w-2xl mx-auto">
-      Journey through the defining moments that shaped MXL's legendary status
+      Reise durch die prägenden Momente, die MXL zur Legende gemacht haben
     </p>
     <div class="h-1 w-24 bg-gradient-to-r from-[#9FFE88] to-transparent mx-auto mt-6"></div>
   </div>
 
   <div class="relative">
     <!-- Timeline Line -->
-    <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#9FFE88]/20 via-[#9FFE88] to-[#9FFE88]/20 transform -translate-x-0.5"></div>
+  <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#9FFE88]/10 via-[#9FFE88]/50 to-[#9FFE88]/10 transform -translate-x-0.5"></div>
 
     {events.map((event, index) => (
       <div
