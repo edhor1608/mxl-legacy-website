@@ -42,3 +42,8 @@ h2,
     padding-right: 1.5rem;
   }
 }
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
