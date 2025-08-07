@@ -37,6 +37,7 @@ const { members } = Astro.props;
                   <a
                     href={`/hall-of-fame/${person.link}`}
                     class="portrait-link"
+                    aria-label={`Profil von ${person.nickname} – ${person.role}`}
                   >
                     <div class="portrait-container">
                       <img
@@ -96,11 +97,24 @@ const { members } = Astro.props;
 
   .portraits-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(25px, 150px));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 0.75rem;
     max-width: 1200px;
     margin: 0 auto;
     justify-content: center;
+  }
+
+  @media (min-width: 640px) {
+    .portraits-gallery {
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .portraits-gallery {
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    }
   }
 
   .frame-border {
@@ -118,7 +132,7 @@ const { members } = Astro.props;
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
-  .portrait-link { display: block; text-decoration: none; color: inherit; }
+  .portrait-link { display: block; text-decoration: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
   .portrait-container { position: relative; aspect-ratio: 1; overflow: hidden; }
 
@@ -130,10 +144,17 @@ const { members } = Astro.props;
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
     opacity: 0; transition: opacity 0.2s ease-out;
     background: linear-gradient(135deg, rgba(0,0,0,0.0), rgba(0,0,0,0.35));
+    pointer-events: none;
   }
 
-  .portrait-frame:hover .portrait-overlay { opacity: 1; }
-  .portrait-frame:hover .portrait-image { transform: scale(1.03); }
+  /* Hover effects only on devices that support hover (prevents double-tap trap) */
+  @media (hover: hover) and (pointer: fine) {
+    .portrait-frame:hover .portrait-overlay { opacity: 1; }
+    .portrait-frame:hover .portrait-image { transform: scale(1.03); }
+  }
+
+  /* Tap feedback */
+  .portrait-link:active .portrait-image { transform: scale(1.02); }
 
   .portrait-info { position: relative; z-index: 2; text-align: center; padding: 0.75rem; width: 100%; }
   .portrait-name { font-size: clamp(1rem, 3.5vw, 1.25rem); font-weight: 700; color: #ededed; margin-bottom: 0.35rem; line-height: 1.2; }

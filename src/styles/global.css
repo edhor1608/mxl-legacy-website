@@ -42,3 +42,8 @@ h2,
     padding-right: 1.5rem;
   }
 }
+
+/* Sticky header offset for in-page anchors */
+:target {
+  scroll-margin-top: 72px; /* header height */
+}
