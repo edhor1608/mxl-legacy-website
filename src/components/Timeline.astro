@@ -226,6 +226,12 @@ function getIconSvg(iconName: string) {
     transform: translateX(32px) !important;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-event {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
 
 </style>
 
@@ -236,41 +242,60 @@ function getIconSvg(iconName: string) {
     rootMargin: '50px'
   };
 
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        const element = entry.target as HTMLElement;
-        const index = parseInt(element.dataset.index || '0');
-        
-        // Add visible class with appropriate animation
-        if (index % 2 === 0) {
-          element.classList.add('visible-left');
-        } else {
-          element.classList.add('visible-right');
-        }
-        
-        // Set the correct initial transform based on index for desktop
-        if (window.innerWidth >= 768) {
-          if (index % 2 === 1) {
-            element.style.transform = 'translateX(8px)';
-            setTimeout(() => {
-              element.style.transform = 'translateX(0)';
-            }, 50);
-          }
-        }
-      }
-    });
-  }, observerOptions);
+  function applyVisible(element: HTMLElement, index: number) {
+    if (index % 2 === 0) {
+      element.classList.add('visible-left');
+    } else {
+      element.classList.add('visible-right');
+    }
 
-  // Observe all timeline events
-  document.addEventListener('DOMContentLoaded', () => {
-    const timelineEvents = document.querySelectorAll('[data-timeline-event]');
-    timelineEvents.forEach(el => observer.observe(el));
-  });
+    if (window.innerWidth >= 768 && index % 2 === 1) {
+      element.style.transform = 'translateX(8px)';
+      setTimeout(() => {
+        element.style.transform = 'translateX(0)';
+      }, 50);
+    }
+  }
 
-  // Clean up observer on page navigation (for Astro's View Transitions)
-  document.addEventListener('astro:before-swap', () => {
+  function initTimeline() {
     const timelineEvents = document.querySelectorAll('[data-timeline-event]');
-    timelineEvents.forEach(el => observer.unobserve(el));
-  });
+
+    if (!('IntersectionObserver' in window)) {
+      // Fallback: just show all
+      timelineEvents.forEach((el) => {
+        const element = el as HTMLElement;
+        element.classList.remove('opacity-0');
+        applyVisible(element, parseInt(element.dataset.index || '0'));
+      });
+      return;
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+          const index = parseInt(element.dataset.index || '0');
+          element.classList.remove('opacity-0');
+          applyVisible(element, index);
+        }
+      });
+    }, observerOptions);
+
+    timelineEvents.forEach((el) => observer.observe(el));
+
+    // Clean up observer on page navigation (for Astro's View Transitions)
+    document.addEventListener('astro:before-swap', () => {
+      const events = document.querySelectorAll('[data-timeline-event]');
+      events.forEach((el) => observer.unobserve(el));
+    }, { once: true });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTimeline, { once: true });
+  } else {
+    initTimeline();
+  }
+
+  // Re-init on Astro client navigation
+  document.addEventListener('astro:page-load', initTimeline);
 </script>
