@@ -6,16 +6,16 @@ import Footer from "../components/Footer.astro";
 import SignaturePhrases from "../components/SignaturePhrases.astro";
 import Timeline from "../components/Timeline.astro";
 import HallOfFameWall from "../components/HallOfFameWall.astro";
-import DefiningMoments from "../components/DefiningMoments.astro";
+// import DefiningMoments from "../components/DefiningMoments.astro";
 import Gallery from "../components/Gallery.astro";
-import UnpublishedStories from "../components/UnpublishedStories.astro";
+// import UnpublishedStories from "../components/UnpublishedStories.astro";
 import { hallOfFame, definingMoments, gallery } from "../data/index";
 import "../styles/global.css";
 
 const page = {
   title: "MXL Legacy",
   description:
-    "Legacy und Tribute-Seite zur MXL Sim-Racing-Liga: Saisons, Highlights & Hall of Fame.",
+    "Legacy- und Tribute-Seite zur MXL Sim-Racing-Liga: Saisons, Highlights & Hall of Fame.",
   canonical: "https://mxl-legacy.de",
   image: "/assets/og-cover.jpg",
   type: "website",
@@ -25,17 +25,25 @@ const page = {
 <BaseLayout {...page}>
   <Nav />
 
-  <div class="max-w-5xl mx-auto px-4">
+  <div class="container-px">
     <Hero />
 
     <!-- Hall of Fame Section -->
-    <HallOfFameWall members={hallOfFame} />
+    <section id="hall-of-fame" class="py-16 md:py-24">
+      <div class="container-px">
+        <HallOfFameWall members={hallOfFame} />
+      </div>
+    </section>
 
     <!-- Timeline Section -->
-    <Timeline />
+    <section id="timeline" class="py-16 md:py-24">
+      <Timeline />
+    </section>
 
     <!-- Signature Phrases Section -->
-    <SignaturePhrases />
+    <section id="signature-phrases" class="py-16 md:py-24">
+      <SignaturePhrases />
+    </section>
   </div>
 
   <Footer />

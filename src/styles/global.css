@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+:root {
+  --font-display: "Oswald", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+  --font-body: "Inter", system-ui, -apple-system, Segoe UI, Roboto, Ubuntu,
+    Cantarell, Noto Sans, Helvetica Neue, Arial, "Apple Color Emoji",
+    "Segoe UI Emoji";
+}
+
+/* Base typography */
+body {
+  font-family: var(--font-body);
+  color: #ededed;
+}
+
+h1,
+h2,
+.display {
+  font-family: var(--font-display);
+  letter-spacing: 0.02em;
+}
+
+/* Numeric alignment for stats */
+.nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Container utility used across the site */
+.container-px {
+  max-width: 80rem; /* 1280px */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 768px) {
+  .container-px {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}

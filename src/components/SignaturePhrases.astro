@@ -236,101 +236,36 @@ const phrases: Phrase[] = [
         <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
         <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
       </svg>
-      <h2 class="text-4xl md:text-5xl font-bold">Signature Phrases</h2>
+      <h2 class="text-4xl md:text-5xl font-bold">Signatur-Zitate</h2>
     </div>
     <p class="text-lg text-[#F4F4F4]/70 max-w-2xl mx-auto">
-      The words that defined us, the quotes that inspired us, the phrases that became our legacy
+      Worte, die uns geprägt haben – Zitate, die inspirierten – Phrasen, die zur Legacy wurden
     </p>
     <div class="h-1 w-24 bg-gradient-to-r from-[#9FFE88] to-transparent mx-auto mt-6"></div>
   </div>
 
-  <!-- Dense Text Wall -->
-  <div class="relative">
-    <!-- Background Pattern -->
-    <div class="absolute inset-0 opacity-5 pointer-events-none">
-      <div 
-        class="absolute inset-0"
-        style="background-image: linear-gradient(rgba(159, 254, 136, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(159, 254, 136, 0.1) 1px, transparent 1px); background-size: 30px 30px;"
-      ></div>
-    </div>
-
-    <!-- Dense Wall of Text -->
-    <div class="relative text-center leading-tight space-y-1">
-      {phrases.map((phrase) => (
-        <span
-          id={phrase.id}
-          data-phrase
-          class={`inline-block mx-1 my-0.5 transition-all duration-1000 ease-out group cursor-pointer opacity-0 translate-y-4 ${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle} ${phrase.style.color}`}
-          style={`transition-delay: ${phrase.style.delay}ms;`}
-          data-rotation={phrase.style.rotation}
-          title={`"${phrase.text}" - ${phrase.author}${phrase.context ? ` (${phrase.context})` : ''}`}
-        >
-          <span class="relative">
-            "{phrase.text}"
-            <span class="absolute -inset-1 bg-[#9FFE88]/10 rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
-          </span>
-        </span>
-      ))}
-    </div>
-
-    <!-- Floating Elements -->
-    <div class="absolute top-10 left-10 w-2 h-2 bg-[#9FFE88]/30 rounded-full animate-pulse"></div>
-    <div class="absolute top-32 right-20 w-1 h-1 bg-[#9FFE88]/50 rounded-full animate-pulse" style="animation-delay: 1s;"></div>
-    <div class="absolute bottom-20 left-32 w-3 h-3 bg-[#9FFE88]/20 rounded-full animate-pulse" style="animation-delay: 2s;"></div>
-    <div class="absolute bottom-40 right-10 w-1.5 h-1.5 bg-[#9FFE88]/40 rounded-full animate-pulse" style="animation-delay: 0.5s;"></div>
+  <!-- Simplified performant grid of quotes -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {phrases.map((phrase) => (
+      <figure id={phrase.id} class={`rounded-lg border border-[#F4F4F4]/10 bg-[#F4F4F4]/5 p-4 ${phrase.style.color}`}>
+        <blockquote class={`${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle}`}>
+          “{phrase.text}”
+        </blockquote>
+        <figcaption class="mt-2 text-sm text-[#F4F4F4]/70">
+          — {phrase.author}{phrase.context && <span class="text-[#F4F4F4]/50"> · {phrase.context}</span>}
+        </figcaption>
+      </figure>
+    ))}
   </div>
 
   <!-- Bottom Decoration -->
   <div class="mt-16 text-center">
     <div class="inline-block p-4 bg-[#9FFE88]/10 border border-[#9FFE88]/30 rounded-lg backdrop-blur">
       <p class="text-[#F4F4F4]/70 italic">
-        "Words have power. These words had the power to build a legend."
+        „Worte haben Macht. Diese Worte hatten die Kraft, eine Legende zu formen.“
       </p>
     </div>
   </div>
 </div>
 
-<style>
-  @keyframes pulse {
-    0%, 100% {
-      opacity: 1;
-    }
-    50% {
-      opacity: 0.5;
-    }
-  }
-
-  .animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  }
-</style>
-
-<script>
-  // Intersection Observer for reveal animation
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const element = entry.target as HTMLElement;
-          element.classList.remove('opacity-0', 'translate-y-4');
-          element.classList.add('opacity-100', 'translate-y-0');
-          
-          // Apply rotation after animation
-          const rotation = element.dataset.rotation;
-          if (rotation) {
-            setTimeout(() => {
-              element.style.transform = `rotate(${rotation}deg)`;
-            }, parseInt(element.style.transitionDelay || '0') + 500);
-          }
-        }
-      });
-    },
-    { threshold: 0.1, rootMargin: '100px' }
-  );
-
-  // Observe all phrase elements
-  document.addEventListener('DOMContentLoaded', () => {
-    const elements = document.querySelectorAll('[data-phrase]');
-    elements.forEach(el => observer.observe(el));
-  });
-</script>
+<style></style>
