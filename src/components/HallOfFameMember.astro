@@ -1,0 +1,368 @@
+---
+import { Picture } from 'astro:assets';
+
+interface Props {
+  person: {
+    nickname: string;
+    role: string;
+    tagline: string;
+    bio: string;
+    img: string;
+    details: string[];
+    timelineImpact: string;
+  };
+}
+
+const { person } = Astro.props;
+---
+
+<section class="min-h-screen pt-20">
+  <div class="container-px py-12">
+    <div class="max-w-5xl mx-auto">
+      <!-- Breadcrumb -->
+      <nav class="mb-8">
+        <a
+          href="/#hall-of-fame"
+          class="text-[#9FFE88] hover:opacity-80 transition-opacity inline-flex items-center gap-2"
+        >
+          <span class="text-2xl">←</span>
+          <span>Back to Hall of Fame</span>
+        </a>
+      </nav>
+
+      <!-- Hero Section with Gold Frame -->
+      <div class="member-hero">
+        <div class="hero-frame">
+          <div class="frame-border">
+            <div class="frame-content">
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div class="portrait-section">
+                  <div class="portrait-container">
+                    <Picture
+                      src={person.img}
+                      alt={person.nickname}
+                      formats={["avif", "webp"]}
+                      class="portrait-image"
+                    />
+                    <div class="portrait-glow"></div>
+                  </div>
+                  <div class="role-badge">
+                    <span class="badge-text">{person.role}</span>
+                  </div>
+                </div>
+
+                <div class="info-section">
+                  <div class="name-section">
+                    <h1 class="member-name">{person.nickname}</h1>
+                    <div class="name-underline"></div>
+                  </div>
+                  
+                  <div class="tagline-section">
+                    <h2 class="member-tagline">"{person.tagline}"</h2>
+                  </div>
+                  
+                  <div class="bio-section">
+                    <p class="member-bio">{person.bio}</p>
+                  </div>
+
+                  <!-- Key Details -->
+                  <div class="details-section">
+                    <h3 class="details-title">Key Contributions</h3>
+                    <div class="details-list">
+                      {
+                        person.details.map((detail) => (
+                          <div class="detail-item">
+                            <div class="detail-marker"></div>
+                            <p class="detail-text">{detail}</p>
+                          </div>
+                        ))
+                      }
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline Connection -->
+      <div class="timeline-section">
+        <div class="timeline-frame">
+          <h3 class="timeline-title">Timeline Impact</h3>
+          <p class="timeline-text">
+            {person.timelineImpact}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .member-hero {
+    margin-bottom: 4rem;
+  }
+
+  .hero-frame {
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .frame-border {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    padding: 12px;
+    border-radius: 20px;
+    box-shadow: 
+      0 20px 40px rgba(255, 215, 0, 0.3),
+      0 0 30px rgba(255, 215, 0, 0.2),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+
+  .frame-content {
+    background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 50%, #0f0f0f 100%);
+    border-radius: 15px;
+    padding: 3rem;
+    position: relative;
+  }
+
+  .frame-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+    border-radius: 15px;
+    pointer-events: none;
+  }
+
+  .portrait-section {
+    position: relative;
+  }
+
+  .portrait-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+  }
+
+  .portrait-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .portrait-container:hover .portrait-image {
+    transform: scale(1.02) translateZ(0);
+  }
+
+  .portrait-glow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .role-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: linear-gradient(135deg, #9FFE88 0%, #7FCE68 100%);
+    color: #1a1a1a;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    box-shadow: 0 4px 15px rgba(159, 254, 136, 0.3);
+  }
+
+  .info-section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .name-section {
+    margin-bottom: 2rem;
+  }
+
+  .member-name {
+    font-size: 3.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    margin-bottom: 0.5rem;
+  }
+
+  .name-underline {
+    width: 150px;
+    height: 3px;
+    background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    border-radius: 2px;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+
+  .tagline-section {
+    margin-bottom: 2rem;
+  }
+
+  .member-tagline {
+    font-size: 1.5rem;
+    color: #F4F4F4;
+    font-style: italic;
+    opacity: 0.9;
+  }
+
+  .bio-section {
+    margin-bottom: 2.5rem;
+  }
+
+  .member-bio {
+    font-size: 1.1rem;
+    color: #F4F4F4;
+    line-height: 1.7;
+    opacity: 0.9;
+  }
+
+  .details-section {
+    position: relative;
+    z-index: 1;
+  }
+
+  .details-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .details-list {
+    space-y: 1rem;
+  }
+
+  .detail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .detail-marker {
+    width: 8px;
+    height: 8px;
+    background: #9FFE88;
+    border-radius: 50%;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(159, 254, 136, 0.5);
+  }
+
+  .detail-text {
+    color: #F4F4F4;
+    opacity: 0.8;
+    line-height: 1.6;
+  }
+
+  .timeline-section {
+    margin-top: 3rem;
+  }
+
+  .timeline-frame {
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0.02) 100%);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    border-radius: 15px;
+    padding: 2rem;
+    position: relative;
+  }
+
+  .timeline-frame::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.02) 50%, transparent 60%);
+    border-radius: 15px;
+    pointer-events: none;
+  }
+
+  .timeline-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #FFD700;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .timeline-text {
+    color: #F4F4F4;
+    opacity: 0.8;
+    line-height: 1.7;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .frame-content {
+      padding: 2rem;
+    }
+
+    .member-name {
+      font-size: 2.5rem;
+    }
+
+    .member-tagline {
+      font-size: 1.25rem;
+    }
+
+    .member-bio {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .frame-content {
+      padding: 1.5rem;
+    }
+
+    .member-name {
+      font-size: 2rem;
+    }
+
+    .role-badge {
+      font-size: 0.75rem;
+      padding: 0.375rem 0.75rem;
+    }
+  }
+
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .portrait-image {
+      transition: none;
+    }
+    
+    .portrait-container:hover .portrait-image {
+      transform: none;
+    }
+  }
+</style> 

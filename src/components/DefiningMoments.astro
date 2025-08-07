@@ -1,0 +1,39 @@
+---
+import Section from "./Section.astro";
+
+interface Props {
+  moments: Array<{
+    title: string;
+    visual: string;
+    text: string;
+  }>;
+}
+
+const { moments } = Astro.props;
+---
+
+<Section id="defining-moments" title="Defining Moments">
+  <p class="text-[#F4F4F4]/80 max-w-3xl mb-8">
+    The pivotal moments that shaped MXL's identity and legacy. Each
+    represents a turning point in the league's journey.
+  </p>
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+    {
+      moments.map((moment) => (
+        <div class="group rounded-2xl overflow-hidden border border-[#F4F4F4]/10 bg-gradient-to-b from-[#F4F4F4]/5 to-[#F4F4F4]/[0.02] hover:border-[#9FFE88]/30 transition-all duration-300">
+          <div class="relative">
+            <img
+              src={moment.visual}
+              alt={moment.title}
+              class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+            />
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-bold mb-3">{moment.title}</h3>
+            <p class="text-[#F4F4F4]/70 leading-relaxed">{moment.text}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</Section> 
