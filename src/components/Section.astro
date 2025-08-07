@@ -2,7 +2,7 @@
 const { id, title, class: className } = Astro.props;
 ---
 
-<section id={id} class={`section ${className}`}>
+<section id={id} class={['section', className].filter(Boolean).join(' ')}>
   <div class="container-px w-full">
     {title && <h2 class="text-3xl font-bold mb-6">{title}</h2>}
     <slot />
