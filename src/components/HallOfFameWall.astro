@@ -13,18 +13,20 @@ interface Props {
 const { members } = Astro.props;
 ---
 
-<div class="hall-of-fame-wall">
+<div
+  class="flex justify-center items-center relative p-16 border-4 border-[#FFD700]/70 rounded-2xl justify-self-center"
+>
   <!-- Wall Background with Texture -->
   <div class="wall-background">
     <div class="wall-texture"></div>
-    
+
     <!-- Gold Border Frame for the entire wall -->
     <div class="wall-frame">
       <div class="wall-title">
         <h2 class="hall-of-fame-title">HALL OF FAME</h2>
         <div class="title-underline"></div>
       </div>
-      
+
       <!-- Gallery of Gold-Framed Portraits -->
       <div class="portraits-gallery">
         {
@@ -32,7 +34,10 @@ const { members } = Astro.props;
             <div class="portrait-frame">
               <div class="frame-border">
                 <div class="frame-inner">
-                  <a href={`/hall-of-fame/${person.link}`} class="portrait-link">
+                  <a
+                    href={`/hall-of-fame/${person.link}`}
+                    class="portrait-link"
+                  >
                     <div class="portrait-container">
                       <img
                         src={person.img}
@@ -41,7 +46,7 @@ const { members } = Astro.props;
                         loading="lazy"
                       />
                       <div class="portrait-overlay">
-                        <div class="overlay-background"></div>
+                        <div class="overlay-background" />
                         <div class="portrait-info">
                           <h3 class="portrait-name">{person.nickname}</h3>
                           <p class="portrait-role">{person.role}</p>
@@ -66,7 +71,7 @@ const { members } = Astro.props;
     justify-content: center;
     align-items: center;
     position: relative;
-    width: 100%;
+
     min-height: 95vh;
     margin: 0 0;
     padding: 4rem 0;
@@ -78,9 +83,17 @@ const { members } = Astro.props;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-      radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.05) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.03) 0%, transparent 50%);
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(255, 215, 0, 0.05) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(255, 215, 0, 0.03) 0%,
+        transparent 50%
+      );
     border-radius: 20px;
     pointer-events: none;
   }
@@ -98,7 +111,7 @@ const { members } = Astro.props;
   .hall-of-fame-title {
     font-size: 3.5rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 50%, #ffd700 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -110,7 +123,12 @@ const { members } = Astro.props;
   .title-underline {
     width: 200px;
     height: 3px;
-    background: linear-gradient(90deg, transparent 0%, #FFD700 50%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #ffd700 50%,
+      transparent 100%
+    );
     margin: 0 auto;
     border-radius: 2px;
     box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
@@ -118,10 +136,11 @@ const { members } = Astro.props;
 
   .portraits-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(25px, 150px));
     gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
+    justify-content: center;
   }
 
   .portrait-frame {
@@ -131,22 +150,23 @@ const { members } = Astro.props;
 
   .frame-border {
     position: relative;
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    background: linear-gradient(135deg, #ffd700 0%, #ffa500 50%, #ffd700 100%);
     padding: 8px;
     border-radius: 15px;
-    box-shadow: 
+    box-shadow:
       0 10px 30px rgba(255, 215, 0, 0.3),
       0 0 20px rgba(255, 215, 0, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
-    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
-                box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition:
+      transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      box-shadow 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     will-change: transform, box-shadow;
     transform: translateZ(0);
   }
 
   .frame-border:hover {
     transform: translateY(-8px) translateZ(0);
-    box-shadow: 
+    box-shadow:
       0 20px 40px rgba(255, 215, 0, 0.4),
       0 0 30px rgba(255, 215, 0, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
@@ -200,10 +220,12 @@ const { members } = Astro.props;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(135deg, 
-      rgba(255, 215, 0, 0.9) 0%, 
-      rgba(255, 165, 0, 0.85) 50%, 
-      rgba(255, 215, 0, 0.9) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(255, 215, 0, 0.9) 0%,
+      rgba(255, 165, 0, 0.85) 50%,
+      rgba(255, 215, 0, 0.9) 100%
+    );
     backdrop-filter: blur(2px);
   }
 
@@ -243,7 +265,7 @@ const { members } = Astro.props;
   .portrait-tag {
     display: inline-block;
     background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-    color: #FFD700;
+    color: #ffd700;
     padding: 0.25rem 0.75rem;
     border-radius: 20px;
     font-size: clamp(0.65rem, 2.5vw, 0.75rem);
@@ -254,54 +276,6 @@ const { members } = Astro.props;
     border: 1px solid rgba(255, 215, 0, 0.3);
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .wall-background {
-      padding: 2rem 1rem;
-    }
-
-    .hall-of-fame-title {
-      font-size: 2.5rem;
-    }
-
-    .portraits-gallery {
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .portrait-overlay {
-      opacity: 1;
-      background: linear-gradient(135deg, 
-        rgba(255, 215, 0, 0.8) 0%, 
-        rgba(255, 165, 0, 0.75) 50%, 
-        rgba(255, 215, 0, 0.8) 100%);
-    }
-  }
-
-  @media (max-width: 480px) {
-    .portraits-gallery {
-      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-      gap: 1rem;
-    }
-
-    .hall-of-fame-title {
-      font-size: 2rem;
-    }
-
-    .portrait-name {
-      font-size: 1.1rem;
-    }
-
-    .portrait-role {
-      font-size: 0.8rem;
-    }
-
-    .portrait-tag {
-      font-size: 0.6rem;
-      padding: 0.2rem 0.6rem;
-    }
-  }
-
   /* Optimized Animation for frame entrance */
   .portrait-frame {
     opacity: 0;
@@ -310,11 +284,21 @@ const { members } = Astro.props;
     will-change: opacity, transform;
   }
 
-  .portrait-frame:nth-child(1) { animation-delay: 0.05s; }
-  .portrait-frame:nth-child(2) { animation-delay: 0.1s; }
-  .portrait-frame:nth-child(3) { animation-delay: 0.15s; }
-  .portrait-frame:nth-child(4) { animation-delay: 0.2s; }
-  .portrait-frame:nth-child(5) { animation-delay: 0.25s; }
+  .portrait-frame:nth-child(1) {
+    animation-delay: 0.05s;
+  }
+  .portrait-frame:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .portrait-frame:nth-child(3) {
+    animation-delay: 0.15s;
+  }
+  .portrait-frame:nth-child(4) {
+    animation-delay: 0.2s;
+  }
+  .portrait-frame:nth-child(5) {
+    animation-delay: 0.25s;
+  }
 
   @keyframes frameEntrance {
     to {
@@ -332,10 +316,10 @@ const { members } = Astro.props;
       animation: none;
       transition: none;
     }
-    
+
     .portrait-frame {
       opacity: 1;
       transform: none;
     }
   }
-</style> 
+</style>
