@@ -244,18 +244,33 @@ const phrases: Phrase[] = [
     <div class="h-1 w-24 bg-gradient-to-r from-[#9FFE88] to-transparent mx-auto mt-6"></div>
   </div>
 
-  <!-- Simplified performant grid of quotes -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-    {phrases.map((phrase) => (
-      <figure id={phrase.id} class={`rounded-lg border border-[#F4F4F4]/10 bg-[#F4F4F4]/5 p-4 ${phrase.style.color}`}>
-        <blockquote class={`${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle}`}>
-          “{phrase.text}”
-        </blockquote>
-        <figcaption class="mt-2 text-sm text-[#F4F4F4]/70">
-          — {phrase.author}{phrase.context && <span class="text-[#F4F4F4]/50"> · {phrase.context}</span>}
-        </figcaption>
-      </figure>
-    ))}
+  <!-- "Wall of phrases" with varied styles and subtle reveal -->
+  <div class="relative">
+    <!-- Background Pattern (very subtle) -->
+    <div class="absolute inset-0 opacity-[0.07] pointer-events-none">
+      <div 
+        class="absolute inset-0"
+        style="background-image: linear-gradient(rgba(159, 254, 136, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(159, 254, 136, 0.12) 1px, transparent 1px); background-size: 30px 30px;"
+      ></div>
+    </div>
+
+    <!-- Dense, flowing text wall -->
+    <div class="relative text-center leading-tight">
+      {phrases.map((phrase) => (
+        <span
+          id={phrase.id}
+          data-phrase
+          class={`phrase inline-block mx-1 my-0.5 group cursor-default ${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle} ${phrase.style.color}`}
+          style={`--rot:${phrase.style.rotation}deg; transition-delay:${phrase.style.delay}ms;`}
+          title={`"${phrase.text}" - ${phrase.author}${phrase.context ? ` (${phrase.context})` : ''}`}
+        >
+          <span class="relative">
+            “{phrase.text}”
+            <span class="phrase-bg"></span>
+          </span>
+        </span>
+      ))}
+    </div>
   </div>
 
   <!-- Bottom Decoration -->
@@ -268,4 +283,65 @@ const phrases: Phrase[] = [
   </div>
 </div>
 
-<style></style>
+<style>
+  .phrase {
+    opacity: 0;
+    transform: translateY(6px) rotate(0deg);
+    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), opacity 900ms ease;
+    will-change: transform, opacity;
+  }
+
+  .phrase.is-visible {
+    opacity: 1;
+    transform: translateY(0) rotate(var(--rot));
+  }
+
+  .phrase .phrase-bg {
+    position: absolute;
+    inset: -2px;
+    border-radius: 6px;
+    background: rgba(159, 254, 136, 0.08);
+    opacity: 0;
+    transition: opacity 200ms ease;
+    pointer-events: none;
+  }
+
+  .phrase:hover .phrase-bg {
+    opacity: 1;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phrase {
+      transition: opacity 200ms ease !important;
+      transform: none !important;
+    }
+    .phrase.is-visible {
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer for reveal
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).classList.add('is-visible');
+        }
+      });
+    },
+    { threshold: 0.1, rootMargin: '100px' }
+  );
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const elements = document.querySelectorAll('[data-phrase]');
+    elements.forEach((el) => observer.observe(el));
+  });
+
+  // Clean up on navigation (Astro view transitions)
+  document.addEventListener('astro:before-swap', () => {
+    const elements = document.querySelectorAll('[data-phrase]');
+    elements.forEach((el) => observer.unobserve(el));
+  });
+</script>
