@@ -20,15 +20,15 @@ const gallery = Array.from({ length: 12 }).map(
 
 <BaseLayout {...page}>
   <Nav />
-  <Section id="gallery-page" title="Gallery">
+  <Section id="gallery-page" title="Galerie">
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
       {
         gallery.map((src, i) => (
           <img
             src={src}
-            alt={`Gallery ${i + 1}`}
+            alt={`Galerie ${i + 1}`}
             class="w-full h-48 object-cover rounded-lg border border-white/10"
-            loading="lazy"
+            loading="lazy" decoding="async"
           />
         ))
       }

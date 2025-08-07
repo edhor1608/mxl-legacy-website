@@ -1,5 +1,4 @@
 ---
-import { Picture } from 'astro:assets';
 
 interface Props {
   person: {
@@ -26,7 +25,7 @@ const { person } = Astro.props;
           class="text-[#9FFE88] hover:opacity-80 transition-opacity inline-flex items-center gap-2"
         >
           <span class="text-2xl">←</span>
-          <span>Back to Hall of Fame</span>
+          <span>Zurück zur Hall of Fame</span>
         </a>
       </nav>
 
@@ -38,11 +37,12 @@ const { person } = Astro.props;
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <div class="portrait-section">
                   <div class="portrait-container">
-                    <Picture
+                    <img
                       src={person.img}
                       alt={person.nickname}
-                      formats={["avif", "webp"]}
                       class="portrait-image"
+                      loading="lazy"
+                      decoding="async"
                     />
                     <div class="portrait-glow"></div>
                   </div>
@@ -67,7 +67,7 @@ const { person } = Astro.props;
 
                   <!-- Key Details -->
                   <div class="details-section">
-                    <h3 class="details-title">Key Contributions</h3>
+                    <h3 class="details-title">Wesentliche Beiträge</h3>
                     <div class="details-list">
                       {
                         person.details.map((detail) => (
@@ -89,7 +89,7 @@ const { person } = Astro.props;
       <!-- Timeline Connection -->
       <div class="timeline-section">
         <div class="timeline-frame">
-          <h3 class="timeline-title">Timeline Impact</h3>
+          <h3 class="timeline-title">Prägung der Zeitleiste</h3>
           <p class="timeline-text">
             {person.timelineImpact}
           </p>
@@ -110,12 +110,12 @@ const { person } = Astro.props;
   }
 
   .frame-border {
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    background: linear-gradient(135deg, rgba(159, 254, 136, 0.4) 0%, rgba(159, 254, 136, 0.15) 100%);
     padding: 12px;
     border-radius: 20px;
     box-shadow: 
-      0 20px 40px rgba(255, 215, 0, 0.3),
-      0 0 30px rgba(255, 215, 0, 0.2),
+      0 20px 40px rgba(159, 254, 136, 0.12),
+      0 0 30px rgba(159, 254, 136, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
@@ -134,8 +134,8 @@ const { person } = Astro.props;
     right: 0;
     bottom: 0;
     background-image: 
-      radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.03) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(255, 215, 0, 0.02) 0%, transparent 50%);
+      radial-gradient(circle at 20% 30%, rgba(159, 254, 136, 0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(159, 254, 136, 0.04) 0%, transparent 50%);
     border-radius: 15px;
     pointer-events: none;
   }
@@ -201,20 +201,17 @@ const { person } = Astro.props;
   .member-name {
     font-size: 3.5rem;
     font-weight: 900;
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 0 30px rgba(255, 215, 0, 0.3);
+    color: #ededed;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
     margin-bottom: 0.5rem;
   }
 
   .name-underline {
     width: 150px;
     height: 3px;
-    background: linear-gradient(90deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+    background: linear-gradient(90deg, transparent 0%, #9FFE88 50%, transparent 100%);
     border-radius: 2px;
-    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
   }
 
   .tagline-section {
@@ -247,7 +244,7 @@ const { person } = Astro.props;
   .details-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #FFD700;
+    color: #9FFE88;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -285,8 +282,8 @@ const { person } = Astro.props;
   }
 
   .timeline-frame {
-    background: linear-gradient(135deg, rgba(255, 215, 0, 0.05) 0%, rgba(255, 215, 0, 0.02) 100%);
-    border: 1px solid rgba(255, 215, 0, 0.2);
+    background: linear-gradient(135deg, rgba(159, 254, 136, 0.06) 0%, rgba(159, 254, 136, 0.03) 100%);
+    border: 1px solid rgba(159, 254, 136, 0.25);
     border-radius: 15px;
     padding: 2rem;
     position: relative;
@@ -299,7 +296,7 @@ const { person } = Astro.props;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.02) 50%, transparent 60%);
+    background: linear-gradient(45deg, transparent 40%, rgba(159, 254, 136, 0.06) 50%, transparent 60%);
     border-radius: 15px;
     pointer-events: none;
   }
@@ -307,7 +304,7 @@ const { person } = Astro.props;
   .timeline-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #FFD700;
+    color: #9FFE88;
     margin-bottom: 1rem;
     position: relative;
     z-index: 1;
