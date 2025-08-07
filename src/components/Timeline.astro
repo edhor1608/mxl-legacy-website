@@ -1,0 +1,276 @@
+---
+export interface TimelineEvent {
+  id: string;
+  year: string;
+  month?: string;
+  day?: string;
+  title: string;
+  description: string;
+  type: 'milestone' | 'highlight' | 'defining-moment';
+  icon: string;
+  details?: string;
+}
+
+const events: TimelineEvent[] = [
+  {
+    id: '2018-foundation',
+    year: '2018',
+    title: 'The Genesis',
+    description: 'Matrix founded MXL with a vision to create the ultimate sim racing experience.',
+    type: 'milestone',
+    icon: 'flag',
+    details: 'Starting with just 8 passionate racers, Matrix laid the groundwork for what would become legendary.'
+  },
+  {
+    id: '2019-first-season',
+    year: '2019',
+    title: 'First Championship',
+    description: 'The inaugural MXL Championship attracted 32 drivers from around the globe.',
+    type: 'highlight',
+    icon: 'trophy',
+    details: 'SpeedKing emerged as the first-ever MXL Champion in a thrilling season finale at Silverstone.'
+  },
+  {
+    id: '2020-golden-era',
+    year: '2020',
+    title: 'The Golden Era Begins',
+    description: 'Technical innovations and fierce rivalries defined the golden age of MXL.',
+    type: 'defining-moment',
+    icon: 'star',
+    details: 'The introduction of advanced telemetry and the legendary Matrix vs SpeedKing rivalry captivated audiences.'
+  },
+  {
+    id: '2021-expansion',
+    year: '2021',
+    title: 'Global Expansion',
+    description: 'MXL expanded to multiple series with over 150 active members.',
+    type: 'milestone',
+    icon: 'users',
+    details: 'The league grew to include GT, Formula, and Endurance series, attracting top talent worldwide.'
+  },
+  {
+    id: '2022-pinnacle',
+    year: '2022',
+    title: 'The Pinnacle Season',
+    description: 'The most competitive season in MXL history with record-breaking viewership.',
+    type: 'highlight',
+    icon: 'zap',
+    details: 'Five different drivers won races, and the championship wasn\'t decided until the final corner of the last race.'
+  },
+  {
+    id: '2023-evolution',
+    year: '2023',
+    title: 'Technical Evolution',
+    description: 'Advanced broadcasting and next-gen simulation technology revolutionized the experience.',
+    type: 'milestone',
+    icon: 'star',
+    details: 'Integration of VR support and professional-grade streaming brought MXL to new heights.'
+  },
+  {
+    id: '2024-legacy',
+    year: '2024',
+    title: 'Legacy Sealed',
+    description: 'After six incredible years, MXL concluded its journey as a legendary sim racing institution.',
+    type: 'defining-moment',
+    icon: 'trophy',
+    details: 'The final season saw emotional farewells, record participation, and a celebration of everything MXL represented.'
+  }
+];
+
+function getEventTypeStyle(type: string) {
+  switch (type) {
+    case 'milestone':
+      return 'border-[#9FFE88]/60 bg-[#9FFE88]/10';
+    case 'highlight':
+      return 'border-[#9FFE88]/80 bg-[#9FFE88]/20';
+    case 'defining-moment':
+      return 'border-[#9FFE88] bg-[#9FFE88]/30 shadow-lg shadow-[#9FFE88]/20';
+    default:
+      return 'border-[#9FFE88]/40 bg-[#9FFE88]/5';
+  }
+}
+
+function getIconSvg(iconName: string) {
+  const icons: Record<string, string> = {
+    flag: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" x2="4" y1="22" y2="15"></line></svg>',
+    trophy: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>',
+    star: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>',
+    zap: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+    users: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>',
+    clock: '<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>'
+  };
+  return icons[iconName] || icons.star;
+}
+---
+
+<div class="py-20 px-4 max-w-4xl mx-auto">
+  <div class="text-center mb-16">
+    <div class="inline-flex items-center space-x-2 mb-4">
+      <span class="text-[#9FFE88]" set:html={getIconSvg('clock')} />
+      <h2 class="text-4xl md:text-5xl font-bold">Timeline</h2>
+    </div>
+    <p class="text-lg text-[#F4F4F4]/70 max-w-2xl mx-auto">
+      Journey through the defining moments that shaped MXL's legendary status
+    </p>
+    <div class="h-1 w-24 bg-gradient-to-r from-[#9FFE88] to-transparent mx-auto mt-6"></div>
+  </div>
+
+  <div class="relative">
+    <!-- Timeline Line -->
+    <div class="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#9FFE88]/20 via-[#9FFE88] to-[#9FFE88]/20 transform -translate-x-0.5"></div>
+
+    {events.map((event, index) => (
+      <div
+        id={event.id}
+        data-timeline-event
+        class={`relative flex items-center mb-16 transition-all duration-1000 timeline-event opacity-0 ${index % 2 === 0 ? "-translate-x-8" : "translate-x-8"}`}
+        data-index={index}
+      >
+        <!-- Desktop Layout -->
+        <div class="hidden md:block">
+          <div class="grid grid-cols-12 items-center w-full">
+            {index % 2 === 0 ? (
+              // Left Side Event
+              <>
+                <div class="col-span-5 flex justify-end pr-8">
+                  <div class={`p-6 rounded-lg border-2 ${getEventTypeStyle(event.type)} backdrop-blur-sm`}>
+                    <div class="mb-2">
+                      <span class="text-sm font-medium text-[#9FFE88] uppercase tracking-wide">
+                        {event.type.replace('-', ' ')}
+                      </span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">{event.title}</h3>
+                    <p class="text-[#F4F4F4]/70 mb-3">{event.description}</p>
+                    {event.details && (
+                      <p class="text-sm text-[#F4F4F4]/60 italic">{event.details}</p>
+                    )}
+                  </div>
+                </div>
+                <div class="col-span-2 flex justify-center">
+                  <div class={`w-12 h-12 rounded-full flex items-center justify-center border-2 ${getEventTypeStyle(event.type)} backdrop-blur-sm bg-[#201D1F] z-10`}>
+                    <span class="text-[#9FFE88]" set:html={getIconSvg(event.icon)} />
+                  </div>
+                </div>
+                <div class="col-span-5 pl-8">
+                  <div class="text-3xl font-bold text-[#9FFE88]/60">{event.year}</div>
+                </div>
+              </>
+            ) : (
+              // Right Side Event
+              <>
+                <div class="col-span-5 flex justify-end pr-8">
+                  <div class="text-3xl font-bold text-[#9FFE88]/60">{event.year}</div>
+                </div>
+                <div class="col-span-2 flex justify-center">
+                  <div class={`w-12 h-12 rounded-full flex items-center justify-center border-2 ${getEventTypeStyle(event.type)} backdrop-blur-sm bg-[#201D1F] z-10`}>
+                    <span class="text-[#9FFE88]" set:html={getIconSvg(event.icon)} />
+                  </div>
+                </div>
+                <div class="col-span-5 pl-8">
+                  <div class={`p-6 rounded-lg border-2 ${getEventTypeStyle(event.type)} backdrop-blur-sm`}>
+                    <div class="mb-2">
+                      <span class="text-sm font-medium text-[#9FFE88] uppercase tracking-wide">
+                        {event.type.replace('-', ' ')}
+                      </span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">{event.title}</h3>
+                    <p class="text-[#F4F4F4]/70 mb-3">{event.description}</p>
+                    {event.details && (
+                      <p class="text-sm text-[#F4F4F4]/60 italic">{event.details}</p>
+                    )}
+                  </div>
+                </div>
+              </>
+            )}
+          </div>
+        </div>
+
+        <!-- Mobile Layout -->
+        <div class="md:hidden flex items-start w-full pl-16">
+          <div class="absolute left-6 w-6 h-6 rounded-full flex items-center justify-center bg-[#201D1F] border-2 border-[#9FFE88]">
+            <div class="w-2 h-2 bg-[#9FFE88] rounded-full"></div>
+          </div>
+          <div class="flex-1">
+            <div class="mb-2 text-2xl font-bold text-[#9FFE88]">{event.year}</div>
+            <div class={`p-4 rounded-lg border-2 ${getEventTypeStyle(event.type)} backdrop-blur-sm`}>
+              <div class="mb-2">
+                <span class="text-xs font-medium text-[#9FFE88] uppercase tracking-wide">
+                  {event.type.replace('-', ' ')}
+                </span>
+              </div>
+              <h3 class="text-lg font-bold mb-2">{event.title}</h3>
+              <p class="text-[#F4F4F4]/70 text-sm mb-2">{event.description}</p>
+              {event.details && (
+                <p class="text-xs text-[#F4F4F4]/60 italic">{event.details}</p>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .timeline-event {
+    transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  .timeline-event.visible-right {
+    opacity: 1 !important;
+    transform: translateX(-32px) !important;
+  }
+
+  .timeline-event.visible-left {
+    opacity: 1 !important;
+    transform: translateX(32px) !important;
+  }
+
+
+</style>
+
+<script>
+  // Intersection Observer for timeline animations
+  const observerOptions = {
+    threshold: 0.3,
+    rootMargin: '50px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const element = entry.target as HTMLElement;
+        const index = parseInt(element.dataset.index || '0');
+        
+        // Add visible class with appropriate animation
+        if (index % 2 === 0) {
+          element.classList.add('visible-left');
+        } else {
+          element.classList.add('visible-right');
+        }
+        
+        // Set the correct initial transform based on index for desktop
+        if (window.innerWidth >= 768) {
+          if (index % 2 === 1) {
+            element.style.transform = 'translateX(8px)';
+            setTimeout(() => {
+              element.style.transform = 'translateX(0)';
+            }, 50);
+          }
+        }
+      }
+    });
+  }, observerOptions);
+
+  // Observe all timeline events
+  document.addEventListener('DOMContentLoaded', () => {
+    const timelineEvents = document.querySelectorAll('[data-timeline-event]');
+    timelineEvents.forEach(el => observer.observe(el));
+  });
+
+  // Clean up observer on page navigation (for Astro's View Transitions)
+  document.addEventListener('astro:before-swap', () => {
+    const timelineEvents = document.querySelectorAll('[data-timeline-event]');
+    timelineEvents.forEach(el => observer.unobserve(el));
+  });
+</script>
