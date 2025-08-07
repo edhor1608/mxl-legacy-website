@@ -4,7 +4,7 @@ const { id, title } = Astro.props;
 
 <section id={id} class="section">
   <div class="container-px w-full">
-    <h2 class="text-3xl font-bold mb-6">{title}</h2>
+    {title && <h2 class="text-3xl font-bold mb-6">{title}</h2>}
     <slot />
   </div>
 </section>
