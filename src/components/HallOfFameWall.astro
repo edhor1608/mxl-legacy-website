@@ -14,7 +14,7 @@ const { members } = Astro.props;
 ---
 
 <div
-  class="flex justify-center items-center relative p-8 md:p-12 rounded-2xl"
+  class="flex justify-center items-center relative p-4 sm:p-8 md:p-12 rounded-2xl"
 >
   <!-- Wall Background with Texture -->
   <div class="wall-background">
@@ -77,7 +77,8 @@ const { members } = Astro.props;
     pointer-events: none;
   }
 
-  .wall-frame { position: relative; z-index: 1; }
+  .wall-background { width: 100%; }
+  .wall-frame { position: relative; z-index: 1; width: 100%; }
   .wall-title { text-align: center; margin-bottom: 2rem; }
 
   .hall-of-fame-title {
@@ -97,23 +98,28 @@ const { members } = Astro.props;
 
   .portraits-gallery {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    width: 100%;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(96px, 28vw, 160px), 1fr));
     gap: 0.75rem;
-    max-width: 1200px;
+    max-width: none;
     margin: 0 auto;
     justify-content: center;
+    align-items: stretch;
+    align-content: start;
+    grid-auto-flow: row;
   }
 
   @media (min-width: 640px) {
     .portraits-gallery {
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(clamp(110px, 22vw, 180px), 1fr));
       gap: 1rem;
     }
   }
 
   @media (min-width: 1024px) {
     .portraits-gallery {
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      max-width: 1200px;
     }
   }
 
@@ -132,6 +138,7 @@ const { members } = Astro.props;
     border: 1px solid rgba(255, 255, 255, 0.06);
   }
 
+  .portrait-frame { min-width: 0; }
   .portrait-link { display: block; text-decoration: none; color: inherit; cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
 
   .portrait-container { position: relative; aspect-ratio: 1; overflow: hidden; }
