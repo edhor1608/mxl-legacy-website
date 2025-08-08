@@ -1,0 +1,13 @@
+---
+description: Content language, slugs, dates, quotes data shape
+globs: src/pages/*.astro
+alwaysApply: false
+---
+### Content and i18n
+
+- Primary language: German (`de-DE`). Keep page copy and alt texts in German.
+- Slugs: lowercase, hyphenated; prefer German slugs (e.g., `/zitate`, `/geschichte`) unless brand terms.
+- Dates: Prefer ISO in data, human‑readable German on UI (e.g., "Nov 2019" or "November 2019").
+- Quotes: Use `src/data/phrases.ts` shape; include `id`, `text`, `author`, optional `context`, `media`.
+- Dynamic route `zitate/[id].astro`: validate ids exist in `phrases.ts`.
+- Tone: archival, respectful; avoid slang and inside jokes without context.

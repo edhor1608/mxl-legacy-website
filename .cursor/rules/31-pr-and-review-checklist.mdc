@@ -1,0 +1,15 @@
+---
+description: Review checklist for SEO, accessibility, performance, and build
+alwaysApply: false
+---
+### PR & review checklist
+
+- Build passes: `bun run build`.
+- Local preview ok: `bun run preview`.
+- Visual check on mobile/desktop (header, nav, footer, contrast).
+- SEO: title/description present; canonical correct; OG/Twitter image exists.
+- Accessibility: images have alt, headings hierarchical, links descriptive.
+- Performance: no unnecessary client JS; images optimized and lazy‑loaded.
+- Internal links work; breadcrumbs (if present) valid schema markup.
+- Content: German copy, spelling, consistent tone.
+- Netlify deploy preview green.

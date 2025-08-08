@@ -1,0 +1,13 @@
+---
+globs: *.astro,*.css
+alwaysApply: false
+---
+### Tailwind and CSS
+
+- Prefer Tailwind utilities for layout/spacing/typography.
+- Keep `src/styles/global.css` for design tokens, fonts, and sitewide utilities (e.g., `.container-px`, `.nums`).
+- Don’t add new global classes unless reused in 3+ places.
+- Color palette: background `#201D1F`, text `#F4F4F4`, accent green `#9FFE88` and variants.
+- Typography: `--font-body: Inter`, `--font-display: Oswald`; use `.display` for headings where needed.
+- Use responsive utilities (`md:`, `lg:`) instead of custom media queries when possible.
+- Avoid arbitrary values unless necessary; prefer semantic tokens/utilities.
