@@ -3,8 +3,8 @@ const links = [
   { href: "/#hero", label: "Start" },
   { href: "/#hall-of-fame", label: "Hall of Fame" },
   { href: "/#timeline", label: "Zeitleiste" },
-  { href: "/#signature-phrases", label: "Zitate" },
   { href: "/#gallery", label: "Galerie" },
+  { href: "/about", label: "Über" },
 ];
 ---
 
@@ -12,7 +12,7 @@ const links = [
   <div
     class="px-4 border-b border-[#F4F4F4]/10 bg-[#201D1F]/70 backdrop-blur supports-[backdrop-filter]:bg-[#201D1F]/70"
   >
-    <nav class="container-px flex h-16 items-center justify-between">
+    <nav class="container-px flex h-16 items-center justify-between gap-3">
       <a href="/" class="flex items-center gap-2 font-semibold">
         <img src="/MxlLegacyLogo.webp" alt="MXL" class="h-6 w-6 rounded-md" />
         <span>MXL Legacy</span>
@@ -39,6 +39,9 @@ const links = [
           ))
         }
       </ul>
+      <a href="/contact" class="hidden md:inline-flex items-center justify-center rounded bg-[#9FFE88] text-[#201D1F] px-4 py-2 text-sm font-medium hover:opacity-90">
+        Mitmachen
+      </a>
     </nav>
     <div id="mobile-menu" class="container-px md:hidden hidden py-2" data-menu>
       <ul class="flex flex-col gap-2 text-sm">
@@ -55,6 +58,11 @@ const links = [
             </li>
           ))
         }
+        <li>
+          <a href="/contact" class="mt-2 block px-3 py-2 rounded bg-[#9FFE88] text-[#201D1F] font-medium text-center">
+            Mitmachen
+          </a>
+        </li>
       </ul>
     </div>
   </div>

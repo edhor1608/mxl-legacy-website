@@ -1,15 +1,13 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
-import netlify from "@astrojs/netlify";
-
 import sitemap from "@astrojs/sitemap";
-
 import tailwindcss from "@tailwindcss/vite";
 
-// https://astro.build/config
-export default defineConfig({
-  adapter: netlify(),
+const useStatic = Boolean(process.env.BUN_BUILD);
+
+/** @type {import('astro').AstroUserConfig} */
+const baseConfig = {
   site: "https://mxl-legacy.de",
   integrations: [
     sitemap({
@@ -18,10 +16,17 @@ export default defineConfig({
       priority: 0.7,
     }),
   ],
-
   vite: {
     plugins: [tailwindcss()],
   },
-
   prefetch: true,
-});
+};
+
+export default defineConfig(
+  useStatic
+    ? { ...baseConfig, output: "static" }
+    : (async () => {
+        const { default: netlify } = await import("@astrojs/netlify");
+        return defineConfig({ ...baseConfig, adapter: netlify(), output: "server" });
+      })()
+);
