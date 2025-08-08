@@ -11,17 +11,21 @@ const heroFaces = hallOfFame.slice(0, 6);
     class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(159,254,136,0.15)_0%,transparent_60%)]"
   >
   </div>
-  <div class="absolute inset-0 opacity-[0.035] bg-[url('/MxlLegacyLogo.webp')] bg-center bg-no-repeat bg-contain -z-10"></div>
+  <div class="pointer-events-none absolute inset-0 opacity-20 [background:repeating-linear-gradient(110deg,rgba(244,244,244,0.11)_0,rgba(244,244,244,0.11)_2px,transparent_2px,transparent_14px),linear-gradient(110deg,transparent_0,transparent_40%,rgba(159,254,136,0.18)_48%,transparent_56%)] [background-size:14px_14px,200%_100%] animate-[speed_22s_linear_infinite]"></div>
   <!-- subtle grid lines for depth -->
   <div class="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:40px_40px]"></div>
 
   <div class="container-px grid gap-10 md:grid-cols-12 items-center">
     <div class="md:col-span-7 order-2 md:order-1 text-center md:text-left">
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight uppercase">
+      <div class="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-white/60">
+        <span class="h-1 w-4 bg-[#9FFE88] inline-block rounded"></span>
+        D‑A‑CH Sim‑Racing Legacy
+      </div>
+      <h1 class="display mt-3 text-5xl sm:text-7xl md:text-8xl font-extrabold leading-[0.95] tracking-[0.02em] uppercase">
         MXL Legacy
       </h1>
-      <p class="mt-3 text-lg text-white/85 max-w-xl">
-        Die Geschichte einer D‑A‑CH Sim‑Racing‑Liga: von einem Monza‑Kickoff zu vollen Grids, großen Namen und einem würdigen Abschied.
+      <p class="mt-4 text-lg md:text-xl text-white/85 max-w-2xl">
+        Präzision, Rivalität, Gemeinschaft – von einem Monza‑Kickoff zu vollen Grids und einer Ära, die Spuren hinterlassen hat.
       </p>
 
       <div class="mt-7 flex flex-wrap gap-3 justify-center md:justify-start">
@@ -71,4 +75,49 @@ const heroFaces = hallOfFame.slice(0, 6);
       </div>
     </div>
   </div>
+  <!-- Stats ribbon -->
+  <div class="absolute left-0 right-0 bottom-6">
+    <div class="container-px">
+      <div class="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur py-3">
+        <div class="pointer-events-none absolute inset-y-0 left-[-30%] w-[28%] bg-[linear-gradient(90deg,transparent,rgba(159,254,136,0.18),transparent)] animate-[shine_6s_linear_infinite]"></div>
+        <ul class="nums grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-center md:text-left text-sm">
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Kickoff</div>
+            <div class="font-semibold">Monza‑Start</div>
+          </li>
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Peak</div>
+            <div class="font-semibold">100+ Fahrer</div>
+          </li>
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Ära</div>
+            <div class="font-semibold">ProSeries</div>
+          </li>
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Kern</div>
+            <div class="font-semibold">Community‑getrieben</div>
+          </li>
+          <li class="hidden md:block px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Entdecke</div>
+            <div class="font-semibold">Hall of Fame · Zeitleiste</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
+
+<style>
+  @keyframes speed {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 200% 0, 0 0; }
+  }
+  @keyframes shine {
+    0% { left: -30%; }
+    100% { left: 130%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #hero .animate-\[speed_22s_linear_infinite\],
+    #hero .animate-\[shine_6s_linear_infinite\] { animation: none !important; }
+  }
+</style>
