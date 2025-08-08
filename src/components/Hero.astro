@@ -156,7 +156,8 @@ const gridPairs: HallOfFameMember[][] = Array.from(
       animation-duration: var(--cycle);
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-      animation-delay: calc(var(--i) * var(--stagger, var(--step)));
+      /* Use negative delay so offsets persist across loops */
+      animation-delay: calc(var(--i) * var(--stagger, var(--step)) * -1);
       will-change: transform, opacity;
     }
     @keyframes gridCycle {
