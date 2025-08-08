@@ -1,0 +1,35 @@
+---
+description: overview of the project
+alwaysApply: false
+---
+### Project overview
+
+- **Mission**: Preserve and present the legacy of the MXL sim‑racing league with a fast, accessible, low‑maintenance site.
+- **Priorities**: Performance, accessibility, stable content structure, and strong SEO. Minimal client JS.
+- **Audience**: Former MXL members, sim‑racing fans, and newcomers discovering MXL.
+- **Tone/brand**: Respectful, archival, energetic but not hype. Dark theme with neon‑green accent.
+
+### Non‑goals
+
+- Heavy client‑side interactivity, logged‑in features, or complex CMS.
+- Frequent design overhauls that conflict with archival stability.
+
+### Performance targets
+
+- **Lighthouse**: 95+ Performance, 100 SEO, 100 Best Practices on key pages.
+- **Core Web Vitals**: LCP < 2.5s, CLS < 0.1, INP < 200ms.
+
+### Key decisions captured here
+
+- Use `BaseLayout.astro` on all pages to centralize SEO and head tags.
+- Centralized metadata via `src/data/site.ts` and a reusable `SEO.astro`.
+- Prefer Tailwind utilities. Keep `global.css` only for tokens/utilities.
+- Deploy as static by default; Netlify adapter used when not `BUN_BUILD`.
+
+### Where to put things
+
+- **Pages**: `src/pages/**.astro`
+- **Layout**: `src/layouts/BaseLayout.astro`
+- **Components**: `src/components/*.astro`
+- **Site data**: `src/data/**`
+- **Public assets**: `public/**` (don’t import from `src`)

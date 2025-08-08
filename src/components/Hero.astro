@@ -1,6 +1,20 @@
 ---
 import { hallOfFame } from "../data/index";
-const heroFaces = hallOfFame.slice(0, 6);
+
+type HallOfFameMember = {
+  nickname: string;
+  link: string;
+  role: string;
+  bio: string;
+  tag: string;
+  img: string;
+};
+
+const heroFaces: HallOfFameMember[] = (hallOfFame as HallOfFameMember[]).slice(0, 6);
+const gridPairs: HallOfFameMember[][] = Array.from(
+  { length: Math.ceil(heroFaces.length / 2) },
+  (_, idx) => heroFaces.slice(idx * 2, idx * 2 + 2)
+);
 ---
 
 <section
@@ -11,24 +25,22 @@ const heroFaces = hallOfFame.slice(0, 6);
     class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(159,254,136,0.15)_0%,transparent_60%)]"
   >
   </div>
-  <div class="absolute inset-0 opacity-[0.035] bg-[url('/MxlLegacyLogo.webp')] bg-center bg-no-repeat bg-contain"></div>
+  <div class="pointer-events-none absolute inset-0 opacity-20 [background:repeating-linear-gradient(110deg,rgba(244,244,244,0.11)_0,rgba(244,244,244,0.11)_2px,transparent_2px,transparent_14px),linear-gradient(110deg,transparent_0,transparent_40%,rgba(159,254,136,0.18)_48%,transparent_56%)] [background-size:14px_14px,200%_100%] animate-[speed_22s_linear_infinite]"></div>
   <!-- subtle grid lines for depth -->
   <div class="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:40px_40px]"></div>
 
   <div class="container-px grid gap-10 md:grid-cols-12 items-center">
     <div class="md:col-span-7 order-2 md:order-1 text-center md:text-left">
-      <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight uppercase">
+      <div class="inline-flex items-center gap-2 text-xs tracking-widest uppercase text-white/60">
+        <span class="h-1 w-4 bg-[#9FFE88] inline-block rounded"></span>
+        D‑A‑CH Sim‑Racing Liga
+      </div>
+      <h1 class="display mt-3 text-5xl sm:text-7xl md:text-8xl font-extrabold leading-[0.95] tracking-[0.02em] uppercase">
         MXL Legacy
       </h1>
-      <p class="mt-3 text-lg text-white/85 max-w-xl">
-        Die Geschichte einer D‑A‑CH Sim‑Racing‑Liga: von einem Monza‑Kickoff zu vollen Grids, großen Namen und einem würdigen Abschied.
+      <p class="mt-4 text-md md:text-lg text-white/85 max-w-2xl">
+        Präzision, Rivalität, Gemeinschaft – von einem Monza‑Kickoff zu vollen Grids und einer Ära, die Spuren hinterlassen hat.
       </p>
-
-      <ul class="mt-5 grid gap-2 text-sm text-white/75 max-w-xl mx-auto md:mx-0">
-        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#9FFE88]"></span><span>Hall of Fame: Menschen, die MXL gebaut haben</span></li>
-        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#9FFE88]"></span><span>Zeitleiste: Höhepunkte, Splits, Wendepunkte</span></li>
-        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#9FFE88]"></span><span>Galerie: Logos, Streams, Erinnerungen</span></li>
-      </ul>
 
       <div class="mt-7 flex flex-wrap gap-3 justify-center md:justify-start">
         <a
@@ -39,37 +51,10 @@ const heroFaces = hallOfFame.slice(0, 6);
           href="/about"
           class="inline-block rounded border border-[#F4F4F4]/20 px-5 py-3 font-medium hover:bg-[#F4F4F4]/10"
         >Über das Projekt</a>
-        <a
-          href="/contact"
-          class="inline-block rounded border border-[#F4F4F4]/20 px-5 py-3 font-medium hover:bg-[#F4F4F4]/10"
-        >Mitmachen</a>
-      </div>
-
-      <!-- Quick tags row -->
-      <div class="mt-5 flex flex-wrap gap-2 justify-center md:justify-start">
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">ProSeries</span>
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">United</span>
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">iRacing Endurance</span>
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">Automobilista 2</span>
-      </div>
-
-      <!-- Integrated stats row -->
-      <div class="mt-8 grid grid-cols-3 gap-3 text-center text-sm">
-        <div class="rounded-lg bg-black/40 p-3 nums border border-white/10">
-          <div class="text-2xl font-bold">2017</div>
-          <div class="text-white/60">Gegründet</div>
-        </div>
-        <div class="rounded-lg bg-black/40 p-3 nums border border-white/10">
-          <div class="text-2xl font-bold">100+</div>
-          <div class="text-white/60">Peak Grid</div>
-        </div>
-        <div class="rounded-lg bg-black/40 p-3 nums border border-white/10">
-          <div class="text-2xl font-bold">5+</div>
-          <div class="text-white/60">Saisons</div>
-        </div>
       </div>
 
       <!-- faces marquee to humanize hero -->
+      {/*
       <div class="mt-6 overflow-hidden">
         <div class="flex items-center gap-3 animate-[marquee_24s_linear_infinite] will-change-transform" style="--marquee-dup:2">
           {heroFaces.concat(heroFaces).map((p, i) => (
@@ -79,30 +64,114 @@ const heroFaces = hallOfFame.slice(0, 6);
             </a>
           ))}
         </div>
-      </div>
+      </div>*/}
     </div>
 
-    <!-- Hero visual column -->
+    <!-- Hero visual column: Starting Grid animation -->
     <div class="md:col-span-5 order-1 md:order-2 w-full">
       <div class="relative mx-auto w-full max-w-md">
         <div class="absolute -inset-2 rounded-3xl bg-gradient-to-br from-[#9FFE88]/20 to-transparent blur-2xl"></div>
-        <div class="relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-          <img src="/MxlLegacyLogo.webp" alt="MXL" class="h-16 w-16 rounded-xl" decoding="async" />
-          <p class="mt-4 text-white/70">
-            Monza‑Start · 100+ Fahrer Peak · ProSeries‑Ära
-          </p>
-          <div class="mt-4 text-sm text-white/60">
-            Eine kuratierte, community‑getriebene Hommage – offen für Beiträge.
+        <div class="relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur overflow-hidden">
+          <!-- Track background and lane markers -->
+          <div class="pointer-events-none absolute inset-0 opacity-[0.10] [background-image:linear-gradient(rgba(255,255,255,0.10)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.10)_1px,transparent_1px)] [background-size:32px_32px]"></div>
+          
+
+          <!-- One-row starting grid stage -->
+          <div class="relative mx-auto w-full max-w-sm h-40 sm:h-44 md:h-48" style={`--pairs:${gridPairs.length}; --step:10s; --stagger: calc(var(--step) - 4s)`}>
+            <!-- Center highlight slot -->
+            {/*<div class="pointer-events-none absolute inset-0 rounded-xl border border-white/10"></div>*/}
+            <!-- Static U-shaped grid slots -->
+            <div class="absolute inset-0 px-4 grid grid-cols-2 gap-4 items-end pointer-events-none z-0 content-center">
+              <div class="h-16 sm:h-20 md:h-24 border-l-2 border-r-2 border-t-2 border-white/50 rounded-t-2xl"></div>
+              <div class="h-16 sm:h-20 md:h-24 border-l-2 border-r-2 border-t-2 border-white/50 rounded-t-2xl"></div>
+            </div>
+            <div class="relative h-full overflow-hidden grid-stage">
+              {gridPairs.map((pair, i) => (
+                <div class="pair absolute inset-0 grid grid-cols-2 gap-8 items-end px-6 z-10 -mt-9" style={`--i:${i}`}>
+                  {pair.map((p, j) => (
+                    <a href={`/hall-of-fame/${p.link}`} class={`group inline-flex items-center gap-3 w-full rounded-xl border border-white/10 bg-white/10 backdrop-blur-sm px-0 py-0 transition-colors hover:border-[#9FFE88]/40 ${j === 0 ? 'justify-self-start' : 'justify-self-end'} self-center`}>
+                      <img src={p.img} alt={p.nickname} class="h-10 w-10 rounded-l-xl object-cover ring-0 ring-white/10 group-hover:ring-[#9FFE88]/40" loading="lazy" decoding="async" />
+                      <div class="min-w-0 text-sm font-medium text-white/90 truncate">{p.nickname}</div>
+                    </a>
+                  ))}
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div class="mt-6 grid grid-cols-2 gap-3 text-xs">
-            <a href="#hall-of-fame" class="rounded-lg border border-white/10 px-4 py-3 hover:border-[#9FFE88]/40">Hall of Fame</a>
-            <a href="#timeline" class="rounded-lg border border-white/10 px-4 py-3 hover:border-[#9FFE88]/40">Zeitleiste</a>
-            <a href="#gallery" class="rounded-lg border border-white/10 px-4 py-3 hover:border-[#9FFE88]/40">Galerie</a>
-            <a href="/contact" class="rounded-lg border border-white/10 px-4 py-3 hover:border-[#9FFE88]/40">Mitmachen</a>
+           <!-- Legend -->
+           <div class="mt-4 text-xs text-white/60">
+            Die Startaufstellung der MXL
           </div>
         </div>
       </div>
     </div>
   </div>
+  <!-- Stats ribbon -->
+  <div class="absolute left-0 right-0 bottom-6">
+    <div class="container-px">
+      <div class="relative rounded-xl border border-white/10 bg-white/5 backdrop-blur py-3">
+        <div class="pointer-events-none absolute inset-y-0 left-[-30%] w-[28%] bg-[linear-gradient(90deg,transparent,rgba(159,254,136,0.18),transparent)] animate-[shine_6s_linear_infinite]"></div>
+        <ul class="nums grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-3 text-center md:text-left text-sm">
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Kickoff</div>
+            <div class="font-semibold">Monza‑Start</div>
+          </li>
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Peak</div>
+            <div class="font-semibold">100+ Fahrer</div>
+          </li>
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Ära</div>
+            <div class="font-semibold">ProSeries</div>
+          </li>
+          <li class="px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Kern</div>
+            <div class="font-semibold">Community‑getrieben</div>
+          </li>
+          <li class="hidden md:block px-4">
+            <div class="text-white/60 uppercase text-[10px] tracking-widest">Entdecke</div>
+            <div class="font-semibold">Hall of Fame · Zeitleiste</div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </section>
+
+<style>
+  @keyframes speed {
+    0% { background-position: 0 0, 0 0; }
+    100% { background-position: 200% 0, 0 0; }
+  }
+  @keyframes shine {
+    0% { left: -30%; }
+    100% { left: 130%; }
+  }
+
+    /* Starting grid animation: each pair slides in from bottom, holds, then exits up */
+    #hero .grid-stage { --cycle: calc(var(--pairs) * var(--stagger, var(--step))); }
+    #hero .pair {
+      animation-name: gridCycle;
+      animation-duration: var(--cycle);
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      animation-delay: calc(var(--i) * var(--stagger, var(--step)));
+      will-change: transform, opacity;
+    }
+    @keyframes gridCycle {
+      0% { transform: translateY(100%); opacity: 0; }
+      5% { transform: translateY(0%); opacity: 1; }
+      35% { transform: translateY(0%); opacity: 1; }
+      42% { transform: translateY(-100%); opacity: 0; }
+      100% { transform: translateY(-100%); opacity: 0; }
+    }
+  @media (prefers-reduced-motion: reduce) {
+    #hero .animate-\[speed_22s_linear_infinite\],
+      #hero .animate-\[shine_6s_linear_infinite\],
+      #hero .pair { animation: none !important; }
+      #hero .grid-stage { position: relative; }
+      #hero .pair { opacity: 0; }
+      #hero .pair:first-of-type { opacity: 1; transform: none; position: absolute; inset: 0; }
+  }
+</style>

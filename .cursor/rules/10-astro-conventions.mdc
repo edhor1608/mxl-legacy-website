@@ -1,0 +1,19 @@
+---
+globs: *.astro
+alwaysApply: false
+---
+### Astro conventions
+
+- **Layouts**: All pages must use `src/layouts/BaseLayout.astro` and pass metadata props.
+- **Components**: PascalCase filenames in `src/components/`. Keep components small and server‑rendered.
+- **Data**: Put static content structures in `src/data/**` and import from pages/components.
+- **Routes**: Use file‑based routing. Dynamic routes: keep params lowercase and hyphenated.
+- **Content language**: Default German. Keep `html lang="de"` in the layout.
+- **Links**: Use absolute root‑relative hrefs (`/path`) and meaningful link text.
+- **Images**: Use public paths (`/images/...`) with `alt` text and use the Astro solutions for Images (Images/Pictures)
+- **Prefetch**: `prefetch: true` is enabled globally; avoid manual prefetch unless needed.
+
+### Page metadata usage
+
+- Page frontmatter should provide: `title`, `description`, optional `canonical`, `image`, `type`, `datePublished`, `dateModified`, `author`.
+- For articles (stories), set `type: "article"` and provide publish dates.

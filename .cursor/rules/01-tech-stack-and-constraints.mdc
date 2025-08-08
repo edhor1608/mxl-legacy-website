@@ -1,0 +1,30 @@
+---
+globs: *.astro
+alwaysApply: false
+---
+### Tech stack
+
+- **Framework**: Astro 5 (islands architecture; zero‑JS by default)
+- **Styling**: Tailwind CSS v4 via `@tailwindcss/vite`; tokens/utilities in `src/styles/global.css`
+- **Package Manager**: Bun, bun.lock, bun add, bun install
+- **Runtime/tooling**: Bun for scripts; TypeScript strict config via `astro/tsconfigs/strict`
+- **Images**: Native `<img loading="lazy">`. Avoid `@astrojs/image` until build issues are resolved.
+- **Fonts**: Inter (body), Oswald (display) via Google Fonts; preconnect tags in `BaseLayout.astro`.
+- **SEO**: `src/components/SEO.astro` + `src/data/site.ts`. Sitemap via `@astrojs/sitemap`.
+- **Deployment**: Static when `BUN_BUILD` set; otherwise Netlify adapter output server.
+
+### Constraints and guardrails
+
+- Favor static rendering. Add islands only with clear user benefit.
+- Keep bundle size minimal; no client JS by default.
+- Keep imports relative (no path aliases configured).
+- Don’t introduce global CSS frameworks beyond Tailwind.
+- Keep language defaults German (`de-DE`).
+
+### Environment
+
+- Node/Bun locally; Netlify in CI/CD. Build commands: `bun run build`, preview with `bun run preview`.
+
+### MCP
+
+- use the Astro Doc MCP for the newest Docs for Astro v5

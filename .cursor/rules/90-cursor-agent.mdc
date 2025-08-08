@@ -1,0 +1,14 @@
+---
+description: Cursor agent behavior and change policies
+alwaysApply: false
+---
+### Cursor agent rules
+
+- Read rules in `.cursor/rules` before proposing changes. Align with `SEO.astro` and `BaseLayout.astro`.
+- Prefer edits that keep the site static and zero‑JS by default.
+- When adding pages, use `BaseLayout.astro` and set page meta props.
+- Centralize constants in `src/data/**`; do not hardcode site config across pages.
+- Avoid `@astrojs/image` unless build issues are resolved; keep `<img loading="lazy">`.
+- Ask for confirmation before changing content tone, brand colors, or URL slugs.
+- When uncertain about German copy, ask the user for phrasing or provide two options.
+- After edits: run build locally and suggest a Lighthouse check.

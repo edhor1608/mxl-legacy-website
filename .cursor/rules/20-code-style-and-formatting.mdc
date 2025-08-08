@@ -1,0 +1,13 @@
+---
+description: Code style, formatting, filenames, and client JS policy
+globs: *.ts,*.tsx,*.astro,*.css
+alwaysApply: false
+---
+### Code style and formatting
+
+- Use TypeScript types/interfaces for props and data shapes.
+- Prefer descriptive names (no 1–2 char vars). Keep functions small with guard clauses.
+- Avoid inline comments for obvious code; document "why" above complex code.
+- Run Prettier with `prettier-plugin-astro` and `prettier-plugin-tailwindcss` before commits.
+- Filenames: `PascalCase.astro` for components, `kebab-case.astro` for pages, `camelCase.ts` for helpers/data when needed.
+- No client JS by default. If adding an island, colocate in `src/components` and clearly justify.

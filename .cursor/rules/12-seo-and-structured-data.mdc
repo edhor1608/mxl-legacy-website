@@ -1,0 +1,17 @@
+---
+globs: *.astro
+alwaysApply: false
+description: SEO meta, Open Graph, Twitter cards, and JSON-LD conventions
+---
+### SEO and structured data
+
+- Use `SEO.astro` exclusively for `<head>` tags.
+- Always provide `title` and `description` in pages; fall back to `SITE` defaults otherwise.
+- `canonical`: provide when content has a fixed, shareable URL; otherwise it is auto‑derived from `SITE.url + Astro.url.pathname`.
+- Open Graph/Twitter: image must exist under `public/` (e.g., `/assets/og-cover.jpg`).
+- `type: "article"` for story‑like content; include `datePublished`, `dateModified`, `author`.
+- Organization JSON‑LD is set globally; article JSON‑LD only when `type === "article"`.
+- Breadcrumbs: use `src/components/Breadcrumbs.astro` with schema.org markup where relevant.
+- Sitemap: handled by `@astrojs/sitemap` with monthly changefreq; drafts excluded.
+- Robots: default allow. Customize via `public/robots.txt` if needed.
+- Language: keep meta for `de-DE`; ensure all `alt` texts are meaningful and in German.

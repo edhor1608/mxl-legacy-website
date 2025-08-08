@@ -1,0 +1,13 @@
+---
+description: Branching strategy and commit message guidelines
+alwaysApply: false
+---
+### Git branching and commits
+
+- Branch from `main`. Avoid direct pushes to `main`.
+- Branch names: `feature/<short-desc>`, `fix/<short-desc>`, `chore/<short-desc>`.
+- Conventional Commits for messages:
+  - `feat: add HallOfFameWall animation`
+  - `fix: correct canonical URL on gallery`
+  - `chore: update dependencies`
+- Keep commits focused and small. One logical change per commit.
