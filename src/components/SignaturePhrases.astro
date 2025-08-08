@@ -90,9 +90,11 @@ import { phrases } from "../data/phrases";
     .phrase {
       transition: opacity 200ms ease !important;
       transform: none !important;
+      opacity: 1 !important;
     }
     .phrase.is-visible {
       transform: none !important;
+      opacity: 1 !important;
     }
   }
 </style>
@@ -110,10 +112,25 @@ import { phrases } from "../data/phrases";
     { threshold: 0.1, rootMargin: '100px' }
   );
 
-  document.addEventListener('DOMContentLoaded', () => {
+  function initPhrases() {
     const elements = document.querySelectorAll('[data-phrase]');
+
+    if (!('IntersectionObserver' in window)) {
+      elements.forEach((el) => (el as HTMLElement).classList.add('is-visible'));
+      return;
+    }
+
     elements.forEach((el) => observer.observe(el));
-  });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initPhrases, { once: true });
+  } else {
+    initPhrases();
+  }
+
+  // Re-init on Astro client navigation
+  document.addEventListener('astro:page-load', initPhrases);
 
   // Clean up on navigation (Astro view transitions)
   document.addEventListener('astro:before-swap', () => {
