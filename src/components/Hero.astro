@@ -11,7 +11,7 @@ const heroFaces = hallOfFame.slice(0, 6);
     class="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_50%_0%,rgba(159,254,136,0.15)_0%,transparent_60%)]"
   >
   </div>
-  <div class="absolute inset-0 opacity-[0.035] bg-[url('/MxlLegacyLogo.webp')] bg-center bg-no-repeat bg-contain"></div>
+  <div class="absolute inset-0 opacity-[0.035] bg-[url('/MxlLegacyLogo.webp')] bg-center bg-no-repeat bg-contain -z-10"></div>
   <!-- subtle grid lines for depth -->
   <div class="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:40px_40px]"></div>
 
@@ -24,12 +24,6 @@ const heroFaces = hallOfFame.slice(0, 6);
         Die Geschichte einer D‑A‑CH Sim‑Racing‑Liga: von einem Monza‑Kickoff zu vollen Grids, großen Namen und einem würdigen Abschied.
       </p>
 
-      <ul class="mt-5 grid gap-2 text-sm text-white/75 max-w-xl mx-auto md:mx-0">
-        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#9FFE88]"></span><span>Hall of Fame: Menschen, die MXL gebaut haben</span></li>
-        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#9FFE88]"></span><span>Zeitleiste: Höhepunkte, Splits, Wendepunkte</span></li>
-        <li class="flex items-start gap-2"><span class="mt-1 h-2 w-2 rounded-full bg-[#9FFE88]"></span><span>Galerie: Logos, Streams, Erinnerungen</span></li>
-      </ul>
-
       <div class="mt-7 flex flex-wrap gap-3 justify-center md:justify-start">
         <a
           href="#hall-of-fame"
@@ -39,34 +33,6 @@ const heroFaces = hallOfFame.slice(0, 6);
           href="/about"
           class="inline-block rounded border border-[#F4F4F4]/20 px-5 py-3 font-medium hover:bg-[#F4F4F4]/10"
         >Über das Projekt</a>
-        <a
-          href="/contact"
-          class="inline-block rounded border border-[#F4F4F4]/20 px-5 py-3 font-medium hover:bg-[#F4F4F4]/10"
-        >Mitmachen</a>
-      </div>
-
-      <!-- Quick tags row -->
-      <div class="mt-5 flex flex-wrap gap-2 justify-center md:justify-start">
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">ProSeries</span>
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">United</span>
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">iRacing Endurance</span>
-        <span class="rounded-full bg-white/10 px-3 py-1 text-xs">Automobilista 2</span>
-      </div>
-
-      <!-- Integrated stats row -->
-      <div class="mt-8 grid grid-cols-3 gap-3 text-center text-sm">
-        <div class="rounded-lg bg-black/40 p-3 nums border border-white/10">
-          <div class="text-2xl font-bold">2017</div>
-          <div class="text-white/60">Gegründet</div>
-        </div>
-        <div class="rounded-lg bg-black/40 p-3 nums border border-white/10">
-          <div class="text-2xl font-bold">100+</div>
-          <div class="text-white/60">Peak Grid</div>
-        </div>
-        <div class="rounded-lg bg-black/40 p-3 nums border border-white/10">
-          <div class="text-2xl font-bold">5+</div>
-          <div class="text-white/60">Saisons</div>
-        </div>
       </div>
 
       <!-- faces marquee to humanize hero -->
