@@ -147,6 +147,22 @@ const { members } = Astro.props;
     width: 100%; height: 100%; object-fit: cover; transition: transform 0.2s ease-out;
   }
 
+  .overlay-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      rgba(75, 105, 68, 0.9) 0%,
+      rgba(75, 105, 68, 0.85) 50%,
+      rgba(75, 105, 68, 0.9) 100%
+    );
+    backdrop-filter: blur(2px);
+  }
+
+
   .portrait-overlay {
     position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
     opacity: 0; transition: opacity 0.2s ease-out;
