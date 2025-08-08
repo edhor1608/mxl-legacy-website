@@ -77,7 +77,7 @@ const gridPairs: HallOfFameMember[][] = Array.from(
           
 
           <!-- One-row starting grid stage -->
-          <div class="relative mx-auto w-full max-w-sm h-40 sm:h-44 md:h-48" style={`--pairs:${gridPairs.length}; --step:10s`}>
+          <div class="relative mx-auto w-full max-w-sm h-40 sm:h-44 md:h-48" style={`--pairs:${gridPairs.length}; --step:10s; --stagger: calc(var(--step) - 2s)`}>
             <!-- Center highlight slot -->
             {/*<div class="pointer-events-none absolute inset-0 rounded-xl border border-white/10"></div>*/}
             <!-- Static U-shaped grid slots -->
@@ -150,20 +150,20 @@ const gridPairs: HallOfFameMember[][] = Array.from(
   }
 
     /* Starting grid animation: each pair slides in from bottom, holds, then exits up */
-    #hero .grid-stage { --cycle: calc(var(--pairs) * var(--step)); }
+    #hero .grid-stage { --cycle: calc(var(--pairs) * var(--stagger, var(--step))); }
     #hero .pair {
       animation-name: gridCycle;
       animation-duration: var(--cycle);
       animation-timing-function: linear;
       animation-iteration-count: infinite;
-      animation-delay: calc(var(--i) * var(--step));
+      animation-delay: calc(var(--i) * var(--stagger, var(--step)));
       will-change: transform, opacity;
     }
     @keyframes gridCycle {
       0% { transform: translateY(100%); opacity: 0; }
-      10% { transform: translateY(0%); opacity: 1; }
-      20% { transform: translateY(0%); opacity: 1; }
-      33.333% { transform: translateY(-100%); opacity: 0; }
+      5% { transform: translateY(0%); opacity: 1; }
+      35% { transform: translateY(0%); opacity: 1; }
+      42% { transform: translateY(-100%); opacity: 0; }
       100% { transform: translateY(-100%); opacity: 0; }
     }
   @media (prefers-reduced-motion: reduce) {
