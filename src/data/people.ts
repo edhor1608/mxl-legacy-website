@@ -119,9 +119,27 @@ export const people: Person[] = [
     nickname: "Sasuke4324",
     link: "sasuke4324",
     role: "F1 Deep Diver",
-    bio: "Backed the ProSeries from day one, provided prize support and strategic guidance.",
+    bio: "F1-Enthusiast, der das Spiel studierte und sein Wissen als Fahrer, Ingenieur und in der Leitung eingebracht hat.",
     tag: "Enthusiast",
     img: "/images/Sasuke.png",
+    // no hallOfFame profile → regular driver/member
+  },
+  {
+    nickname: "Yelkajor",
+    link: "yelkajor",
+    role: "Allrounder",
+    bio: "Hat sich überall eingebracht, war in der Leitung aktiv, hat später das Endurance Team geleitet, im Social Media Team gearbeitet und war auch selbst als Fahrer aktiv.",
+    tag: "Allrounder",
+    img: "/images/Yelkajor.webp",
+    // no hallOfFame profile → regular driver/member
+  },
+  {
+    nickname: "Thomahawk_85",
+    link: "thomahawk85",
+    role: "Ligaleiter",
+    bio: "Ligaleiter für die One ins Team gekommen und dann unermüdlich durchgezogen und alle Widrigkeiten überstanden.",
+    tag: "Ligaleiter One",
+    img: "/images/Thomahawk_85.png",
     // no hallOfFame profile → regular driver/member
   },
 ];

@@ -117,40 +117,23 @@ const gridPairs = Array.from(
                     class="pair absolute inset-0 grid grid-cols-2 gap-7 sm:gap-6 md:gap-8 items-end px-2 md:px-6 z-10 -mt-4 sm:-mt-6 md:-mt-9"
                     style={`--i:${i}`}
                   >
-                    {pair.map((p, j) =>
-                      p.hallOfFame ? (
-                        <a
-                          href={`/hall-of-fame/${p.link}`}
-                          class={`group inline-flex items-center gap-2 sm:gap-3 w-full rounded-xl border border-white/10 bg-white/10 backdrop-blur-sm px-0 py-0 transition-colors hover:border-[#9FFE88]/40 ${j === 0 ? "justify-self-start" : "justify-self-end"} self-center`}
-                        >
-                          <img
-                            src={p.img}
-                            alt={p.nickname}
-                            class="h-9 w-9 sm:h-10 sm:w-10 rounded-l-xl object-cover ring-0 ring-white/10 group-hover:ring-[#9FFE88]/40"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <div class="min-w-0 text-xs sm:text-sm font-medium text-white/90 truncate">
-                            {p.nickname}
-                          </div>
-                        </a>
-                      ) : (
-                        <div
-                          class={`group inline-flex items-center gap-2 sm:gap-3 w-full rounded-xl border border-white/10 bg-white/10 backdrop-blur-sm px-0 py-0 ${j === 0 ? "justify-self-start" : "justify-self-end"} self-center`}
-                        >
-                          <img
-                            src={p.img}
-                            alt={p.nickname}
-                            class="h-9 w-9 sm:h-10 sm:w-10 rounded-l-xl object-cover"
-                            loading="lazy"
-                            decoding="async"
-                          />
-                          <div class="min-w-0 text-xs sm:text-sm font-medium text-white/90 truncate">
-                            {p.nickname}
-                          </div>
+                    {pair.map((p, j) => (
+                      <a
+                        href={`/drivers/${p.link}`}
+                        class={`group inline-flex items-center gap-2 sm:gap-3 w-full rounded-xl border border-white/10 bg-white/10 backdrop-blur-sm px-0 py-0 transition-colors hover:border-[#9FFE88]/40 ${j === 0 ? "justify-self-start" : "justify-self-end"} self-center`}
+                      >
+                        <img
+                          src={p.img}
+                          alt={p.nickname}
+                          class="h-9 w-9 sm:h-10 sm:w-10 rounded-l-xl object-cover ring-0 ring-white/10 group-hover:ring-[#9FFE88]/40"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div class="min-w-0 text-xs sm:text-sm font-medium text-white/90 truncate">
+                          {p.nickname}
                         </div>
-                      ),
-                    )}
+                      </a>
+                    ))}
                   </div>
                 ))
               }
