@@ -1,4 +1,5 @@
 ---
+import { Picture } from "astro:assets";
 
 interface Props {
   person: {
@@ -37,12 +38,11 @@ const { person } = Astro.props;
               <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
                 <div class="portrait-section">
                   <div class="portrait-container">
-                    <img
+                    <Picture
                       src={person.img}
                       alt={person.nickname}
                       class="portrait-image"
-                      loading="lazy"
-                      decoding="async"
+                      formats={["avif", "webp"]}
                     />
                     <div class="portrait-glow"></div>
                   </div>
@@ -56,11 +56,11 @@ const { person } = Astro.props;
                     <h1 class="member-name">{person.nickname}</h1>
                     <div class="name-underline"></div>
                   </div>
-                  
+
                   <div class="tagline-section">
                     <h2 class="member-tagline">"{person.tagline}"</h2>
                   </div>
-                  
+
                   <div class="bio-section">
                     <p class="member-bio">{person.bio}</p>
                   </div>
@@ -72,7 +72,7 @@ const { person } = Astro.props;
                       {
                         person.details.map((detail) => (
                           <div class="detail-item">
-                            <div class="detail-marker"></div>
+                            <div class="detail-marker" />
                             <p class="detail-text">{detail}</p>
                           </div>
                         ))
@@ -110,10 +110,14 @@ const { person } = Astro.props;
   }
 
   .frame-border {
-    background: linear-gradient(135deg, rgba(159, 254, 136, 0.4) 0%, rgba(159, 254, 136, 0.15) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(159, 254, 136, 0.4) 0%,
+      rgba(159, 254, 136, 0.15) 100%
+    );
     padding: 12px;
     border-radius: 20px;
-    box-shadow: 
+    box-shadow:
       0 20px 40px rgba(159, 254, 136, 0.12),
       0 0 30px rgba(159, 254, 136, 0.08),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
@@ -127,15 +131,23 @@ const { person } = Astro.props;
   }
 
   .frame-content::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: 
-      radial-gradient(circle at 20% 30%, rgba(159, 254, 136, 0.06) 0%, transparent 50%),
-      radial-gradient(circle at 80% 70%, rgba(159, 254, 136, 0.04) 0%, transparent 50%);
+    background-image:
+      radial-gradient(
+        circle at 20% 30%,
+        rgba(159, 254, 136, 0.06) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 70%,
+        rgba(159, 254, 136, 0.04) 0%,
+        transparent 50%
+      );
     border-radius: 15px;
     pointer-events: none;
   }
@@ -170,7 +182,11 @@ const { person } = Astro.props;
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at center, rgba(255, 215, 0, 0.1) 0%, transparent 70%);
+    background: radial-gradient(
+      circle at center,
+      rgba(255, 215, 0, 0.1) 0%,
+      transparent 70%
+    );
     pointer-events: none;
   }
 
@@ -178,7 +194,7 @@ const { person } = Astro.props;
     position: absolute;
     top: 1rem;
     right: 1rem;
-    background: linear-gradient(135deg, #9FFE88 0%, #7FCE68 100%);
+    background: linear-gradient(135deg, #9ffe88 0%, #7fce68 100%);
     color: #1a1a1a;
     padding: 0.5rem 1rem;
     border-radius: 25px;
@@ -210,7 +226,12 @@ const { person } = Astro.props;
   .name-underline {
     width: 150px;
     height: 3px;
-    background: linear-gradient(90deg, transparent 0%, #9FFE88 50%, transparent 100%);
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      #9ffe88 50%,
+      transparent 100%
+    );
     border-radius: 2px;
   }
 
@@ -220,7 +241,7 @@ const { person } = Astro.props;
 
   .member-tagline {
     font-size: 1.5rem;
-    color: #F4F4F4;
+    color: #f4f4f4;
     font-style: italic;
     opacity: 0.9;
   }
@@ -231,7 +252,7 @@ const { person } = Astro.props;
 
   .member-bio {
     font-size: 1.1rem;
-    color: #F4F4F4;
+    color: #f4f4f4;
     line-height: 1.7;
     opacity: 0.9;
   }
@@ -244,7 +265,7 @@ const { person } = Astro.props;
   .details-title {
     font-size: 1.25rem;
     font-weight: 700;
-    color: #9FFE88;
+    color: #9ffe88;
     margin-bottom: 1.5rem;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -264,7 +285,7 @@ const { person } = Astro.props;
   .detail-marker {
     width: 8px;
     height: 8px;
-    background: #9FFE88;
+    background: #9ffe88;
     border-radius: 50%;
     margin-top: 0.5rem;
     flex-shrink: 0;
@@ -272,7 +293,7 @@ const { person } = Astro.props;
   }
 
   .detail-text {
-    color: #F4F4F4;
+    color: #f4f4f4;
     opacity: 0.8;
     line-height: 1.6;
   }
@@ -282,7 +303,11 @@ const { person } = Astro.props;
   }
 
   .timeline-frame {
-    background: linear-gradient(135deg, rgba(159, 254, 136, 0.06) 0%, rgba(159, 254, 136, 0.03) 100%);
+    background: linear-gradient(
+      135deg,
+      rgba(159, 254, 136, 0.06) 0%,
+      rgba(159, 254, 136, 0.03) 100%
+    );
     border: 1px solid rgba(159, 254, 136, 0.25);
     border-radius: 15px;
     padding: 2rem;
@@ -290,13 +315,18 @@ const { person } = Astro.props;
   }
 
   .timeline-frame::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(45deg, transparent 40%, rgba(159, 254, 136, 0.06) 50%, transparent 60%);
+    background: linear-gradient(
+      45deg,
+      transparent 40%,
+      rgba(159, 254, 136, 0.06) 50%,
+      transparent 60%
+    );
     border-radius: 15px;
     pointer-events: none;
   }
@@ -304,14 +334,14 @@ const { person } = Astro.props;
   .timeline-title {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #9FFE88;
+    color: #9ffe88;
     margin-bottom: 1rem;
     position: relative;
     z-index: 1;
   }
 
   .timeline-text {
-    color: #F4F4F4;
+    color: #f4f4f4;
     opacity: 0.8;
     line-height: 1.7;
     position: relative;
@@ -357,9 +387,10 @@ const { person } = Astro.props;
     .portrait-image {
       transition: none;
     }
-    
+
     .portrait-container:hover .portrait-image {
       transform: none;
     }
   }
-</style> 
+</style>
+
