@@ -25,6 +25,8 @@ const { gallery } = Astro.props;
           <Picture
             src={item.src}
             alt={item.cap}
+            width={1000}
+            height={1000}
             class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
             formats={["avif", "webp"]}
           />

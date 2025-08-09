@@ -31,6 +31,8 @@ const drivers = Array.from({ length: 12 }).map((_, i) => ({
             <Picture
               src={d.img}
               alt={d.name}
+              width={300}
+              height={300}
               class="w-full h-40 object-cover"
               formats={["avif", "webp"]}
             />

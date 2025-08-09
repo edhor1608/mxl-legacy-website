@@ -42,6 +42,8 @@ const { person } = Astro.props;
                       src={person.img}
                       alt={person.nickname}
                       class="portrait-image"
+                      width={500}
+                      height={500}
                       formats={["avif", "webp"]}
                     />
                     <div class="portrait-glow"></div>

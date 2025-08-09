@@ -45,6 +45,8 @@ const { members } = Astro.props;
                       <Picture
                         src={person.img}
                         alt={person.nickname}
+                        width={200}
+                        height={200}
                         formats={["avif", "webp"]}
                         class="portrait-image"
                       />

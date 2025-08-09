@@ -26,6 +26,8 @@ const { moments } = Astro.props;
             <Picture
               src={moment.visual}
               alt={moment.title}
+              width={1000}
+              height={1000}
               class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-[1.02]"
               formats={["avif", "webp"]}
             />
