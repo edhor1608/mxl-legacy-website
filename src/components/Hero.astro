@@ -5,6 +5,21 @@ const gridPairs = Array.from(
   { length: Math.ceil(people.length / 2) },
   (_, idx) => people.slice(idx * 2, idx * 2 + 2),
 );
+
+// Compute dynamic keyframe breakpoints so each pair fully occupies its own time slot
+// within the total cycle (no overlap regardless of number of pairs)
+const numPairs = gridPairs.length || 1;
+const slotPercent = 100 / numPairs; // percentage of the full cycle allocated to one pair
+const ENTER_FRACTION = 0.15; // portion of the slot spent entering
+const HOLD_FRACTION = 0.75; // portion of the slot held fully visible
+const EXIT_FRACTION = 0.95; // portion of the slot by which it has fully exited
+
+// Absolute percentages in the full cycle timeline
+const enterEndPct = +(slotPercent * ENTER_FRACTION).toFixed(4);
+const holdEndPct = +(slotPercent * HOLD_FRACTION).toFixed(4);
+const exitEndPct = +(slotPercent * EXIT_FRACTION).toFixed(4);
+
+const gridCycleKeyframes = `@keyframes gridCycle {\n  0% { transform: translateY(100%); opacity: 0; }\n  ${enterEndPct}% { transform: translateY(0%); opacity: 1; }\n  ${holdEndPct}% { transform: translateY(0%); opacity: 1; }\n  ${exitEndPct}% { transform: translateY(-100%); opacity: 0; }\n  100% { transform: translateY(-100%); opacity: 0; }\n}`;
 ---
 
 <section
@@ -91,7 +106,7 @@ const gridPairs = Array.from(
           <!-- One-row starting grid stage -->
           <div
             class="relative mx-auto w-full max-w-sm h-40 sm:h-44 md:h-48"
-            style={`--pairs:${gridPairs.length}; --step:10s; --stagger: calc(var(--step) - 4s)`}
+            style={`--pairs:${gridPairs.length}; --step:10s;`}
           >
             <!-- Center highlight slot -->
             {
@@ -221,7 +236,7 @@ const gridPairs = Array.from(
 
   /* Starting grid animation: each pair slides in from bottom, holds, then exits up */
   #hero .grid-stage {
-    --cycle: calc(var(--pairs) * var(--stagger, var(--step)));
+    --cycle: calc(var(--pairs) * var(--step));
   }
   #hero .pair {
     animation-name: gridCycle;
@@ -229,30 +244,8 @@ const gridPairs = Array.from(
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     /* Use negative delay so offsets persist across loops */
-    animation-delay: calc(var(--i) * var(--stagger, var(--step)) * -1);
+    animation-delay: calc(var(--i) * var(--step) * -1);
     will-change: transform, opacity;
-  }
-  @keyframes gridCycle {
-    0% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-    5% {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-    35% {
-      transform: translateY(0%);
-      opacity: 1;
-    }
-    42% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
   }
   @media (prefers-reduced-motion: reduce) {
     #hero .animate-\[speed_22s_linear_infinite\],
@@ -274,3 +267,6 @@ const gridPairs = Array.from(
     }
   }
 </style>
+
+<!-- Inject dynamic keyframes (scaled to the current number of pairs) -->
+<style is:global set:html={gridCycleKeyframes}></style>
