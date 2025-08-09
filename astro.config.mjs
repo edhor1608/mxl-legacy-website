@@ -12,7 +12,7 @@ const baseConfig = {
   integrations: [
     sitemap({
       filter: (page) => !page.includes("/drafts/"),
-      changefreq: "monthly",
+      changefreq: "always",
       priority: 0.7,
     }),
   ],
