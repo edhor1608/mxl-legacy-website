@@ -1,0 +1,50 @@
+---
+interface Props {
+  person: {
+    nickname: string;
+    role: string;
+    bio: string;
+    img: string;
+    tag: string;
+  };
+}
+
+const { person } = Astro.props;
+---
+
+<section class="min-h-screen pt-20">
+  <div class="container-px py-12">
+    <div class="max-w-5xl mx-auto">
+      <nav class="mb-8">
+        <a href="/drivers" class="text-[#9FFE88] hover:opacity-80 transition-opacity inline-flex items-center gap-2">
+          <span class="text-2xl">←</span>
+          <span>Zurück zur Fahrerübersicht</span>
+        </a>
+      </nav>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="lg:col-span-1">
+          <div class="rounded-2xl overflow-hidden border border-white/10 bg-white/5">
+            <img src={person.img} alt={person.nickname} class="w-full h-auto" loading="lazy" decoding="async" />
+          </div>
+        </div>
+        <div class="lg:col-span-2 space-y-6">
+          <div>
+            <h1 class="text-3xl md:text-4xl font-extrabold tracking-wide uppercase">{person.nickname}</h1>
+            <div class="mt-2 inline-flex items-center gap-2">
+              <span class="text-[#9FFE88] text-sm font-semibold">{person.role}</span>
+              <span class="text-white/40">·</span>
+              <span class="text-xs px-2 py-0.5 rounded-full border border-[#9FFE88]/40 text-[#9FFE88] uppercase tracking-wider">{person.tag}</span>
+            </div>
+          </div>
+
+          <div class="prose prose-invert max-w-none">
+            <p class="text-white/85 leading-7">{person.bio}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+

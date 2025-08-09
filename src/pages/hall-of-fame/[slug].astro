@@ -1,0 +1,44 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import HallOfFameMember from "../../components/HallOfFameMember.astro";
+import { hallOfFamePeople, getPersonByLink } from "../../data/people";
+import "../../styles/global.css";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return hallOfFamePeople.map((p) => ({ params: { slug: p.link } }));
+}
+
+const { slug } = Astro.params;
+const base = getPersonByLink(slug || "");
+
+if (!base || !base.hallOfFame) {
+  throw new Error(`Hall of Fame profile not found: ${slug}`);
+}
+
+const person = {
+  nickname: base.nickname,
+  role: base.role,
+  tagline: base.hallOfFame.tagline,
+  bio: base.bio,
+  img: base.img,
+  details: base.hallOfFame.details,
+  timelineImpact: base.hallOfFame.timelineImpact,
+};
+
+const page = {
+  title: `${person.nickname} - MXL Legacy`,
+  description: `${person.role}: ${person.tagline}`,
+};
+---
+
+<BaseLayout {...page}>
+  <Nav />
+  <HallOfFameMember person={person} />
+  <Footer />
+</BaseLayout>
+
+
