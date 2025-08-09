@@ -38,7 +38,7 @@ export const people: Person[] = [
     nickname: "Bloodron83",
     link: "bloodron",
     role: "Architekt & Wolf's rechte Hand",
-    bio: 'Erfunden "MXL," baute die Rennregeln, wurde später zum Joint-Leader nach Wolf\'s Tod.',
+    bio: 'Erfand "MXL," baute die Rennregeln, wurde später zum Joint-Leader nach Wolf\'s Tod.',
     tag: "Architekt",
     img: "/images/Bloodron83.png",
     hallOfFame: {
