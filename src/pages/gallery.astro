@@ -4,10 +4,12 @@ import Nav from "../components/Nav.astro";
 import Section from "../components/Section.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
+import { Picture } from "astro:assets";
 
 const page = {
   title: "Galerie",
-  description: "Fotos, Highlights und Momente der MXL Sim-Racing-Liga: Von den Anfängen bis zum Legacy.",
+  description:
+    "Fotos, Highlights und Momente der MXL Sim-Racing-Liga: Von den Anfängen bis zum Legacy.",
   canonical: "https://mxl-legacy.de/gallery",
   image: "/assets/og-cover.jpg",
   type: "website",
@@ -24,11 +26,13 @@ const gallery = Array.from({ length: 12 }).map(
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
       {
         gallery.map((src, i) => (
-          <img
+          <Picture
             src={src}
+            width={500}
+            height={500}
             alt={`Galerie ${i + 1}`}
             class="w-full h-48 object-cover rounded-lg border border-white/10"
-            loading="lazy" decoding="async"
+            formats={["avif", "webp"]}
           />
         ))
       }

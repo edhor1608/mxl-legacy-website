@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import Section from "../../components/Section.astro";
 import { getPhraseById, phrases } from "../../data/phrases";
 import "../../styles/global.css";
+import { Picture } from "astro:assets";
 
 export const prerender = true;
 
@@ -24,7 +25,10 @@ const page = {
   description: phrase.context
     ? `${phrase.author}: ${phrase.context}`
     : `Zitat von ${phrase.author}`,
-  canonical: new URL(`/zitate/${phrase.id}`, Astro.site?.toString() || "https://mxl-legacy.de").toString(),
+  canonical: new URL(
+    `/zitate/${phrase.id}`,
+    Astro.site?.toString() || "https://mxl-legacy.de",
+  ).toString(),
   image: "/assets/og-cover.jpg",
   type: "article",
 };
@@ -34,41 +38,66 @@ const page = {
   <Nav />
   <Section id="phrase-detail" title="Signatur-Zitat">
     <div class="max-w-3xl space-y-6">
-      <blockquote class={`text-2xl md:text-3xl font-bold ${phrase.style.fontStyle}`}>
+      <blockquote
+        class={`text-2xl md:text-3xl font-bold ${phrase.style.fontStyle}`}
+      >
         “{phrase.text}”
       </blockquote>
-      <p class="text-[#F4F4F4]/70">— {phrase.author}{phrase.context && <span class="text-[#F4F4F4]/50"> · {phrase.context}</span>}</p>
+      <p class="text-[#F4F4F4]/70">
+        — {phrase.author}{
+          phrase.context && (
+            <span class="text-[#F4F4F4]/50"> · {phrase.context}</span>
+          )
+        }
+      </p>
 
-      {phrase.media && (
-        <div class="mt-6 rounded-xl overflow-hidden border border-[#F4F4F4]/10 bg-[#F4F4F4]/5">
-          {phrase.media.type === 'youtube' && (
-            <div class="aspect-video">
-              <iframe
-                src={phrase.media.src}
-                class="w-full h-full"
-                title={phrase.media.caption || phrase.text}
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              />
-            </div>
-          )}
-          {phrase.media.type === 'image' && (
-            <figure>
-              <img src={phrase.media.src} alt={phrase.media.caption || phrase.text} class="w-full h-auto" loading="lazy" decoding="async" />
-              {phrase.media.caption && (
-                <figcaption class="px-4 py-3 text-sm text-[#F4F4F4]/70">{phrase.media.caption}</figcaption>
-              )}
-            </figure>
-          )}
-          {phrase.media.type === 'link' && (
-            <a href={phrase.media.src} class="block px-4 py-3 hover:text-[#9FFE88]" target="_blank" rel="noopener">{phrase.media.caption || phrase.media.src}</a>
-          )}
-        </div>
-      )}
+      {
+        phrase.media && (
+          <div class="mt-6 rounded-xl overflow-hidden border border-[#F4F4F4]/10 bg-[#F4F4F4]/5">
+            {phrase.media.type === "youtube" && (
+              <div class="aspect-video">
+                <iframe
+                  src={phrase.media.src}
+                  class="w-full h-full"
+                  title={phrase.media.caption || phrase.text}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                />
+              </div>
+            )}
+            {phrase.media.type === "image" && (
+              <figure>
+                <Picture
+                  src={phrase.media.src}
+                  alt={phrase.media.caption || phrase.text}
+                  width={500}
+                  height={500}
+                  class="w-full h-auto"
+                  formats={["avif", "webp"]}
+                />
+                {phrase.media.caption && (
+                  <figcaption class="px-4 py-3 text-sm text-[#F4F4F4]/70">
+                    {phrase.media.caption}
+                  </figcaption>
+                )}
+              </figure>
+            )}
+            {phrase.media.type === "link" && (
+              <a
+                href={phrase.media.src}
+                class="block px-4 py-3 hover:text-[#9FFE88]"
+                target="_blank"
+                rel="noopener"
+              >
+                {phrase.media.caption || phrase.media.src}
+              </a>
+            )}
+          </div>
+        )
+      }
     </div>
   </Section>
   <Footer />
 </BaseLayout>
-

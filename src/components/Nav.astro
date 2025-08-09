@@ -1,4 +1,6 @@
 ---
+import { Picture } from "astro:assets";
+
 const links = [
   { href: "/#hero", label: "Start" },
   { href: "/#hall-of-fame", label: "Hall of Fame" },
@@ -14,7 +16,14 @@ const links = [
   >
     <nav class="container-px flex h-16 items-center justify-between gap-3">
       <a href="/" class="flex items-center gap-2 font-semibold">
-        <img src="/MxlLegacyLogo.webp" alt="MXL" class="h-6 w-6 rounded-md" />
+        <Picture
+          src="/MxlLegacyLogo.webp"
+          alt="MXL"
+          width={24}
+          height={24}
+          class="h-6 w-6 rounded-md"
+          formats={["avif", "webp"]}
+        />
         <span>MXL Legacy</span>
       </a>
       <button
@@ -39,7 +48,10 @@ const links = [
           ))
         }
       </ul>
-      <a href="/contact" class="hidden md:inline-flex items-center justify-center rounded bg-[#9FFE88] text-[#201D1F] px-4 py-2 text-sm font-medium hover:opacity-90">
+      <a
+        href="/contact"
+        class="hidden md:inline-flex items-center justify-center rounded bg-[#9FFE88] text-[#201D1F] px-4 py-2 text-sm font-medium hover:opacity-90"
+      >
         Mitmachen
       </a>
     </nav>
@@ -59,7 +71,10 @@ const links = [
           ))
         }
         <li>
-          <a href="/contact" class="mt-2 block px-3 py-2 rounded bg-[#9FFE88] text-[#201D1F] font-medium text-center">
+          <a
+            href="/contact"
+            class="mt-2 block px-3 py-2 rounded bg-[#9FFE88] text-[#201D1F] font-medium text-center"
+          >
             Mitmachen
           </a>
         </li>
@@ -69,18 +84,20 @@ const links = [
 </header>
 
 <script>
-  const btn = document.querySelector('[data-menu-button]');
-  const menu = document.querySelector('[data-menu]');
-  const links = document.querySelectorAll('[data-menu-link]');
+  const btn = document.querySelector("[data-menu-button]");
+  const menu = document.querySelector("[data-menu]");
+  const links = document.querySelectorAll("[data-menu-link]");
   if (btn && menu) {
-    btn.addEventListener('click', () => {
-      const isOpen = !menu.classList.contains('hidden');
-      menu.classList.toggle('hidden');
-      btn.setAttribute('aria-expanded', String(!isOpen));
+    btn.addEventListener("click", () => {
+      const isOpen = !menu.classList.contains("hidden");
+      menu.classList.toggle("hidden");
+      btn.setAttribute("aria-expanded", String(!isOpen));
     });
-    links.forEach((a) => a.addEventListener('click', () => {
-      menu.classList.add('hidden');
-      btn.setAttribute('aria-expanded', 'false');
-    }));
+    links.forEach((a) =>
+      a.addEventListener("click", () => {
+        menu.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
+      }),
+    );
   }
 </script>

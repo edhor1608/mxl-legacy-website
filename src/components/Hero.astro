@@ -1,4 +1,5 @@
 ---
+import { Picture } from "astro:assets";
 import { people } from "../data/index";
 
 const gridPairs = Array.from(
@@ -137,12 +138,13 @@ const gridCycleKeyframes = `@keyframes gridCycle {\n  0% { transform: translateY
                         href={`/drivers/${p.link}`}
                         class={`group inline-flex items-center gap-2 sm:gap-3 w-full rounded-xl border border-white/10 bg-white/10 backdrop-blur-sm px-0 py-0 transition-colors hover:border-[#9FFE88]/40 ${j === 0 ? "justify-self-start" : "justify-self-end"} self-center`}
                       >
-                        <img
+                        <Picture
                           src={p.img}
                           alt={p.nickname}
+                          width={36}
+                          height={36}
                           class="h-9 w-9 sm:h-10 sm:w-10 rounded-l-xl object-cover ring-0 ring-white/10 group-hover:ring-[#9FFE88]/40"
-                          loading="lazy"
-                          decoding="async"
+                          formats={["avif", "webp"]}
                         />
                         <div class="min-w-0 text-xs sm:text-sm font-medium text-white/90 truncate">
                           {p.nickname}

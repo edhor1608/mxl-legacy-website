@@ -5,10 +5,12 @@ import Section from "../components/Section.astro";
 import Footer from "../components/Footer.astro";
 import { people } from "../data/index";
 import "../styles/global.css";
+import { Picture } from "astro:assets";
 
 const page = {
   title: "Fahrer & Team",
-  description: "Fahrer, Team-Mitglieder und Rollen der MXL Sim-Racing-Liga: Von Gründern bis zu den aktiven Fahrern.",
+  description:
+    "Fahrer, Team-Mitglieder und Rollen der MXL Sim-Racing-Liga: Von Gründern bis zu den aktiven Fahrern.",
   canonical: "https://mxl-legacy.de/drivers",
   image: "/assets/og-cover.jpg",
   type: "website",
@@ -26,7 +28,14 @@ const allPeople: CardPerson[] = people;
         const href = `/drivers/${p.link}`;
         const Card = (
           <div class="rounded-lg overflow-hidden bg-white/5 border border-white/10 h-full">
-            <img src={p.img} alt={p.nickname} class="w-full h-40 object-cover" loading="lazy" decoding="async" />
+            <Picture
+              src={p.img}
+              alt={p.nickname}
+              width={300}
+              height={300}
+              class="w-full h-40 object-cover"
+              formats={["avif", "webp"]}
+            />
             <div class="p-3 space-y-1">
               <div class="flex items-center justify-between gap-2">
                 <p class="font-medium truncate">{p.nickname}</p>
