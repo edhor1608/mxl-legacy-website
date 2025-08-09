@@ -1,0 +1,36 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
+import DriverProfile from "../../components/DriverProfile.astro";
+import { people } from "../../data/people";
+import { getPersonByLink } from "../../data/people";
+import "../../styles/global.css";
+
+export const prerender = true;
+
+export function getStaticPaths() {
+  return people
+    .map((p) => ({ params: { slug: p.link } }));
+}
+
+const { slug } = Astro.params;
+const p = getPersonByLink(slug || "");
+
+if (!p) {
+  throw new Error(`Driver profile not found: ${slug}`);
+}
+
+const page = {
+  title: `${p.nickname} – MXL Legacy`,
+  description: `${p.role}: ${p.tag}`,
+};
+---
+
+<BaseLayout {...page}>
+  <Nav />
+  <DriverProfile person={p} />
+  <Footer />
+</BaseLayout>
+
+

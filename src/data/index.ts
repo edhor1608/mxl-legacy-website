@@ -1,46 +1,5 @@
-// Hall of Fame data
-export const hallOfFame = [
-  {
-    nickname: "Matri_X_",
-    link: "matri-x",
-    role: 'Founder & Original "CEO"',
-    bio: "Streamer-turned-league-owner, came from FM, launched the first 10-driver Monza event that became MXL.",
-    tag: "Founder",
-    img: "/images/Matri_X_.png",
-  },
-  {
-    nickname: "Bloodron",
-    link: "bloodron",
-    role: "Early Architect & Wolf's Right Hand",
-    bio: 'Coined "MXL," built the race rules engine, later stepped up as joint-leader after Wolf\'s passing.',
-    tag: "Architect",
-    img: "/images/Bloodron83.png",
-  },
-  {
-    nickname: "Wolfson",
-    link: "wolfson",
-    role: '"Godfather" of MXL',
-    bio: "Veteran of F1 sims, drove the formative seasons and set the league's competitive DNA in motion.",
-    tag: "Godfather",
-    img: "/images/Wolfson.png",
-  },
-  {
-    nickname: "edhor",
-    link: "edhor",
-    role: "Webmaster & Power-User Leader",
-    bio: "Joined as driver, built the results site, then drove daily operations and new projects.",
-    tag: "Webmaster",
-    img: "/images/Edhor1608.png",
-  },
-  {
-    nickname: "McGill",
-    link: "mcgill",
-    role: "Sponsor & Silent Partner",
-    bio: "Backed the ProSeries from day one, provided prize support and strategic guidance.",
-    tag: "Sponsor",
-    img: "/images/McGill.png",
-  },
-];
+// People data (single source of truth)
+export { people, hallOfFamePeople as hallOfFame } from "./people";
 
 // Defining Moments
 export const definingMoments = [
