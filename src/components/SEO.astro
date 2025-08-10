@@ -11,6 +11,7 @@ interface Props {
   datePublished?: string;       // ISO 8601
   dateModified?: string;        // ISO 8601
   type?: "website" | "article";
+  structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
 
 const {
@@ -23,6 +24,7 @@ const {
   datePublished,
   dateModified,
   type = "website",
+  structuredData,
 } = Astro.props;
 const pageTitle = title
   ? `${title} | ${SITE.title}`
@@ -38,7 +40,7 @@ const organizationData = {
   name: SITE.title,
   url: SITE.url,
   logo: new URL(SITE.defaultImage, SITE.url).toString(),
-  sameAs: []
+  sameAs: (SITE as any).sameAs ?? []
 };
 
 const articleData = type === "article" && datePublished ? {
@@ -61,6 +63,13 @@ const articleData = type === "article" && datePublished ? {
     },
   },
 } : null;
+
+// Normalize additional/AI-focused structured data to an array
+const extraStructuredData = Array.isArray(structuredData)
+  ? structuredData
+  : structuredData
+    ? [structuredData]
+    : [];
 ---
 
 <!-- Basic Meta -->
@@ -92,3 +101,8 @@ const articleData = type === "article" && datePublished ? {
 {articleData && (
   <script type="application/ld+json" set:html={JSON.stringify(articleData)} />
 )} 
+
+<!-- Additional Structured Data (FAQ, Person, Quotation, etc.) -->
+{extraStructuredData.map((data) => (
+  <script type="application/ld+json" set:html={JSON.stringify(data)} />
+))}
