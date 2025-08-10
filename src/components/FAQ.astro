@@ -17,14 +17,28 @@ const { items, id = "faq", title = "Häufige Fragen", class: className } = Astro
 ---
 
 <Section id={id} title={title} class={className}>
-  <div class="space-y-4">
+  <div class="space-y-3">
     {items.map((f) => (
-      <div class="rounded-lg border border-white/10 bg-white/5 p-4">
-        <h3 class="font-semibold">{f.question}</h3>
-        <p class="text-white/80 mt-1">{f.answer}</p>
-      </div>
+      <details class="rounded-lg border border-white/10 bg-white/5">
+        <summary class="flex cursor-pointer items-center justify-between p-4">
+          <h3 class="font-semibold">{f.question}</h3>
+          <svg class="chevron h-5 w-5 text-white/70 transition-transform" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.24a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z" clip-rule="evenodd" />
+          </svg>
+        </summary>
+        <div class="px-4 pb-4 pt-0 text-white/80">{f.answer}</div>
+      </details>
     ))}
   </div>
 </Section>
+
+<style>
+  details[open] summary .chevron {
+    transform: rotate(180deg);
+  }
+  summary::-webkit-details-marker {
+    display: none;
+  }
+</style>
 
 
