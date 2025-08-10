@@ -5,4 +5,7 @@ export const SITE = {
   url: "https://mxl-legacy.de",
   defaultImage: "/assets/og-cover.jpg",
   language: "de-DE",
+  sameAs: [
+    "https://github.com/edhor1608",
+  ],
 }; 

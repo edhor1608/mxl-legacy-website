@@ -5,6 +5,7 @@ import Footer from "../../components/Footer.astro";
 import DriverProfile from "../../components/DriverProfile.astro";
 import { people } from "../../data/people";
 import { getPersonByLink } from "../../data/people";
+import { SITE } from "../../data/site";
 import "../../styles/global.css";
 
 export const prerender = true;
@@ -21,9 +22,29 @@ if (!p) {
   throw new Error(`Driver profile not found: ${slug}`);
 }
 
+const baseUrl = Astro.site?.toString() || SITE.url || "https://mxl-legacy.de";
+const canonicalUrl = new URL(`/drivers/${p.link}`, baseUrl).toString();
+const imageUrl = new URL(p.img, baseUrl).toString();
+
 const page = {
   title: `${p.nickname} – MXL Legacy`,
   description: `${p.role}: ${p.tag}`,
+  canonical: canonicalUrl,
+  image: imageUrl,
+  structuredData: {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: p.nickname,
+    jobTitle: p.role,
+    description: p.bio,
+    image: imageUrl,
+    url: canonicalUrl,
+    memberOf: {
+      "@type": "Organization",
+      name: SITE.title,
+      url: SITE.url,
+    },
+  },
 };
 ---
 

@@ -10,15 +10,50 @@ import HallOfFameWall from "../components/HallOfFameWall.astro";
 import Gallery from "../components/Gallery.astro";
 // import UnpublishedStories from "../components/UnpublishedStories.astro";
 import { hallOfFame, definingMoments, gallery } from "../data/index";
+import { SITE } from "../data/site";
 import "../styles/global.css";
+import FAQ from "../components/FAQ.astro";
+
+const baseUrl = Astro.site?.toString() || SITE.url || "https://mxl-legacy.de";
+const faqs = [
+  {
+    question: "Was ist MXL Legacy?",
+    answer:
+      "MXL Legacy ist ein archiviertes Projekt zur Geschichte der deutschsprachigen Sim‑Racing‑Liga MXL mit Zeitleiste, Hall of Fame und prägenden Momenten.",
+  },
+  {
+    question: "Wann war die aktivste Phase der MXL Liga?",
+    answer:
+      "Der Höhepunkt lag 2018 in der ProSeries‑Ära mit über 100 Fahrern im Grid.",
+  },
+  {
+    question: "Wer prägte die frühe Liga-Zeit?",
+    answer:
+      "Wolfson professionalisierte die Liga und setzte die kompetitive DNA – unterstützt von Gründern und Architekten wie Matri_X_ und Bloodron83.",
+  },
+];
+
+const faqStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.question,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: f.answer,
+    },
+  })),
+};
 
 const page = {
   title: "MXL Legacy",
   description:
     "Legacy- und Tribute-Seite zur MXL Sim-Racing-Liga: Saisons, Highlights & Hall of Fame.",
-  canonical: "https://mxl-legacy.de",
+  canonical: baseUrl,
   image: "/assets/og-cover.jpg",
   type: "website",
+  structuredData: faqStructuredData,
 };
 ---
 
@@ -28,7 +63,6 @@ const page = {
   <Hero />
   
   <div class="container-px">
-   
 
     <!-- Hall of Fame Section -->
     <section id="hall-of-fame" class="py-16 md:py-24">
@@ -44,6 +78,8 @@ const page = {
     <section id="signature-phrases" class="py-16 md:py-24">
       <SignaturePhrases />
     </section>
+
+    <FAQ items={faqs} />
   </div>
 
   <Footer />

@@ -4,6 +4,7 @@ import Nav from "../../components/Nav.astro";
 import Footer from "../../components/Footer.astro";
 import Section from "../../components/Section.astro";
 import { getPhraseById, phrases } from "../../data/phrases";
+import { SITE } from "../../data/site";
 import "../../styles/global.css";
 import { Picture } from "astro:assets";
 
@@ -20,17 +21,28 @@ if (!phrase) {
   throw new Error(`Phrase not found: ${id}`);
 }
 
+const baseUrl = Astro.site?.toString() || SITE.url || "https://mxl-legacy.de";
+const canonicalUrl = new URL(`/zitate/${phrase.id}`, baseUrl).toString();
+
 const page = {
   title: `Zitat: "${phrase.text}" – ${phrase.author}`,
   description: phrase.context
     ? `${phrase.author}: ${phrase.context}`
     : `Zitat von ${phrase.author}`,
-  canonical: new URL(
-    `/zitate/${phrase.id}`,
-    Astro.site?.toString() || "https://mxl-legacy.de",
-  ).toString(),
+  canonical: canonicalUrl,
   image: "/assets/og-cover.jpg",
   type: "article",
+  structuredData: {
+    "@context": "https://schema.org",
+    "@type": "Quotation",
+    text: phrase.text,
+    spokenByCharacter: {
+      "@type": "Person",
+      name: phrase.author,
+    },
+    url: canonicalUrl,
+    citation: phrase.context ?? undefined,
+  },
 };
 ---
 
