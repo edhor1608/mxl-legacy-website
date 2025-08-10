@@ -1,0 +1,30 @@
+---
+import Section from "./Section.astro";
+
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  id?: string;
+  title?: string;
+  class?: string;
+}
+
+const { items, id = "faq", title = "Häufige Fragen", class: className } = Astro.props as Props;
+---
+
+<Section id={id} title={title} class={className}>
+  <div class="space-y-4">
+    {items.map((f) => (
+      <div class="rounded-lg border border-white/10 bg-white/5 p-4">
+        <h3 class="font-semibold">{f.question}</h3>
+        <p class="text-white/80 mt-1">{f.answer}</p>
+      </div>
+    ))}
+  </div>
+</Section>
+
+

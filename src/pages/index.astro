@@ -12,6 +12,7 @@ import Gallery from "../components/Gallery.astro";
 import { hallOfFame, definingMoments, gallery } from "../data/index";
 import { SITE } from "../data/site";
 import "../styles/global.css";
+import FAQ from "../components/FAQ.astro";
 
 const baseUrl = Astro.site?.toString() || SITE.url || "https://mxl-legacy.de";
 const faqs = [
@@ -78,18 +79,7 @@ const page = {
       <SignaturePhrases />
     </section>
 
-    <!-- Visible, citable FAQ block for AI-ready snippets -->
-    <section id="faq" class="py-8">
-      <h2 class="display text-2xl md:text-3xl font-bold mb-4">Häufige Fragen</h2>
-      <div class="space-y-4">
-        {faqs.map((f) => (
-          <div class="rounded-lg border border-white/10 bg-white/5 p-4">
-            <h3 class="font-semibold">{f.question}</h3>
-            <p class="text-white/80 mt-1">{f.answer}</p>
-          </div>
-        ))}
-      </div>
-    </section>
+    <FAQ items={faqs} />
   </div>
 
   <Footer />
