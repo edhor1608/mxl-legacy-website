@@ -188,3 +188,14 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 
 > Built with ❤️ by the MXL community.
 > Visit our [GitHub organization](https://github.com/your-org) to explore more projects.
+
+<!-- status:start -->
+## Status
+- State: active
+- Summary: Define current milestone.
+- Next: Define next concrete step.
+- Updated: 2026-02-21
+- Branch: `main`
+- Working Tree: dirty (20 files)
+- Last Commit: d6940aa (2025-08-10) feat: enhance SEO and structured data support across components (#17)
+<!-- status:end -->
