@@ -10,24 +10,23 @@ Use this skill when you need to run, test, preview, or manually verify changes i
 ## Repo basics
 
 - This is a static-first Astro 5 site styled with Tailwind CSS.
-- The Cloud image may have `pnpm` but not `bun`. Prefer `pnpm install --frozen-lockfile` and `pnpm run ...` in Cloud unless a task explicitly needs Bun parity.
+- Use Bun for all package commands. If a Cloud image does not have Bun, install Bun for that session before running the app.
 - There are no app login flows, user accounts, databases, queues, or seeded local services.
 - GitHub CLI is already authenticated in Cloud agents for read-only GitHub inspection.
 - Netlify authentication is only needed for manual deploy/debug work; normal local testing does not require `netlify login`.
 
 ## Common commands
 
-- Install dependencies: `pnpm install --frozen-lockfile`
-- Start dev server: `pnpm run dev -- --host 0.0.0.0`
-- Build static output: `BUN_BUILD=1 pnpm run build`
-- Preview a production build: `pnpm run preview -- --host 0.0.0.0`
-- Format/check formatting for edited files: `pnpm exec prettier --check <paths>`
-- Format edited files: `pnpm exec prettier --write <paths>`
-- If Bun-specific behavior must be reproduced, install Bun for that session first, then run the same scripts with `bun run`.
+- Install dependencies: `bun install --frozen-lockfile`
+- Start dev server: `bun run dev -- --host 0.0.0.0`
+- Build static output: `BUN_BUILD=1 bun run build`
+- Preview a production build: `bun run preview -- --host 0.0.0.0`
+- Format/check formatting for edited files: `bunx prettier --check <paths>`
+- Format edited files: `bunx prettier --write <paths>`
 
 ## Feature flags and environment switches
 
-- `BUN_BUILD=1` is the important environment switch even when using `pnpm`. It makes `astro.config.mjs` use static output instead of the Netlify server adapter.
+- `BUN_BUILD=1` is the important environment switch. It makes `astro.config.mjs` use static output instead of the Netlify server adapter.
 - Netlify sets `BUN_BUILD=1`, `NODE_VERSION=22`, and runs `bun run build` in `netlify.toml`; mirror the environment switch locally when validating production builds.
 - There are no product feature flags in the app today. To test a "flagged" or alternate state, edit local data/components temporarily, verify behavior, then remove the temporary change before committing.
 - Do not add persistent mocks or flags unless the task requires them.
@@ -42,8 +41,8 @@ Area:
 
 Testing workflow:
 
-1. Run `BUN_BUILD=1 pnpm run build`.
-2. Run `pnpm run preview -- --host 0.0.0.0`.
+1. Run `BUN_BUILD=1 bun run build`.
+2. Run `bun run preview -- --host 0.0.0.0`.
 3. Open the preview and inspect page source for title, description, canonical, Open Graph, Twitter card, and JSON-LD output.
 4. Check the affected page on desktop and mobile widths for header, footer, contrast, and layout stability.
 
@@ -56,7 +55,7 @@ Area:
 
 Testing workflow:
 
-1. Run `BUN_BUILD=1 pnpm run build` to catch broken imports, route generation errors, and missing dynamic data.
+1. Run `BUN_BUILD=1 bun run build` to catch broken imports, route generation errors, and missing dynamic data.
 2. Preview locally.
 3. Visit each changed route directly, not only through navigation.
 4. For dynamic routes, test at least one valid generated page and one invalid slug/id to confirm the 404 path still behaves correctly.
@@ -72,7 +71,7 @@ Area:
 
 Testing workflow:
 
-1. Run `BUN_BUILD=1 pnpm run build` after data edits.
+1. Run `BUN_BUILD=1 bun run build` after data edits.
 2. Preview the page that consumes the edited data.
 3. Verify links/slugs are lowercase, hyphenated, and match generated pages.
 4. Check that images referenced from data resolve from `public/` or intentional remote URLs.
@@ -87,18 +86,18 @@ Area:
 
 Testing workflow:
 
-1. Start `pnpm run dev -- --host 0.0.0.0` for fast visual iteration.
+1. Start `bun run dev -- --host 0.0.0.0` for fast visual iteration.
 2. Manually test affected components on the pages that render them.
 3. Check desktop and mobile widths, keyboard focus, readable contrast, image alt text, and link text.
-4. Run `BUN_BUILD=1 pnpm run build` before finishing.
+4. Run `BUN_BUILD=1 bun run build` before finishing.
 
 ## Deployment-shaped validation
 
 Use this workflow before PRs that affect routing, SEO, assets, or build behavior:
 
-1. `pnpm install --frozen-lockfile`
-2. `BUN_BUILD=1 pnpm run build`
-3. `pnpm run preview -- --host 0.0.0.0`
+1. `bun install --frozen-lockfile`
+2. `BUN_BUILD=1 bun run build`
+3. `bun run preview -- --host 0.0.0.0`
 4. Visit changed pages and dynamic routes in the preview.
 5. Confirm `dist/` contains generated static HTML for changed routes when static output is expected.
 
