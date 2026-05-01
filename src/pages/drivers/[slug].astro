@@ -1,57 +1,17 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
-import Nav from "../../components/Nav.astro";
-import Footer from "../../components/Footer.astro";
-import DriverProfile from "../../components/DriverProfile.astro";
 import { people } from "../../data/people";
-import { getPersonByLink } from "../../data/people";
-import { SITE } from "../../data/site";
-import "../../styles/global.css";
 
 export const prerender = true;
 
 export function getStaticPaths() {
-  return people
-    .map((p) => ({ params: { slug: p.link } }));
+  return people.map((p) => ({ params: { slug: p.link } }));
 }
 
-const { slug } = Astro.params;
-const p = getPersonByLink(slug || "");
+const person = people.find((p) => p.link === Astro.params.slug);
 
-if (!p) {
-  throw new Error(`Driver profile not found: ${slug}`);
+if (!person) {
+  return Astro.redirect("/fahrer", 301);
 }
 
-const baseUrl = Astro.site?.toString() || SITE.url || "https://mxl-legacy.de";
-const canonicalUrl = new URL(`/drivers/${p.link}`, baseUrl).toString();
-const imageUrl = new URL(p.img, baseUrl).toString();
-
-const page = {
-  title: `${p.nickname} – MXL Legacy`,
-  description: `${p.role}: ${p.tag}`,
-  canonical: canonicalUrl,
-  image: imageUrl,
-  structuredData: {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    name: p.nickname,
-    jobTitle: p.role,
-    description: p.bio,
-    image: imageUrl,
-    url: canonicalUrl,
-    memberOf: {
-      "@type": "Organization",
-      name: SITE.title,
-      url: SITE.url,
-    },
-  },
-};
+return Astro.redirect(`/fahrer/${person.link}`, 301);
 ---
-
-<BaseLayout {...page}>
-  <Nav />
-  <DriverProfile person={p} />
-  <Footer />
-</BaseLayout>
-
-

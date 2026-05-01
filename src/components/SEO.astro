@@ -4,12 +4,11 @@ import { SITE } from "../data/site.ts";
 interface Props {
   title?: string;
   description?: string;
-  url?: string;
   image?: string;
   canonical?: string;
   author?: string;
-  datePublished?: string;       // ISO 8601
-  dateModified?: string;        // ISO 8601
+  datePublished?: string; // ISO 8601
+  dateModified?: string; // ISO 8601
   type?: "website" | "article";
   structuredData?: Record<string, unknown> | Array<Record<string, unknown>>;
 }
@@ -17,7 +16,6 @@ interface Props {
 const {
   title,
   description,
-  url,
   image,
   canonical,
   author,
@@ -26,12 +24,18 @@ const {
   type = "website",
   structuredData,
 } = Astro.props;
-const pageTitle = title
-  ? `${title} | ${SITE.title}`
-  : SITE.title;
+const pageTitle = title ?? SITE.title;
 const pageDesc = description ?? SITE.description;
 const pageUrl = canonical ?? new URL(Astro.url.pathname, SITE.url).toString();
 const pageImage = image ?? SITE.defaultImage;
+const pageImageUrl = (() => {
+  try {
+    return new URL(pageImage, SITE.url).toString();
+  } catch {
+    return pageImage;
+  }
+})();
+const ogLocale = (SITE.language || "de-DE").replace("-", "_");
 
 // Prepare structured data
 const organizationData = {
@@ -40,29 +44,30 @@ const organizationData = {
   name: SITE.title,
   url: SITE.url,
   logo: new URL(SITE.defaultImage, SITE.url).toString(),
-  sameAs: (SITE as any).sameAs ?? []
+  sameAs: SITE.sameAs,
 };
 
-const articleData = type === "article" && datePublished ? {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
-  headline: pageTitle,
-  image: [pageImage],
-  datePublished,
-  dateModified: dateModified ?? datePublished,
-  author: author
-    ? { "@type": "Person", name: author }
-    : undefined,
-  publisher: {
-    "@type": "Organization",
-    name: SITE.title,
-    logo: {
-      "@type": "ImageObject",
-      url: new URL(SITE.defaultImage, SITE.url).toString(),
-    },
-  },
-} : null;
+const articleData =
+  type === "article" && datePublished
+    ? {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+        headline: pageTitle,
+        image: [pageImage],
+        datePublished,
+        dateModified: dateModified ?? datePublished,
+        author: author ? { "@type": "Person", name: author } : undefined,
+        publisher: {
+          "@type": "Organization",
+          name: SITE.title,
+          logo: {
+            "@type": "ImageObject",
+            url: new URL(SITE.defaultImage, SITE.url).toString(),
+          },
+        },
+      }
+    : null;
 
 // Normalize additional/AI-focused structured data to an array
 const extraStructuredData = Array.isArray(structuredData)
@@ -83,26 +88,38 @@ const extraStructuredData = Array.isArray(structuredData)
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={pageDesc} />
 <meta property="og:url" content={pageUrl} />
-<meta property="og:image" content={pageImage} />
+<meta property="og:image" content={pageImageUrl} />
+<meta property="og:image:alt" content={pageTitle} />
 <meta property="og:site_name" content={SITE.title} />
-<meta property="og:locale" content={SITE.language} />
+<meta property="og:locale" content={ogLocale} />
 <meta name="language" content={SITE.language} />
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content={pageTitle} />
 <meta name="twitter:description" content={pageDesc} />
-<meta name="twitter:image" content={pageImage} />
+<meta name="twitter:image" content={pageImageUrl} />
+<meta name="twitter:image:alt" content={pageTitle} />
 
 <!-- Structured Data: Organization -->
-<script type="application/ld+json" set:html={JSON.stringify(organizationData)} />
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify(organizationData)}
+/>
 
 <!-- Article Structured Data (optional) -->
-{articleData && (
-  <script type="application/ld+json" set:html={JSON.stringify(articleData)} />
-)} 
+{
+  articleData && (
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({ ...articleData, image: [pageImageUrl] })}
+    />
+  )
+}
 
 <!-- Additional Structured Data (FAQ, Person, Quotation, etc.) -->
-{extraStructuredData.map((data) => (
-  <script type="application/ld+json" set:html={JSON.stringify(data)} />
-))}
+{
+  extraStructuredData.map((data) => (
+    <script type="application/ld+json" set:html={JSON.stringify(data)} />
+  ))
+}

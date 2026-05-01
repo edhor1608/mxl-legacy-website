@@ -8,15 +8,15 @@ import "../styles/global.css";
 import { Picture } from "astro:assets";
 
 const page = {
-  title: "Fahrer & Team",
+  title: "MXL Fahrer & Team",
   description:
-    "Fahrer, Team-Mitglieder und Rollen der MXL Sim-Racing-Liga: Von Gründern bis zu den aktiven Fahrern.",
-  canonical: "https://mxl-legacy.de/drivers",
-  image: "/assets/og-cover.jpg",
+    "Fahrer, Team und Rollen: Profile der MXL Sim-Racing-Liga – von Gründern bis Hall of Fame.",
+  canonical: "https://mxl-legacy.de/fahrer",
+  image: "/images/MxlLegacyBanner.jpg",
   type: "website",
 };
-  
-type CardPerson = typeof people[number];
+
+type CardPerson = (typeof people)[number];
 const allPeople: CardPerson[] = people;
 ---
 
@@ -24,36 +24,45 @@ const allPeople: CardPerson[] = people;
   <Nav />
   <Section id="drivers-page" title="Fahrer & Team">
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-      {allPeople.map((p) => {
-        const href = `/drivers/${p.link}`;
-        const Card = (
-          <div class="rounded-lg overflow-hidden bg-white/5 border border-white/10 h-full">
-            <Picture
-              src={p.img}
-              alt={p.nickname}
-              width={300}
-              height={300}
-              class="w-full h-40 object-cover"
-              formats={["avif", "webp"]}
-            />
-            <div class="p-3 space-y-1">
-              <div class="flex items-center justify-between gap-2">
-                <p class="font-medium truncate">{p.nickname}</p>
-                {p.hallOfFame && (
-                  <span class="text-[10px] uppercase tracking-wider text-[#9FFE88] border border-[#9FFE88]/40 rounded px-1.5 py-0.5">Hall of Fame</span>
-                )}
+      {
+        allPeople.map((p) => {
+          const href = `/fahrer/${p.link}`;
+          const Card = (
+            <div class="rounded-lg overflow-hidden bg-white/5 border border-white/10 h-full">
+              <Picture
+                src={p.img}
+                alt={p.nickname}
+                width={300}
+                height={300}
+                class="w-full h-40 object-cover"
+                formats={["avif", "webp"]}
+              />
+              <div class="p-3 space-y-1">
+                <div class="flex items-center justify-between gap-2">
+                  <p class="font-medium truncate">{p.nickname}</p>
+                  {p.hallOfFame && (
+                    <span class="text-[10px] uppercase tracking-wider text-[#9FFE88] border border-[#9FFE88]/40 rounded px-1.5 py-0.5">
+                      Hall of Fame
+                    </span>
+                  )}
+                </div>
+                <p class="text-xs text-white/70 truncate">{p.role}</p>
+                <p class="text-[11px] text-white/50">{p.tag}</p>
               </div>
-              <p class="text-xs text-white/70 truncate">{p.role}</p>
-              <p class="text-[11px] text-white/50">{p.tag}</p>
             </div>
-          </div>
-        );
-        return href ? (
-          <a href={href} class="block focus:outline-none focus:ring-2 focus:ring-[#9FFE88]/60 rounded-lg">{Card}</a>
-        ) : (
-          <div>{Card}</div>
-        );
-      })}
+          );
+          return href ? (
+            <a
+              href={href}
+              class="block focus:outline-none focus:ring-2 focus:ring-[#9FFE88]/60 rounded-lg"
+            >
+              {Card}
+            </a>
+          ) : (
+            <div>{Card}</div>
+          );
+        })
+      }
     </div>
   </Section>
   <Footer />

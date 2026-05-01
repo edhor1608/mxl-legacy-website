@@ -7,10 +7,11 @@ import Breadcrumbs from "../components/Breadcrumbs.astro";
 import "../styles/global.css";
 
 const page = {
-  title: "Über MXL Legacy",
-  description: "Geschichte und Entwicklung der MXL Sim-Racing-Liga: Von der Community-Liga zur ProSeries und der Weg zum Legacy.",
-  canonical: "https://mxl-legacy.de/about",
-  image: "/assets/og-cover.jpg",
+  title: "MXL Geschichte – Von Community zur ProSeries",
+  description:
+    "Chronik der MXL Liga: Anfänge, ProSeries, prägende Figuren und das Legacy-Projekt.",
+  canonical: "https://mxl-legacy.de/geschichte",
+  image: "/images/MxlLegacyBanner.jpg",
   type: "article",
   datePublished: "2024-01-01T00:00:00Z",
   dateModified: "2024-12-01T00:00:00Z",
@@ -19,7 +20,7 @@ const page = {
 
 const breadcrumbs = [
   { label: "Start", href: "/" },
-  { label: "Über MXL", href: "/about" },
+  { label: "Geschichte", href: "/geschichte" },
 ];
 ---
 
@@ -28,7 +29,7 @@ const breadcrumbs = [
   <div class="container-px">
     <Breadcrumbs items={breadcrumbs} />
   </div>
-  <Section id="about-page" title="Über MXL">
+  <Section id="about-page" title="Geschichte der MXL">
     <div class="max-w-3xl space-y-6 text-[#F4F4F4]/80 leading-relaxed">
       <p>
         Die MXL begann als kleine Community‑Liga mit rund zehn Startern in Monza

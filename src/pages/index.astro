@@ -51,7 +51,7 @@ const page = {
   description:
     "Legacy- und Tribute-Seite zur MXL Sim-Racing-Liga: Saisons, Highlights & Hall of Fame.",
   canonical: baseUrl,
-  image: "/assets/og-cover.jpg",
+  image: "/images/MxlLegacyBanner.jpg",
   type: "website",
   structuredData: faqStructuredData,
 };
@@ -59,11 +59,10 @@ const page = {
 
 <BaseLayout {...page}>
   <Nav />
-  
-  <Hero />
-  
-  <div class="container-px">
 
+  <Hero />
+
+  <div class="container-px">
     <!-- Hall of Fame Section -->
     <section id="hall-of-fame" class="py-16 md:py-24">
       <HallOfFameWall members={hallOfFame} />
