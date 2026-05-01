@@ -3,13 +3,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
 import Footer from "../components/Footer.astro";
-import SignaturePhrases from "../components/SignaturePhrases.astro";
 import Timeline from "../components/Timeline.astro";
 import HallOfFameWall from "../components/HallOfFameWall.astro";
-// import DefiningMoments from "../components/DefiningMoments.astro";
-import Gallery from "../components/Gallery.astro";
-// import UnpublishedStories from "../components/UnpublishedStories.astro";
-import { hallOfFame, definingMoments, gallery } from "../data/index";
+import { hallOfFame } from "../data/index";
 import { SITE } from "../data/site";
 import "../styles/global.css";
 import FAQ from "../components/FAQ.astro";
@@ -47,9 +43,9 @@ const faqStructuredData = {
 };
 
 const page = {
-  title: "MXL Legacy",
+  title: "MXL Legacy – Die Geschichte einer legendären Sim-Racing-Liga",
   description:
-    "Legacy- und Tribute-Seite zur MXL Sim-Racing-Liga: Saisons, Highlights & Hall of Fame.",
+    "Erlebe die Chronik, Fahrer und Highlights der MXL – eine der einflussreichsten Sim-Racing-Ligen Deutschlands.",
   canonical: baseUrl,
   image: "/images/MxlLegacyBanner.jpg",
   type: "website",
@@ -71,11 +67,6 @@ const page = {
     <!-- Timeline Section -->
     <section id="timeline" class="py-16 md:py-24">
       <Timeline />
-    </section>
-
-    <!-- Signature Phrases Section -->
-    <section id="signature-phrases" class="py-16 md:py-24">
-      <SignaturePhrases />
     </section>
 
     <FAQ items={faqs} />
