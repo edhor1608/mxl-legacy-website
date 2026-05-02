@@ -54,6 +54,9 @@ const checkedFiles = [...sourceFiles, "README.md", "AGENTS.md"].filter((file) =>
 
 for (const file of checkedFiles) {
   const content = readFileSync(path.join(root, file), "utf8");
+  if (content.includes("placehold.co")) {
+    fail(`${file} still references placehold.co.`);
+  }
   if (
     content.includes("/assets/og-cover.jpg") ||
     content.includes('"/MxlLegacyBanner.jpg"')
