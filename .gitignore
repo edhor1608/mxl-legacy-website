@@ -1,7 +1,10 @@
 # build output
 dist/
+test-results/
+playwright-report/
 # generated types
 .astro/
+.codex/
 
 # dependencies
 node_modules/

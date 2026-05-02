@@ -7,3 +7,27 @@
   NODE_VERSION = "22"
 
 
+[[redirects]]
+  from = "/about"
+  to = "/geschichte"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/drivers"
+  to = "/fahrer"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/gallery"
+  to = "/galerie"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact"
+  to = "/kontakt"
+  status = 301
+  force = true
+

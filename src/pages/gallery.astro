@@ -7,17 +7,26 @@ import "../styles/global.css";
 import { Picture } from "astro:assets";
 
 const page = {
-  title: "Galerie",
+  title: "MXL Galerie – Highlights & Momente",
   description:
-    "Fotos, Highlights und Momente der MXL Sim-Racing-Liga: Von den Anfängen bis zum Legacy.",
-  canonical: "https://mxl-legacy.de/gallery",
-  image: "/assets/og-cover.jpg",
+    "Bilder & Szenen der MXL: Fahrer, Events und legendäre Momente der Sim-Racing-Liga.",
+  canonical: "https://mxl-legacy.de/galerie",
+  image: "/images/MxlLegacyBanner.jpg",
   type: "website",
 };
 
-const gallery = Array.from({ length: 12 }).map(
-  (_, i) => `https://placehold.co/800x500?text=Gallery+${i + 1}`,
-);
+const gallery = [
+  "/images/MxlLegacyBanner.jpg",
+  "/images/MxlLegacyProfil.jpg",
+  "/images/Matri_X_.png",
+  "/images/Bloodron83.png",
+  "/images/Wolfson.png",
+  "/images/Edhor1608.png",
+  "/images/McGill.png",
+  "/images/Sasuke.png",
+  "/images/Yelkajor.webp",
+  "/images/Thomahawk_85.png",
+];
 ---
 
 <BaseLayout {...page}>
@@ -30,8 +39,9 @@ const gallery = Array.from({ length: 12 }).map(
             src={src}
             width={500}
             height={500}
-            alt={`Galerie ${i + 1}`}
+            alt={`MXL Galerie Bild ${i + 1}`}
             class="w-full h-48 object-cover rounded-lg border border-white/10"
+            loading="lazy"
             formats={["avif", "webp"]}
           />
         ))

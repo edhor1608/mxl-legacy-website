@@ -30,8 +30,12 @@ const person = {
 };
 
 const page = {
-  title: `${person.nickname} - MXL Legacy`,
-  description: `${person.role}: ${person.tagline}`,
+  title: `${person.nickname} – Hall of Fame | MXL Legacy`,
+  description: `${person.role} – ${person.tagline}`,
+  canonical: new URL(
+    `/hall-of-fame/${slug}`,
+    Astro.site?.toString() || "https://mxl-legacy.de",
+  ).toString(),
 };
 ---
 
@@ -40,5 +44,3 @@ const page = {
   <HallOfFameMember person={person} />
   <Footer />
 </BaseLayout>
-
-

@@ -1,13 +1,13 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 
+import netlify from "@astrojs/netlify";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 const useStatic = Boolean(process.env.BUN_BUILD);
 
-/** @type {import('astro').AstroUserConfig} */
-const baseConfig = {
+const sharedConfig = {
   site: "https://mxl-legacy.de",
   integrations: [
     sitemap({
@@ -24,9 +24,13 @@ const baseConfig = {
 
 export default defineConfig(
   useStatic
-    ? { ...baseConfig, output: "static" }
-    : (async () => {
-        const { default: netlify } = await import("@astrojs/netlify");
-        return defineConfig({ ...baseConfig, adapter: netlify(), output: "server" });
-      })()
+    ? {
+        ...sharedConfig,
+        output: "static",
+      }
+    : {
+        ...sharedConfig,
+        adapter: netlify(),
+        output: "server",
+      },
 );

@@ -5,8 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
+    "build": "astro check && astro build",
+    "build:static": "BUN_BUILD=1 astro check && BUN_BUILD=1 astro build && bun run check:dist",
+    "preview": "BUN_BUILD=1 astro preview",
+    "typecheck": "astro check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "bun run check:repo",
+    "check:repo": "node scripts/check-repo.mjs",
+    "check:dist": "node scripts/check-dist.mjs",
+    "test": "vitest run",
+    "test:e2e": "bun run build:static && playwright test",
     "astro": "astro"
   },
   "dependencies": {
@@ -17,12 +26,16 @@
     "sharp": "^0.34.3"
   },
   "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@playwright/test": "^1.59.1",
     "autoprefixer": "^10.4.20",
     "postcss": "^8.4.49",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.14.1",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "tailwindcss": "^4.1.11"
+    "tailwindcss": "^4.1.11",
+    "typescript": "^6.0.3",
+    "vitest": "^4.1.5"
   },
   "packageManager": "bun@1.3.13"
 }

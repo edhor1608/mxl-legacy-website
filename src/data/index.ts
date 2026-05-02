@@ -77,4 +77,4 @@ export const gallery = [
     cap: "MXL Legacy - 2025",
     date: "2025",
   },
-]; 
+];

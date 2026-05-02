@@ -1,201 +1,61 @@
 # MXL Legacy
 
-A fast, open-source tribute site for the MXL sim-racing league—built with Astro & Tailwind CSS, featuring scroll-based navigation and static pages.
+MXL Legacy is a static Astro site for preserving the history, people, and media of the MXL sim-racing league.
 
-A statically generated, scroll-navigable tribute website for the retired MXL sim-racing league.
-Built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/) for blazing-fast performance, simple deployment, and easy community contributions.
+## Stack
 
-[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/W7W81J3ADI)
-
-![MxlLegacyBanner](https://github.com/user-attachments/assets/5f4898fa-ba6b-46e8-87ee-6dd28d183229)
-
-## Table of Contents
-
-1. [Features](#features)
-2. [Quick Start](#quick-start)
-3. [Project Structure](#project-structure)
-4. [Development](#development)
-5. [Build & Preview](#build--preview)
-6. [Deployment](#deployment)
-7. [Contributing](#contributing)
-8. [License](#license)
-
-## Features
-
-- **Astro-powered** static site: zero-JavaScript by default, islands for optional interactivity
-- **Tailwind CSS** for utility-first styling and rapid design
-- **Scroll navigation**: sticky header links to full-page sections
-- **Multi-page support**: file-based routing for up to 10 pages
-- **SEO & performance** best practices out of the box
-- **CI/CD** via GitHub Actions → Netlify or Vercel preview & production deploys
-- **Open source**: easy for anyone to fork, contribute, and improve
+- Astro 5
+- Tailwind CSS 4 through Vite
+- Bun for installs and scripts
+- Netlify static output
 
 ## Quick Start
 
 ```bash
-# Clone the repo
-git clone https://github.com/your-org/mxl-legacy.git
-cd mxl-legacy
-
-# Install dependencies
 bun install
-
-# Start local dev server
 bun run dev
 ```
 
-Navigate to `http://localhost:3000` to see your changes live.
+Astro serves the dev site at `http://localhost:4321` by default.
+
+## Commands
+
+- `bun run dev` starts the local Astro dev server.
+- `bun run build` runs `astro check` before the production build.
+- `bun run build:static` builds the static Netlify output with `BUN_BUILD=1`.
+- `bun run typecheck` runs Astro and TypeScript diagnostics.
+- `bun run lint` runs project-specific repository checks.
+- `bun run test` runs Vitest data and route contract tests.
+- `bun run test:e2e` runs Playwright against a built preview.
+- `bun run format:check` verifies Prettier formatting.
+
+## Route Policy
+
+German routes are canonical. English top-level routes redirect to their German equivalents:
+
+- `/about` redirects to `/geschichte`
+- `/drivers` redirects to `/fahrer`
+- `/drivers/:slug` redirects to `/fahrer/:slug`
+- `/gallery` redirects to `/galerie`
+- `/contact` redirects to `/kontakt`
+
+## Content Policy
+
+This is an archive project. Do not add invented quotes, fake screenshots, placeholder image URLs, or unsourced timeline claims. Add new archive content only when the source or provenance is clear enough to document.
 
 ## Project Structure
 
-```
-mxl-legacy/
-├── public/               # Static assets (images, icons)
-│   └── placeholder.jpg
-├── src/
-│   ├── components/       # Reusable UI components
-│   │   ├── Nav.astro
-│   │   ├── Hero.astro
-│   │   ├── Section.astro
-│   │   └── Footer.astro
-│   ├── layouts/          # Layout wrappers
-│   │   └── BaseLayout.astro
-│   └── pages/            # File-based routes
-│       ├── index.astro   # Single-page sections
-│       ├── about.astro
-│       ├── drivers.astro
-│       └── gallery.astro
-├── astro.config.mjs      # Astro configuration
-├── tailwind.config.cjs   # Tailwind CSS configuration
-├── postcss.config.cjs    # PostCSS configuration
-├── package.json          # Scripts & dependencies
-└── README.md             # Project documentation
+```text
+public/        Static images, icons, and web app assets
+src/components Reusable Astro components
+src/data       Typed site data
+src/layouts    Shared page layouts
+src/pages      File-based routes
+scripts/       Repo-specific validation scripts
+tests/         Vitest and Playwright tests
+docs/          Architecture, testing, content, and decisions
 ```
 
-## Development
+## Deployment
 
-- `bun run dev`
-  Start Astro’s dev server with file watching and HMR.
-
-- `bun run lint`
-  (Optional) Run any configured linters.
-
-- `bun run format`
-  (Optional) Format code with Prettier.
-
-## Build & Preview
-
-- `bun run build`
-  Generate the production-ready `dist/` directory (static HTML, CSS, and any island JS).
-
-- `bun run preview`
-  Serve the built `dist/` locally to verify before deploying.
-
-Here’s the adjusted **Deployment** section in your README to focus solely on Netlify:
-
-````markdown
-## Deployment via Netlify
-
-We’ll use Netlify’s free tier to host the fully static output.
-
-1. **Install the Netlify CLI** (if you haven’t yet):
-   ```bash
-   bunx npm@latest -g netlify-cli
-   ```
-````
-
-2. **Login** (once):
-
-```bash
-netlify login
-```
-
-3. **Link your project** to a Netlify site (run in your repo root):
-
-```bash
-netlify init
-```
-
-- Choose “Create & configure a new site”
-- Select your Git provider & repo
-- Pick “Astro” as the build command (`bun run build`) and `dist/` as the publish directory
-
-4. **Deploy** a draft:
-
-```bash
-netlify deploy
-```
-
-5. **Publish to production**:
-
-```bash
-netlify deploy --prod
-```
-
-### CI/CD with GitHub Actions
-
-Add this workflow to `.github/workflows/deploy.yml` to build on every push to `main` and auto-deploy to Netlify:
-
-```yaml
-name: CI & Deploy
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Install Bun
-        uses: oven-sh/setup-bun@v1
-        with:
-          bun-version: "1.1.0"
-
-      - name: Install dependencies
-        run: bun install
-
-      - name: Build site
-        run: bun run build
-
-      - name: Deploy to Netlify
-        uses: netlify/actions/cli@master
-        with:
-          args: deploy --dir=dist --prod
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-```
-
-Be sure to add two repository secrets under Settings ▶ Secrets:
-
-- `NETLIFY_AUTH_TOKEN` (your Netlify personal access token)
-- `NETLIFY_SITE_ID` (the Site ID from your Netlify dashboard)
-
-This setup will automatically rebuild and publish every time you merge into `main`.
-
-## Contributing
-
-Fork the repo, create a branch, open a PR. Issues and ideas welcome.
-
-## License
-
-This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for details.
-
----
-
-> Built with ❤️ by the MXL community.
-> Visit our [GitHub organization](https://github.com/your-org) to explore more projects.
-
-<!-- status:start -->
-## Status
-- State: active
-- Summary: Define current milestone.
-- Next: Define next concrete step.
-- Updated: 2026-02-21
-- Branch: `main`
-- Working Tree: dirty (20 files)
-- Last Commit: d6940aa (2025-08-10) feat: enhance SEO and structured data support across components (#17)
-<!-- status:end -->
+Netlify runs `bun run build` and publishes `dist`. The Netlify environment sets `BUN_BUILD=1`, so production deploys use static Astro output.

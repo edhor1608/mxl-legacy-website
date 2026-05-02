@@ -7,53 +7,77 @@ import { phrases } from "../data/phrases";
   <div class="text-center mb-16">
     <div class="inline-flex items-center gap-2 mb-4">
       <!-- Quote Icon -->
-      <svg class="text-[#9FFE88]" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"></path>
-        <path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"></path>
+      <svg
+        class="text-[#9FFE88]"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"
+        ></path>
+        <path
+          d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"
+        ></path>
       </svg>
       <h2 class="text-4xl md:text-5xl font-bold">Signatur-Zitate</h2>
     </div>
     <p class="text-lg text-[#F4F4F4]/70 max-w-2xl mx-auto">
-      Worte, die uns geprägt haben – Zitate, die inspirierten – Phrasen, die zur Legacy wurden
+      Worte, die uns geprägt haben – Zitate, die inspirierten – Phrasen, die zur
+      Legacy wurden
     </p>
-    <div class="h-1 w-24 bg-gradient-to-r from-[#9FFE88] to-transparent mx-auto mt-6"></div>
+    <div
+      class="h-1 w-24 bg-gradient-to-r from-[#9FFE88] to-transparent mx-auto mt-6"
+    >
+    </div>
   </div>
 
   <!-- "Wall of phrases" with varied styles and subtle reveal -->
   <div class="relative">
     <!-- Background Pattern (very subtle) -->
     <div class="absolute inset-0 opacity-[0.07] pointer-events-none">
-      <div 
+      <div
         class="absolute inset-0"
         style="background-image: linear-gradient(rgba(159, 254, 136, 0.12) 1px, transparent 1px), linear-gradient(90deg, rgba(159, 254, 136, 0.12) 1px, transparent 1px); background-size: 30px 30px;"
-      ></div>
+      >
+      </div>
     </div>
 
     <!-- Dense, flowing text wall -->
     <div class="relative text-center leading-tight">
-      {phrases.map((phrase) => (
-        <a
-          id={phrase.id}
-          data-phrase
-          href={`/zitate/${phrase.id}`}
-          class={`phrase inline-block mx-1 my-0.5 group cursor-pointer ${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle} ${phrase.style.color}`}
-          style={`--rot:${phrase.style.rotation}deg; transition-delay:${phrase.style.delay}ms;`}
-          title={`"${phrase.text}" - ${phrase.author}${phrase.context ? ` (${phrase.context})` : ''}`}
-        >
-          <span class="relative">
-            “{phrase.text}”
-            <span class="phrase-bg"></span>
-          </span>
-        </a>
-      ))}
+      {
+        phrases.map((phrase) => (
+          <a
+            id={phrase.id}
+            data-phrase
+            href={`/zitate/${phrase.id}`}
+            class={`phrase inline-block mx-1 my-0.5 group cursor-pointer ${phrase.style.fontSize} ${phrase.style.fontWeight} ${phrase.style.fontStyle} ${phrase.style.color}`}
+            style={`--rot:${phrase.style.rotation}deg; transition-delay:${phrase.style.delay}ms;`}
+            title={`"${phrase.text}" - ${phrase.author}${phrase.context ? ` (${phrase.context})` : ""}`}
+          >
+            <span class="relative">
+              “{phrase.text}”
+              <span class="phrase-bg" />
+            </span>
+          </a>
+        ))
+      }
     </div>
   </div>
 
   <!-- Bottom Decoration -->
   <div class="mt-16 text-center">
-    <div class="inline-block p-4 bg-[#9FFE88]/10 border border-[#9FFE88]/30 rounded-lg backdrop-blur">
+    <div
+      class="inline-block p-4 bg-[#9FFE88]/10 border border-[#9FFE88]/30 rounded-lg backdrop-blur"
+    >
       <p class="text-[#F4F4F4]/70 italic">
-        „Worte haben Macht. Diese Worte hatten die Kraft, eine Legende zu formen.“
+        „Worte haben Macht. Diese Worte hatten die Kraft, eine Legende zu
+        formen.“
       </p>
     </div>
   </div>
@@ -63,7 +87,9 @@ import { phrases } from "../data/phrases";
   .phrase {
     opacity: 0;
     transform: translateY(6px) rotate(0deg);
-    transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1), opacity 900ms ease;
+    transition:
+      transform 900ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 900ms ease;
     will-change: transform, opacity;
   }
 
@@ -105,36 +131,36 @@ import { phrases } from "../data/phrases";
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          (entry.target as HTMLElement).classList.add('is-visible');
+          (entry.target as HTMLElement).classList.add("is-visible");
         }
       });
     },
-    { threshold: 0.1, rootMargin: '100px' }
+    { threshold: 0.1, rootMargin: "100px" },
   );
 
   function initPhrases() {
-    const elements = document.querySelectorAll('[data-phrase]');
+    const elements = document.querySelectorAll("[data-phrase]");
 
-    if (!('IntersectionObserver' in window)) {
-      elements.forEach((el) => (el as HTMLElement).classList.add('is-visible'));
+    if (!("IntersectionObserver" in window)) {
+      elements.forEach((el) => (el as HTMLElement).classList.add("is-visible"));
       return;
     }
 
     elements.forEach((el) => observer.observe(el));
   }
 
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initPhrases, { once: true });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initPhrases, { once: true });
   } else {
     initPhrases();
   }
 
   // Re-init on Astro client navigation
-  document.addEventListener('astro:page-load', initPhrases);
+  document.addEventListener("astro:page-load", initPhrases);
 
   // Clean up on navigation (Astro view transitions)
-  document.addEventListener('astro:before-swap', () => {
-    const elements = document.querySelectorAll('[data-phrase]');
+  document.addEventListener("astro:before-swap", () => {
+    const elements = document.querySelectorAll("[data-phrase]");
     elements.forEach((el) => observer.unobserve(el));
   });
 </script>

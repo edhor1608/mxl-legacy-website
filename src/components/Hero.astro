@@ -66,7 +66,7 @@ const gridCycleKeyframes = `@keyframes gridCycle {\n  0% { transform: translateY
           >Hall of Fame ansehen</a
         >
         <a
-          href="/about"
+          href="/geschichte"
           class="inline-block rounded border border-[#F4F4F4]/20 px-5 py-3 font-medium hover:bg-[#F4F4F4]/10"
           >Über das Projekt</a
         >
@@ -135,7 +135,7 @@ const gridCycleKeyframes = `@keyframes gridCycle {\n  0% { transform: translateY
                   >
                     {pair.map((p, j) => (
                       <a
-                        href={`/drivers/${p.link}`}
+                        href={`/fahrer/${p.link}`}
                         class={`group inline-flex items-center gap-2 sm:gap-3 w-full rounded-xl border border-white/10 bg-white/10 backdrop-blur-sm px-0 py-0 transition-colors hover:border-[#9FFE88]/40 ${j === 0 ? "justify-self-start" : "justify-self-end"} self-center`}
                       >
                         <Picture

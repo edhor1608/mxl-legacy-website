@@ -1,0 +1,8 @@
+node_modules/
+dist/
+.astro/
+.codex/
+test-results/
+repo-audit-report.md
+seo-plan.md
+.github/workflows/readme-status-sync.yml

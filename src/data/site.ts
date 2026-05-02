@@ -3,9 +3,7 @@ export const SITE = {
   description:
     "Archiv und Tribute-Seite zur MXL Sim-Racing-Liga: Saisons, Highlights & Hall of Fame.",
   url: "https://mxl-legacy.de",
-  defaultImage: "/assets/og-cover.jpg",
+  defaultImage: "/images/MxlLegacyBanner.jpg",
   language: "de-DE",
-  sameAs: [
-    "https://github.com/edhor1608",
-  ],
-}; 
+  sameAs: ["https://github.com/edhor1608"],
+};
