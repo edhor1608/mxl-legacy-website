@@ -20,3 +20,17 @@
 - Reuse existing Astro components and data modules.
 - Do not refactor route or component ownership unless the task explicitly requires it.
 - Prefer typed literals with `satisfies` or explicit interfaces for data.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and PRDs are tracked in GitHub Issues for `edhor1608/mxl-legacy-website`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Triage uses the default five-label vocabulary. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+This is a single-context repo. See `docs/agents/domain.md`.
